@@ -830,3 +830,29 @@ a {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
+/* Announcement Bar */
+.announcement-bar {
+    background-color: #121212;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.announcement-bar p {
+    color: #a0a0a0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+}
+
+/* Adjust font size slightly on mobile screens */
+@media (max-width: 768px) {
+    .announcement-bar p {
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+    }
+}
