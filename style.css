@@ -60,14 +60,15 @@ a {
     border-bottom: 1px solid var(--border-dark);
 }
 
+/* Navigation Container Setup */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(8, 8, 8, 0.92);
+    background-color: rgba(8, 8, 8, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-dark);
-    padding: 16px 0;
+    padding: 12px 0;
 }
 
 .nav-container {
@@ -80,14 +81,20 @@ a {
 }
 
 .brand-logo {
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo-img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.8rem;
+    align-items: center;
 }
 
 .nav-links a {
@@ -101,6 +108,35 @@ a {
 
 .nav-links a:hover {
     color: var(--text-white);
+}
+
+/* Mobile & Tablet Responsive Layout */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .nav-links {
+        display: flex !important; /* Force display on mobile */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 0.78rem;
+        padding: 4px 6px;
+    }
+
+    .nav-btn {
+        display: inline-block;
+        font-size: 0.7rem;
+        padding: 6px 14px;
+        margin-top: 4px;
+    }
 }
 
 /* Buttons */
