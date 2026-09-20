@@ -223,19 +223,25 @@
 <!-- Lightbox Modal -->
 <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="expandedImg">
+    <img class="lightbox-content" id="expandedImg" src="" alt="Expanded View">
 </div>
 
 <script>
-function openLightbox(src) {
+function openLightbox(imageSrc) {
     var modal = document.getElementById("imageModal");
     var modalImg = document.getElementById("expandedImg");
-    modal.style.display = "flex";
-    modalImg.src = src;
+    
+    if (modal && modalImg) {
+        modalImg.src = imageSrc;
+        modal.style.display = "flex";
+    }
 }
 
 function closeLightbox() {
-    document.getElementById("imageModal").style.display = "none";
+    var modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+    }
 }
 </script>
 </body>
