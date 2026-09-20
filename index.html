@@ -18,20 +18,27 @@
     </div>
 
     <header class="navbar">
-        <div class="nav-container">
-            <!-- Inside <header class="navbar"> -> <div class="nav-container"> -->
-                <a href="#" class="brand-logo">
-                    <img src="Logo_white.png" alt="PRGRSSV Logo" class="brand-logo-img">
-                </a>
-            <nav class="nav-links">
-                <a href="#catalog">Catalog</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <a href="#catalog" class="btn btn-outline nav-btn">EXPLORE GEAR</a>
-        </div>
-    </header>
+    <div class="nav-container">
+        <a href="#" class="brand-logo">
+            <img src="Logo_white.png" alt="PRGRSSV Logo" class="brand-logo-img">
+        </a>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <nav class="nav-links" id="navLinks">
+            <a href="#catalog">CATALOG</a>
+            <a href="#gallery">GALLERY</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </div>
+</header>
 
     <!-- 2. HERO BANNER SECTION -->
 <section class="hero-section">
