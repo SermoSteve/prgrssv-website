@@ -224,7 +224,7 @@ a {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.5) contrast(1.1);
+    filter: brightness(0.5) contrast(1.1); /* Darkens 1.jpg so text stands out */
 }
 
 .hero-bg-overlay {
