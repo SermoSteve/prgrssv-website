@@ -48,25 +48,32 @@ a {
     margin: 0 auto;
 }
 
-/* Navigation Header Base (Desktop View) */
+/* Navigation Header Base */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
     background-color: rgba(8, 8, 8, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: none !important; /* Removes the bottom line */
+    border-bottom: none !important;
     padding: 14px 0;
 }
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 90% !important;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+}
+
+.brand-logo {
+    display: flex !important;
+    align-items: center;
+    margin: 0 !important;
 }
 
 .brand-logo-img {
@@ -75,10 +82,47 @@ a {
     display: block;
 }
 
+/* Hamburger Button Setup */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 !important;
+    z-index: 101;
+}
+
+.hamburger-btn .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger 'X' Animation */
+.hamburger-btn.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-btn.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-btn.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Default Desktop Nav Links */
 .nav-links {
     display: flex;
     gap: 2rem;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
@@ -93,6 +137,40 @@ a {
 
 .nav-links a:hover {
     color: #ffffff;
+}
+
+/* --- MOBILE & TABLET STYLES (Screens 1024px and smaller) --- */
+@media (max-width: 1024px) {
+    .hamburger-btn {
+        display: flex !important; /* Shows hamburger on both Mobile & Tablet */
+    }
+
+    .nav-links {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background-color: #080808 !important;
+        border-bottom: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0 !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.35s ease !important;
+    }
+
+    .nav-links.active {
+        max-height: 250px !important;
+    }
+
+    .nav-links a {
+        display: block !important;
+        width: 100% !important;
+        padding: 16px 0 !important;
+        text-align: center !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
 }
 
 /* Hide Hamburger Button on Desktop */
