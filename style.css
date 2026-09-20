@@ -48,7 +48,7 @@ a {
     margin: 0 auto;
 }
 
-/* Navigation Header */
+/* Navigation Header Base (Desktop View) */
 .navbar {
     position: sticky;
     top: 0;
@@ -61,18 +61,12 @@ a {
 
 .nav-container {
     display: flex;
-    flex-direction: row; /* Forces side-by-side alignment */
-    justify-content: space-between; /* Pushes logo left, hamburger right */
+    justify-content: space-between;
     align-items: center;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-}
-
-.brand-logo {
-    display: flex;
-    align-items: center;
 }
 
 .brand-logo-img {
@@ -81,9 +75,29 @@ a {
     display: block;
 }
 
-/* Hamburger Button Icon (Shown on Mobile) */
-.hamburger-btn {
+.nav-links {
     display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+/* Hide Hamburger Button on Desktop */
+.hamburger-btn {
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 24px;
@@ -103,56 +117,55 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Hamburger animation to 'X' */
+/* Hamburger 'X' transformation */
 .hamburger-btn.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
-
 .hamburger-btn.active .bar:nth-child(2) {
     opacity: 0;
 }
-
 .hamburger-btn.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Nav Links Menu Dropdown */
-.nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #080808;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
-}
+/* --- MOBILE STYLES ONLY (Screens 768px and smaller) --- */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: row; /* Horizontal alignment for mobile header */
+        justify-content: space-between; /* Logo left, Hamburger right */
+        align-items: center;
+    }
 
-.nav-links.active {
-    max-height: 250px;
-}
+    .hamburger-btn {
+        display: flex; /* Show hamburger only on mobile */
+    }
 
-.nav-links a {
-    display: block;
-    width: 100%;
-    padding: 16px 0;
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #a0a0a0;
-    text-decoration: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    transition: color 0.2s ease;
-}
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #080808;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
 
-.nav-links a:hover {
-    color: #ffffff;
+    .nav-links.active {
+        max-height: 250px; /* Expand dropdown menu when active */
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 16px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
 }
 
 /* Desktop Styles */
