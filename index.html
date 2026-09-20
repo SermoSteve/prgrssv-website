@@ -220,6 +220,24 @@
             <p>&copy; 2026 PRGRSSV. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
+<!-- Lightbox Modal -->
+<div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="expandedImg">
+</div>
 
+<script>
+function openLightbox(src) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("expandedImg");
+    modal.style.display = "flex";
+    modalImg.src = src;
+}
+
+function closeLightbox() {
+    document.getElementById("imageModal").style.display = "none";
+}
+</script>
+</body>
 </body>
 </html>
