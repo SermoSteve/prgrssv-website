@@ -980,41 +980,44 @@ a {
     opacity: 1;
     transform: scale(1);
 }
-/* Catalog Filter Buttons Container */
+/* Catalog Filter Container */
 .catalog-filters {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
 }
 
-/* Individual Filter Buttons */
+/* Base Filter Button - Dark Stealth Aesthetic */
 .filter-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #a0a0a0;
-    padding: 8px 18px;
-    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #888888;
+    padding: 10px 22px;
+    border-radius: 4px; /* Matches your subtle card borders */
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.25s ease;
 }
 
+/* Hover State */
 .filter-btn:hover {
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Active Button State */
+/* Active State - Subtle High-Contrast Highlight */
 .filter-btn.active {
-    background-color: #ffffff;
-    color: #080808;
-    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.08); /* Glow matching site aesthetics */
 }
 
 /* Hide filtered cards */
