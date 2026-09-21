@@ -1,11 +1,48 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main # Update to 'master' if your repo defaults to master
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # --- 1. HOMEPAGE CONTENT (Hero Video, Features, Gallery) ---
+  - name: "pages"
+    label: "Pages & Sections"
+    files:
+      - file: "content/homepage.json"
+        label: "Homepage Content"
+        name: "homepage"
+        fields:
+          # HERO SECTION
+          - name: "hero"
+            label: "Hero Section"
+            widget: "object"
+            fields:
+              - { label: "Hero Title", name: "title", widget: "string" }
+              - { label: "Hero Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Hero Video", name: "video", widget: "file" }
+
+          # FEATURES SECTION
+          - name: "features"
+            label: "Features Section"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Feature Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon / Image", name: "icon", widget: "image", required: false }
+
+          # GALLERY SECTION
+          - name: "gallery"
+            label: "Gallery Section"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+
+  # --- 2. CATALOG PRODUCTS ---
   - name: "catalog"
     label: "Catalog Products"
     folder: "content/products"
