@@ -934,3 +934,49 @@ a {
         letter-spacing: 0.08em;
     }
 }
+/* Card Image Container */
+.card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background-color: #121212;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Base Image Styles */
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    display: block;
+}
+
+/* Default Front Image */
+.card-image-wrap .img-primary {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+}
+
+/* Hover Back Image */
+.card-image-wrap .img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(1.03);
+}
+
+/* Hover States */
+.card-image-wrap:hover .img-primary {
+    opacity: 0;
+}
+
+.card-image-wrap:hover .img-hover {
+    opacity: 1;
+    transform: scale(1);
+}
