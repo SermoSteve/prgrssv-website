@@ -1059,8 +1059,72 @@ a {
         white-space: nowrap !important;
     }
 }
+/* ==========================================================================
+   CATALOG FILTER BUTTONS (BASE / DESKTOP VIEW)
+   ========================================================================== */
 
-/* --- MOBILE PHONE VIEW (768px and smaller): SWIPEABLE SCROLL --- */
+.catalog-filters {
+    display: flex;
+    justify-content: center; /* Center buttons on desktop */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Dark Stealth Button Styling */
+.filter-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #888888;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+/* Hover State */
+.filter-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Active State */
+.filter-btn.active {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+
+/* ==========================================================================
+   TABLET RESPONSIVE (769px to 1024px)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .catalog-filters {
+        justify-content: center !important;
+        margin-bottom: 30px !important;
+    }
+
+    .filter-btn {
+        padding: 9px 20px !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap !important;
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE PHONE RESPONSIVE (768px and smaller)
+   ========================================================================== */
 @media (max-width: 768px) {
     .catalog-filters {
         display: flex !important;
