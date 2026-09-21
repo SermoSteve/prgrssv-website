@@ -636,7 +636,7 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE SECTION (CONSOLIDATED & FIXED)
+   COMMUNITY SHOWCASE SECTION
    ========================================================================== */
 
 .community-showcase-section {
@@ -653,7 +653,6 @@ a {
     margin: 0 auto;
 }
 
-/* Desktop Grid: 5 columns */
 .showcase-grid {
     display: grid !important;
     grid-template-columns: repeat(5, 1fr) !important;
@@ -702,7 +701,6 @@ a {
     filter: brightness(1) contrast(1.05);
 }
 
-/* Badge Styling */
 .spotlight-badge {
     display: flex;
     flex-direction: column;
@@ -761,7 +759,6 @@ a {
     color: var(--text-white);
 }
 
-/* Consolidated Responsive Breakpoints for Showcase */
 @media (max-width: 1024px) {
     .showcase-grid {
         grid-template-columns: repeat(3, 1fr) !important;
@@ -1087,6 +1084,7 @@ body.modal-open {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    overflow-y: auto;
 }
 
 .lightbox-content {
@@ -1130,6 +1128,7 @@ body.modal-open {
     pointer-events: none;
     transition: opacity 0.22s ease, visibility 0.22s ease;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .modal-overlay.is-active {
