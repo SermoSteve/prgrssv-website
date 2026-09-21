@@ -88,10 +88,10 @@ function renderCommunityShowcase() {
             <div class="showcase-img-wrap">
                 <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img">
             </div>
-            <div class="showcase-info">
-                <span class="showcase-tag">${item.tag}</span>
-                <span class="showcase-handle">${item.handle}</span>
-                <span class="showcase-gear">${item.outfit}</span>
+            <div class="spotlight-badge">
+                <span class="spotlight-badge-label">${item.tag}</span>
+                <span class="spotlight-handle">${item.handle}</span>
+                <span class="spotlight-outfit">${item.outfit}</span>
             </div>
         </div>
     `).join('');
@@ -223,8 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Size Chart Modal Close Triggers
+    // 3. Size Chart & Lightbox Modal Close Triggers
     const sizeModal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
+    const imageModal = document.getElementById('imageModal');
     const closeBtn = document.querySelector('.modal-close');
 
     if (closeBtn) {
@@ -235,6 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sizeModal.addEventListener('click', (e) => {
             if (e.target === sizeModal) {
                 closeSizeChart();
+            }
+        });
+    }
+
+    if (imageModal) {
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
             }
         });
     }
