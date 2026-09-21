@@ -1239,7 +1239,55 @@ a {
 .modal-overlay.is-closing .modal-content {
     animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+/* Add this block to your Master Stylesheet under "MODALS" or "BUTTONS & GENERAL COMPONENTS" */
 
+/* Disable page scrolling when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Base overlay state */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+    padding: 20px;
+}
+
+/* Active modal state */
+.modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Closing transition state */
+.modal-overlay.is-closing {
+    opacity: 0;
+    visibility: visible;
+    pointer-events: none;
+}
+
+/* Ensure keyframe animations match your existing structure */
+.modal-overlay.is-active .modal-content {
+    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-overlay.is-closing .modal-content {
+    animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 /* ==========================================================================
    MEDIA QUERIES (RESPONSIVE VIEWS)
    ========================================================================== */
