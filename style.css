@@ -308,7 +308,7 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE - MOBILE SPOTLIGHT FIX
+   COMMUNITY SHOWCASE SECTION (MOBILE & TABLET FIXED)
    ========================================================================== */
 
 .community-showcase-section {
@@ -318,26 +318,29 @@ a {
     text-align: center;
 }
 
+/* Base Desktop Grid */
 .showcase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Card Container Fix: Allow auto height and visible overflow for badge */
-.showcase-card {
+/* Card Container: Flexible height on all viewports */
+.showcase-card,
+.showcase-card.featured-main {
     display: flex !important;
     flex-direction: column !important;
     background-color: var(--bg-card);
     border: 1px solid var(--border-dark);
     border-radius: 4px;
-    height: auto !important; /* Overrides old fixed heights */
+    height: auto !important; /* Overrides any previous fixed heights */
     min-height: 0 !important;
     max-height: none !important;
-    overflow: visible !important; /* Prevents badge clipping */
+    overflow: hidden;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    grid-column: span 1 !important; /* Normalizes layout */
 }
 
 .showcase-card:hover {
@@ -345,16 +348,16 @@ a {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Image Wrapper Fix: Lock image aspect ratio without squeezing the text badge */
+/* Image Wrapper: Locks photo shape without clipping badge text */
 .showcase-img-wrap {
     width: 100%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    background-color: #000;
 }
 
-.showcase-img-wrap img {
+.showcase-img-wrap img,
+.showcase-card .showcase-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -367,7 +370,7 @@ a {
     filter: brightness(1) contrast(1.05);
 }
 
-/* Spotlight Badge: Forced Visibility & Center Alignment */
+/* Spotlight Badge: Forced Visibility */
 .spotlight-badge {
     display: flex !important;
     flex-direction: column !important;
@@ -381,13 +384,12 @@ a {
     box-sizing: border-box;
     visibility: visible !important;
     opacity: 1 !important;
-    position: relative !important;
-    z-index: 2;
+    margin-top: auto;
 }
 
 .spotlight-badge-label {
     display: block;
-    font-size: clamp(0.6rem, 2.5vw, 0.65rem);
+    font-size: clamp(0.58rem, 1.2vw, 0.65rem);
     font-weight: 700;
     color: var(--text-gray);
     letter-spacing: 0.14em;
@@ -397,7 +399,7 @@ a {
 
 .spotlight-handle {
     display: block;
-    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     font-weight: 800;
     color: var(--text-white);
     letter-spacing: 0.04em;
@@ -410,7 +412,7 @@ a {
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 2px;
-    font-size: clamp(0.65rem, 2.8vw, 0.72rem);
+    font-size: clamp(0.62rem, 1.4vw, 0.72rem);
     color: #cccccc;
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -418,6 +420,43 @@ a {
     word-break: break-word;
 }
 
+/* ==========================================================================
+   BREAKPOINTS (DESKTOP TO MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .showcase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Centers 5th card nicely across 2 columns */
+    .showcase-card:nth-child(5) {
+        grid-column: span 2 !important;
+        max-width: 360px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .showcase-card:nth-child(5) {
+        grid-column: span 1 !important;
+        max-width: 100%;
+    }
+}
 /* ==========================================================================
    BREAKPOINTS (TABLET & MOBILE)
    ========================================================================== */
