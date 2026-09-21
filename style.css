@@ -308,192 +308,6 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE SECTION (MOBILE & TABLET FIXED)
-   ========================================================================== */
-
-.community-showcase-section {
-    padding: 80px 0;
-    background-color: var(--bg-subtle);
-    border-top: 1px solid var(--border-dark);
-    text-align: center;
-}
-
-/* Base Desktop Grid */
-.showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Card Container: Flexible height on all viewports */
-.showcase-card,
-.showcase-card.featured-main {
-    display: flex !important;
-    flex-direction: column !important;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-dark);
-    border-radius: 4px;
-    height: auto !important; /* Overrides any previous fixed heights */
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    grid-column: span 1 !important; /* Normalizes layout */
-}
-
-.showcase-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Image Wrapper: Locks photo shape without clipping badge text */
-.showcase-img-wrap {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background-color: #000;
-}
-
-.showcase-img-wrap img,
-.showcase-card .showcase-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.9) contrast(1.05);
-    transition: filter 0.3s ease;
-}
-
-.showcase-card:hover .showcase-img-wrap img {
-    filter: brightness(1) contrast(1.05);
-}
-
-/* Spotlight Badge: Forced Visibility */
-.spotlight-badge {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100%;
-    background-color: var(--bg-card);
-    border-top: 1px solid var(--border-dark);
-    padding: 14px 10px;
-    text-align: center;
-    box-sizing: border-box;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin-top: auto;
-}
-
-.spotlight-badge-label {
-    display: block;
-    font-size: clamp(0.58rem, 1.2vw, 0.65rem);
-    font-weight: 700;
-    color: var(--text-gray);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-
-.spotlight-handle {
-    display: block;
-    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-    font-weight: 800;
-    color: var(--text-white);
-    letter-spacing: 0.04em;
-}
-
-.spotlight-outfit {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 4px 8px;
-    background-color: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 2px;
-    font-size: clamp(0.62rem, 1.4vw, 0.72rem);
-    color: #cccccc;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    word-break: break-word;
-}
-
-/* ==========================================================================
-   BREAKPOINTS (DESKTOP TO MOBILE)
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-    .showcase-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    /* Centers 5th card nicely across 2 columns */
-    .showcase-card:nth-child(5) {
-        grid-column: span 2 !important;
-        max-width: 360px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-
-    .showcase-card:nth-child(5) {
-        grid-column: span 1 !important;
-        max-width: 100%;
-    }
-}
-/* ==========================================================================
-   BREAKPOINTS (TABLET & MOBILE)
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-    .showcase-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .showcase-card:nth-child(5) {
-        grid-column: span 2;
-        max-width: 380px;
-        margin: 0 auto;
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-
-    .showcase-card:nth-child(5) {
-        grid-column: span 1;
-        max-width: 100%;
-    }
-}
-/* ==========================================================================
    CATALOG SECTION & CARDS
    ========================================================================== */
 
@@ -822,7 +636,7 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE SECTION (5 CARDS & RESPONSIVE BREAKPOINTS)
+   COMMUNITY SHOWCASE SECTION (CONSOLIDATED & FIXED)
    ========================================================================== */
 
 .community-showcase-section {
@@ -832,24 +646,23 @@ a {
     text-align: center;
 }
 
-/* Base Desktop Grid (Auto-fits 5 cards cleanly) */
+/* Desktop Grid: 5 columns */
 .showcase-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
     max-width: 1200px;
     margin: 0 auto;
-    justify-content: center;
 }
 
 .showcase-card {
     display: flex;
     flex-direction: column;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-dark);
     border-radius: 4px;
     overflow: hidden;
-    border: 1px solid var(--border-dark);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    background-color: var(--bg-card);
     transition: transform 0.3s ease, border-color 0.3s ease;
     height: 100%;
 }
@@ -859,20 +672,29 @@ a {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.showcase-card .showcase-img {
+.showcase-img-wrap {
     width: 100%;
     aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.showcase-img-wrap img,
+.showcase-card .showcase-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
     filter: brightness(0.9) contrast(1.05);
     transition: filter 0.3s ease;
 }
 
+.showcase-card:hover .showcase-img-wrap img,
 .showcase-card:hover .showcase-img {
     filter: brightness(1) contrast(1.05);
 }
 
-/* Centered & Responsive Showcase Badges */
+/* Badge Styling */
 .spotlight-badge {
     display: flex;
     flex-direction: column;
@@ -884,7 +706,7 @@ a {
     padding: 14px 10px;
     text-align: center;
     box-sizing: border-box;
-    margin-top: auto; /* Ensures badges align horizontally across cards */
+    margin-top: auto;
 }
 
 .spotlight-badge-label {
@@ -931,34 +753,23 @@ a {
     color: var(--text-white);
 }
 
-/* ==========================================================================
-   TABLET & MOBILE BREAKPOINTS
-   ========================================================================== */
-
-/* Tablet View (1024px and below) */
+/* Consolidated Responsive Breakpoints for Showcase */
 @media (max-width: 1024px) {
     .showcase-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 1.2rem;
     }
-
-    /* Centers the 4th and 5th cards neatly on the second row */
-    .showcase-card:nth-child(4) {
-        grid-column: 1 / span 1;
-    }
 }
 
-/* Small Tablet / Large Mobile (768px and below) */
 @media (max-width: 768px) {
     .showcase-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-    /* Makes the 5th card span centered across both columns */
     .showcase-card:nth-child(5) {
         grid-column: span 2;
-        max-width: 400px;
+        max-width: 380px;
         margin: 0 auto;
         width: 100%;
     }
@@ -968,7 +779,6 @@ a {
     }
 }
 
-/* Small Mobile View (480px and below) */
 @media (max-width: 480px) {
     .showcase-grid {
         grid-template-columns: 1fr;
@@ -984,38 +794,7 @@ a {
         padding: 14px 10px;
     }
 }
-/* ==========================================================================
-   SHOWCASE RESPONSIVE BREAKPOINTS (PREVENTS BADGE CLIPPING)
-   ========================================================================== */
 
-@media (max-width: 900px) {
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem;
-    }
-
-    /* Reset old fixed height caps that cut off mobile labels */
-    .showcase-card.featured-main,
-    .showcase-card {
-        grid-column: span 1;
-        height: auto; 
-    }
-}
-
-@media (max-width: 580px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .showcase-card {
-        height: auto;
-    }
-
-    .spotlight-badge {
-        padding: 14px 10px;
-    }
-}
 /* ==========================================================================
    FAQ SECTION
    ========================================================================== */
@@ -1104,7 +883,6 @@ a {
     overflow: hidden;
 }
 
-/* Background Watermark */
 .brand-watermark {
     position: absolute;
     top: 50%;
@@ -1119,7 +897,6 @@ a {
     user-select: none;
 }
 
-/* Section Layout & Text */
 .contact-container {
     position: relative;
     z-index: 2;
@@ -1136,7 +913,6 @@ a {
     line-height: 1.6;
 }
 
-/* Single-Field Form Layout */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -1183,7 +959,6 @@ a {
     background-color: #161616;
 }
 
-/* Submit Button */
 .contact-form .submit-btn {
     display: block;
     width: 100%;
@@ -1209,7 +984,6 @@ a {
     transform: scale(0.99);
 }
 
-/* Direct Contact & Social Links */
 .contact-direct {
     border-top: 1px solid var(--border-dark);
     padding-top: 2rem;
@@ -1496,183 +1270,4 @@ body.modal-open {
 
 .modal-overlay.is-active .modal-content {
     animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.modal-overlay.is-closing .modal-content {
-    animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* ==========================================================================
-   MEDIA QUERIES (RESPONSIVE VIEWS)
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-    .hamburger-btn {
-        display: flex;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #080808;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.35s ease;
-    }
-
-    .nav-links.active {
-        max-height: 250px;
-    }
-
-    .nav-links a {
-        display: block;
-        width: 100%;
-        padding: 16px 0;
-        text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .catalog-filters {
-        justify-content: center;
-        margin-bottom: 30px;
-    }
-
-    .filter-btn {
-        padding: 9px 20px;
-        font-size: 0.75rem;
-        white-space: nowrap;
-    }
-}
-
-@media (max-width: 900px) {
-    .mindset-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .about-image-wrap {
-        height: 380px;
-    }
-
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .showcase-card.featured-main {
-        grid-column: span 2;
-        grid-row: span 1;
-        height: 420px;
-    }
-
-    .showcase-card {
-        height: 320px;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        height: 82vh;
-    }
-
-    .hero-actions {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-    }
-
-    .nav-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        padding: 0;
-    }
-
-    .contact-form .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .subscribe-form {
-        flex-direction: column;
-    }
-
-    .catalog-filters {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding: 8px 5vw 16px 5vw;
-        margin-bottom: 20px;
-        gap: 8px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .catalog-filters::-webkit-scrollbar {
-        display: none;
-    }
-
-    .filter-btn {
-        flex: 0 0 auto;
-        padding: 8px 16px;
-        font-size: 0.72rem;
-        white-space: nowrap;
-    }
-
-    .modal-content {
-        padding: 20px;
-    }
-
-    .size-table th, 
-    .size-table td {
-        padding: 10px;
-        font-size: 0.78rem;
-    }
-}
-
-@media (max-width: 580px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .showcase-card.featured-main,
-    .showcase-card {
-        grid-column: span 1;
-        height: 380px;
-    }
-}
-
-@media (max-width: 480px) {
-    .about-stats {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
 }
