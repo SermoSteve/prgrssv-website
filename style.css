@@ -1036,9 +1036,32 @@ a {
 #lightbox-img[src=""] {
     display: none;
 }
-/* --- RESPONSIVE FILTER BUTTONS FOR TABLET & MOBILE --- */
-/* --- MOBILE & TABLET HORIZONTAL SCROLLING FILTERS --- */
-@media (max-width: 1024px) {
+/* --- TABLET VIEW (769px to 1024px): CENTERED BUTTONS --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .catalog-filters {
+        display: flex !important;
+        justify-content: center !important; /* Forces buttons to center */
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        margin-bottom: 30px !important;
+        width: 100% !important;
+        position: static !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 !important;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto !important;
+        padding: 9px 20px !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap !important;
+    }
+}
+
+/* --- MOBILE PHONE VIEW (768px and smaller): SWIPEABLE SCROLL --- */
+@media (max-width: 768px) {
     .catalog-filters {
         display: flex !important;
         flex-wrap: nowrap !important;
@@ -1046,22 +1069,19 @@ a {
         overflow-x: auto !important;
         overflow-y: hidden !important;
         scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch; /* Smooth iOS swipe */
+        -webkit-overflow-scrolling: touch;
         
-        /* Full width break-out to allow full edge-to-edge swiping */
         width: 100vw !important;
-        position: relative;
-        left: 50%;
-        right: 50%;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
         margin-left: -50vw !important;
         margin-right: -50vw !important;
         
-        /* Padding ensures buttons don't cut off awkwardly at edges */
         padding: 8px 5vw 16px 5vw !important;
         margin-bottom: 20px !important;
-        gap: 10px !important;
+        gap: 8px !important;
         
-        /* Hide scrollbars */
         scrollbar-width: none;
         -ms-overflow-style: none;
     }
@@ -1071,9 +1091,9 @@ a {
     }
 
     .filter-btn {
-        flex: 0 0 auto !important; /* Prevents text squeezing */
-        padding: 10px 18px !important;
+        flex: 0 0 auto !important;
+        padding: 8px 16px !important;
         font-size: 0.72rem !important;
-        white-space: nowrap !important; /* Keeps 'BASE LAYERS' on one line */
+        white-space: nowrap !important;
     }
 }
