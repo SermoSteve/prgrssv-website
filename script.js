@@ -51,7 +51,7 @@ const productsData = [
         category: "tops",
         categoryLabel: "Core Tops",
         imgFront: "2.jpg",
-        imgBack: "3.jpg",
+        imgBack: "b1.jpg",
         specs: ["JAY"]
     },
     {
@@ -59,7 +59,7 @@ const productsData = [
         category: "bottoms",
         categoryLabel: "Bottoms",
         imgFront: "3.jpg",
-        imgBack: "2.jpg",
+        imgBack: "b2.jpg",
         specs: ["Jay", "OJ", "Steve"]
     },
     {
@@ -67,7 +67,7 @@ const productsData = [
         category: "baselayers",
         categoryLabel: "Base Layers",
         imgFront: "4.jpg",
-        imgBack: "3.jpg",
+        imgBack: "b3.jpg",
         specs: ["Roldan", "OJ", "Steve"]
     }
 ];
