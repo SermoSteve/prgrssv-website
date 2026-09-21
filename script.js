@@ -86,7 +86,7 @@ function renderCommunityShowcase() {
     grid.innerHTML = communityData.map(item => `
         <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
             <div class="showcase-img-wrap">
-                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" onclick="openLightbox('${item.image}')">
+                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img">
             </div>
             <div class="showcase-info">
                 <span class="showcase-tag">${item.tag}</span>
