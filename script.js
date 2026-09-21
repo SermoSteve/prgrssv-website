@@ -104,8 +104,8 @@ function renderCatalog() {
         return `
             <div class="catalog-card" data-category="${item.category}">
                 <div class="card-image-wrap">
-                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox(this.src)">
-                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox(this.src)">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox('${item.imgFront}')">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox('${item.imgBack}')">
                 </div>
                 <div class="card-info">
                     <span class="category-tag">${item.categoryLabel}</span>
@@ -171,7 +171,7 @@ function closeSizeChart() {
 
 function switchUnit(evt, unit) {
     document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
-    evt.target.classList.add('active');
+    evt.currentTarget.classList.add('active'); // Fixed target issue
 
     const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
     tableCells.forEach(cell => {
@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCommunityShowcase();
     renderCatalog();
 
-    // 2. Formspree AJAX Submission Handler (Prevents Redirect)
-    const contactForm = document.getElementById('contactForm'); // Make sure your HTML <form> has id="contactForm"
+    // 2. Formspree AJAX Submission Handler
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -304,133 +304,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-/* ==========================================================================
-   DROP SECTION & CONTACT FORM
-   ========================================================================== */
-
-.drop-section {
-    position: relative;
-    background-color: #0a0a0a;
-    padding: 100px 20px;
-    overflow: hidden;
-    color: #ffffff;
-}
-
-.watermark-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18vw;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.02);
-    letter-spacing: 0.1em;
-    user-select: none;
-    pointer-events: none;
-    white-space: nowrap;
-}
-
-.drop-container {
-    position: relative;
-    z-index: 2;
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.drop-title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.drop-subtitle {
-    color: #a1a1aa;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-}
-
-/* Form Layout */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: left;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.input-group label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: #888888;
-}
-
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    background-color: #121212;
-    border: 1px solid #262626;
-    border-radius: 4px;
-    padding: 14px 16px;
-    color: #ffffff;
-    font-size: 0.95rem;
-    outline: none;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-    border-color: #ffffff;
-    background-color: #161616;
-}
-
-.input-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Submit Button */
-.submit-btn {
-    width: 100%;
-    padding: 16px;
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    margin-top: 10px;
-}
-
-.submit-btn:hover {
-    background-color: #e4e4e7;
-}
-
-.submit-btn:active {
-    transform: scale(0.99);
-}
-
-/* Responsive breakpoint for mobile */
-@media (max-width: 600px) {
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
