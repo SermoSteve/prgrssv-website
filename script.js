@@ -50,27 +50,24 @@ const productsData = [
         id: 1,
         category: "tops",
         categoryLabel: "Core Tops",
-        title: "Baaaaanggg!!!",
         imgFront: "2.jpg",
-        imgBack: "2-back.jpg",
+        imgBack: "2.jpg",
         specs: ["JAY"]
     },
     {
         id: 2,
         category: "bottoms",
         categoryLabel: "Bottoms",
-        title: "3 Idiots",
         imgFront: "3.jpg",
-        imgBack: "3-back.jpg",
+        imgBack: "3.jpg",
         specs: ["Jay", "OJ", "Steve"]
     },
     {
         id: 3,
         category: "baselayers",
         categoryLabel: "Base Layers",
-        title: "Ang Talaaaap",
         imgFront: "4.jpg",
-        imgBack: "4-back.jpg",
+        imgBack: "4.jpg",
         specs: ["Roldan", "OJ", "Steve"]
     }
 ];
