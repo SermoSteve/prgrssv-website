@@ -308,87 +308,152 @@ a {
 }
 
 /* ==========================================================================
-   MINDSET & BRAND PHILOSOPHY SECTION
+   COMMUNITY SHOWCASE - MOBILE SPOTLIGHT FIX
    ========================================================================== */
 
-.mindset-section {
-    padding: 100px 0;
-    background-color: var(--bg-black);
+.community-showcase-section {
+    padding: 80px 0;
+    background-color: var(--bg-subtle);
     border-top: 1px solid var(--border-dark);
     text-align: center;
 }
 
-.mindset-header {
-    max-width: 750px;
-    margin: 0 auto 3.5rem auto;
-}
-
-.mindset-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-gray);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.8rem;
-}
-
-.mindset-title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.1;
-    margin-bottom: 1.2rem;
-}
-
-.mindset-lead {
-    font-size: 1.1rem;
-    color: #d1d1d1;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-.mindset-grid {
+.showcase-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.mindset-card {
+/* Card Container Fix: Allow auto height and visible overflow for badge */
+.showcase-card {
+    display: flex !important;
+    flex-direction: column !important;
     background-color: var(--bg-card);
     border: 1px solid var(--border-dark);
-    padding: 2.5rem 2rem;
     border-radius: 4px;
-    text-align: left;
-    transition: var(--transition-fast);
+    height: auto !important; /* Overrides old fixed heights */
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important; /* Prevents badge clipping */
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.mindset-card:hover {
-    transform: translateY(-5px);
+.showcase-card:hover {
+    transform: translateY(-4px);
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.mindset-number {
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: var(--text-gray);
-    letter-spacing: 0.1em;
-    margin-bottom: 1rem;
+/* Image Wrapper Fix: Lock image aspect ratio without squeezing the text badge */
+.showcase-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.showcase-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
+    filter: brightness(0.9) contrast(1.05);
+    transition: filter 0.3s ease;
 }
 
-.mindset-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-white);
+.showcase-card:hover .showcase-img-wrap img {
+    filter: brightness(1) contrast(1.05);
 }
 
-.mindset-card p {
-    font-size: 0.88rem;
+/* Spotlight Badge: Forced Visibility & Center Alignment */
+.spotlight-badge {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-dark);
+    padding: 14px 10px;
+    text-align: center;
+    box-sizing: border-box;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 2;
+}
+
+.spotlight-badge-label {
+    display: block;
+    font-size: clamp(0.6rem, 2.5vw, 0.65rem);
+    font-weight: 700;
     color: var(--text-gray);
-    line-height: 1.6;
-    font-weight: 300;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
+.spotlight-handle {
+    display: block;
+    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: 0.04em;
+}
+
+.spotlight-outfit {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    font-size: clamp(0.65rem, 2.8vw, 0.72rem);
+    color: #cccccc;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   BREAKPOINTS (TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .showcase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .showcase-card:nth-child(5) {
+        grid-column: span 2;
+        max-width: 380px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .showcase-card:nth-child(5) {
+        grid-column: span 1;
+        max-width: 100%;
+    }
+}
 /* ==========================================================================
    CATALOG SECTION & CARDS
    ========================================================================== */
