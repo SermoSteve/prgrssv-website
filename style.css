@@ -980,3 +980,60 @@ a {
     opacity: 1;
     transform: scale(1);
 }
+/* Catalog Filter Buttons Container */
+.catalog-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Individual Filter Buttons */
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #a0a0a0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Active Button State */
+.filter-btn.active {
+    background-color: #ffffff;
+    color: #080808;
+    border-color: #ffffff;
+}
+
+/* Hide filtered cards */
+.catalog-card.is-hidden {
+    display: none !important;
+}
+
+/* Smooth Fade-In Effect */
+.catalog-card {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
