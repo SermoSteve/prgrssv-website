@@ -1,4 +1,129 @@
-// --- LIGHTBOX FUNCTIONS ---
+// ==========================================================================
+// 1. DATA ARRAYS
+// ==========================================================================
+
+const communityData = [
+    {
+        id: 1,
+        image: "1.jpg",
+        tag: "OUTFIT OF THE MONTH",
+        handle: "@MARCUS_FIT",
+        outfit: "CORE OVERSIZED TEE + UTILITY SHORTS",
+        isFeatured: true
+    },
+    {
+        id: 2,
+        image: "2.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@ALEX_TRAINS",
+        outfit: "PROGRESSION HOODIE",
+        isFeatured: false
+    },
+    {
+        id: 3,
+        image: "3.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@JORDAN_LIFTS",
+        outfit: "HYBRID ATHLETIC TANK",
+        isFeatured: false
+    },
+    {
+        id: 4,
+        image: "4.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@DEVON_RUNS",
+        outfit: "CORE HEAVYWEIGHT TEE",
+        isFeatured: false
+    },
+    {
+        id: 5,
+        image: "5.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@KAI_HYBRID",
+        outfit: "TRAINING UTILITY SHORTS",
+        isFeatured: false
+    }
+];
+
+const productsData = [
+    {
+        id: 1,
+        category: "tops",
+        categoryLabel: "Core Tops",
+        title: "Baaaaanggg!!!",
+        imgFront: "2.jpg",
+        imgBack: "2-back.jpg",
+        specs: ["JAY"]
+    },
+    {
+        id: 2,
+        category: "bottoms",
+        categoryLabel: "Bottoms",
+        title: "3 Idiots",
+        imgFront: "3.jpg",
+        imgBack: "3-back.jpg",
+        specs: ["Jay", "OJ", "Steve"]
+    },
+    {
+        id: 3,
+        category: "baselayers",
+        categoryLabel: "Base Layers",
+        title: "Ang Talaaaap",
+        imgFront: "4.jpg",
+        imgBack: "4-back.jpg",
+        specs: ["Roldan", "OJ", "Steve"]
+    }
+];
+
+// ==========================================================================
+// 2. DYNAMIC RENDER FUNCTIONS
+// ==========================================================================
+
+function renderCommunityShowcase() {
+    const grid = document.getElementById('communityGrid');
+    if (!grid) return;
+
+    grid.innerHTML = communityData.map(item => `
+        <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
+            <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" onclick="openLightbox('${item.image}')">
+            <div class="spotlight-badge">
+                <span class="spotlight-badge-label">${item.tag}</span>
+                <span class="spotlight-handle">${item.handle}</span>
+                <span class="spotlight-outfit">${item.outfit}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCatalog() {
+    const grid = document.getElementById('catalogGrid');
+    if (!grid) return;
+
+    grid.innerHTML = productsData.map(item => {
+        const specsHTML = item.specs.map(spec => `<li>${spec}</li>`).join('');
+        return `
+            <div class="catalog-card" data-category="${item.category}">
+                <div class="card-image-wrap">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox(this.src)">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox(this.src)">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">${item.categoryLabel}</span>
+                    <h3>${item.title}</h3>
+                    <ul class="specs-list">
+                        ${specsHTML}
+                    </ul>
+                    <button class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ==========================================================================
+// 3. LIGHTBOX FUNCTIONS
+// ==========================================================================
+
 function openLightbox(imageSrc) {
     const lightboxModal = document.getElementById('imageModal');
     const lightboxImage = document.getElementById('expandedImg');
@@ -16,7 +141,10 @@ function closeLightbox() {
     }
 }
 
-// --- SIZE CHART MODAL FUNCTIONS ---
+// ==========================================================================
+// 4. SIZE CHART MODAL FUNCTIONS
+// ==========================================================================
+
 function openSizeChart() {
     const modal = document.getElementById('size-chart-modal');
     if (modal) {
@@ -53,60 +181,71 @@ function switchUnit(evt, unit) {
     });
 }
 
-// --- FAQ ACCORDION ---
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        const answer = button.nextElementSibling;
-        const isActive = faqItem.classList.contains('active');
+// ==========================================================================
+// 5. INITIALIZATION & EVENT LISTENERS
+// ==========================================================================
 
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
-            item.querySelector('.faq-answer').style.maxHeight = null;
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Render Dynamic Components
+    renderCommunityShowcase();
+    renderCatalog();
 
-        if (!isActive) {
-            faqItem.classList.add('active');
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        }
-    });
-});
+    // 2. FAQ Accordion Listener
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = button.nextElementSibling;
+            const isActive = faqItem.classList.contains('active');
 
-// --- MOBILE HAMBURGER MENU ---
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const navLinks = document.getElementById('navLinks');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const itemAnswer = item.querySelector('.faq-answer');
+                if (itemAnswer) itemAnswer.style.maxHeight = null;
+            });
 
-if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburgerBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-}
-
-// --- CATALOG FILTER FUNCTIONALITY ---
-document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const selectedCategory = button.getAttribute('data-category');
-        const cards = document.querySelectorAll('.catalog-card');
-
-        cards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-
-            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-                card.classList.remove('is-hidden');
-            } else {
-                card.classList.add('is-hidden');
+            if (!isActive) {
+                faqItem.classList.add('active');
+                if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
             }
+        });
+    });
+
+    // 3. Mobile Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
+    // 4. Catalog Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const selectedCategory = button.getAttribute('data-category');
+            const cards = document.querySelectorAll('.catalog-card');
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    card.classList.remove('is-hidden');
+                } else {
+                    card.classList.add('is-hidden');
+                }
+            });
         });
     });
 });
