@@ -359,49 +359,23 @@
         </div>
     </div>
 
+   <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
     <!-- EXTERNAL JAVASCRIPT FILE -->
     <script src="script.js"></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Netlify Identity Login & Redirect Handler -->
     <script>
-
-
-
-  if (window.netlifyIdentity) {
-
-
-
-    window.netlifyIdentity.on("init", user => {
-
-
-
-      if (!user) {
-
-
-
-        window.netlifyIdentity.on("login", () => {
-
-
-
-          document.location.href = "/admin/";
-
-
-
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
         });
-
-
-
       }
-
-
-
-    });
-
-
-
-  }
-
-
-
-</script>
+    </script>
 </body>
 </html>
