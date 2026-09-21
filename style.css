@@ -296,7 +296,7 @@ a {
 }
 
 /* ==========================================================================
-   MINDSET & BRAND PHILOSOPHY SECTION (NEW)
+   MINDSET & BRAND PHILOSOPHY SECTION
    ========================================================================== */
 
 .mindset-section {
@@ -929,6 +929,94 @@ a {
     font-weight: 300;
 }
 
+/* Detailed Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+    text-align: left;
+}
+
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.contact-form .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text-gray);
+    text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-dark);
+    border-radius: 2px;
+    padding: 14px 16px;
+    color: var(--text-white);
+    font-size: 0.9rem;
+    font-family: var(--font-main);
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--text-white);
+    background-color: #161616;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: var(--text-white);
+    color: #000000;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--text-white);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    margin-top: 10px;
+}
+
+.contact-form .submit-btn:hover {
+    background-color: #cccccc;
+    border-color: #cccccc;
+}
+
+.contact-form .submit-btn:active {
+    transform: scale(0.99);
+}
+
+/* Quick Newsletter Form */
 .subscribe-form {
     display: flex;
     gap: 0.8rem;
@@ -1033,6 +1121,11 @@ a {
    MODALS (LIGHTBOX & SIZE CHART)
    ========================================================================== */
 
+/* Disable page scrolling when modal is active */
+body.modal-open {
+    overflow: hidden;
+}
+
 .lightbox-modal {
     display: none;
     position: fixed;
@@ -1072,6 +1165,7 @@ a {
     to { transform: scale(1); opacity: 1; }
 }
 
+/* Base modal overlay state */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1086,18 +1180,23 @@ a {
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.22s ease, visibility 0.22s ease;
     padding: 20px;
 }
 
+/* Active modal state */
 .modal-overlay.is-active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
+/* Closing transition state */
 .modal-overlay.is-closing {
     opacity: 0;
     visibility: visible;
+    pointer-events: none;
 }
 
 .modal-content {
@@ -1239,55 +1338,7 @@ a {
 .modal-overlay.is-closing .modal-content {
     animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-/* Add this block to your Master Stylesheet under "MODALS" or "BUTTONS & GENERAL COMPONENTS" */
 
-/* Disable page scrolling when modal is open */
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Base overlay state */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(6px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.22s ease, visibility 0.22s ease;
-    padding: 20px;
-}
-
-/* Active modal state */
-.modal-overlay.is-active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-/* Closing transition state */
-.modal-overlay.is-closing {
-    opacity: 0;
-    visibility: visible;
-    pointer-events: none;
-}
-
-/* Ensure keyframe animations match your existing structure */
-.modal-overlay.is-active .modal-content {
-    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.modal-overlay.is-closing .modal-content {
-    animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
 /* ==========================================================================
    MEDIA QUERIES (RESPONSIVE VIEWS)
    ========================================================================== */
@@ -1391,6 +1442,10 @@ body.modal-open {
         align-items: center;
         width: 90%;
         padding: 0;
+    }
+
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
     }
 
     .subscribe-form {
