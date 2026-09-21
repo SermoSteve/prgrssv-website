@@ -327,6 +327,27 @@ if (hamburgerBtn && navLinks) {
         });
     });
 }
+    // Catalog Filter Functionality
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons and add to clicked button
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const selectedCategory = button.getAttribute('data-category');
+        const cards = document.querySelectorAll('.catalog-card');
+
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+
+            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                card.classList.remove('is-hidden');
+            } else {
+                card.classList.add('is-hidden');
+            }
+        });
+    });
+});
 </script>
     
 </body>
