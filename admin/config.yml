@@ -1,1 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
 
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "catalog"
+    label: "Catalog Products"
+    folder: "content/products"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Apparel", "Outerwear", "Accessories"] }
+      - { label: "Primary Image", name: "primary_image", widget: "image" }
+      - { label: "Hover Image", name: "hover_image", widget: "image" }
+      - { label: "Video", name: "product_video", widget: "file", required: false }
+
+  - name: "showcase"
+    label: "Community Showcase"
+    folder: "content/showcase"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Handle", name: "handle", widget: "string", default: "@username" }
+      - { label: "Outfit", name: "outfit", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image" }
