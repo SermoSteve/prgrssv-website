@@ -63,10 +63,19 @@
             <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
         </div>
 
+        <!-- Filter Buttons -->
+        <div class="catalog-filters">
+            <button class="filter-btn active" data-category="all">ALL GEAR</button>
+            <button class="filter-btn" data-category="tops">CORE TOPS</button>
+            <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
+            <button class="filter-btn" data-category="baselayers">BASE LAYERS</button>
+        </div>
+
+        <!-- Catalog Grid -->
         <div class="catalog-grid">
             
-            <!-- Item 1 -->
-            <div class="catalog-card">
+            <!-- Item 1 (Tops) -->
+            <div class="catalog-card" data-category="tops">
                 <div class="card-image-wrap">
                     <img src="2.jpg" alt="Heavyweight Training Tee - Front" class="img-primary" onclick="openLightbox(this.src)">
                     <img src="2-back.jpg" alt="Heavyweight Training Tee - Back" class="img-hover" onclick="openLightbox(this.src)">
@@ -80,8 +89,8 @@
                 </div>
             </div>
 
-            <!-- Item 2 -->
-            <div class="catalog-card">
+            <!-- Item 2 (Bottoms) -->
+            <div class="catalog-card" data-category="bottoms">
                 <div class="card-image-wrap">
                     <img src="3.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
                     <img src="3-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
@@ -97,8 +106,8 @@
                 </div>
             </div>
 
-            <!-- Item 3 -->
-            <div class="catalog-card">
+            <!-- Item 3 (Base Layers) -->
+            <div class="catalog-card" data-category="baselayers">
                 <div class="card-image-wrap">
                     <img src="4.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
                     <img src="4-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
