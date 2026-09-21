@@ -274,12 +274,12 @@
 
 <script>
 function openLightbox(imageSrc) {
-    var modal = document.getElementById("imageModal");
-    var modalImg = document.getElementById("expandedImg");
-    
-    if (modal && modalImg) {
-        modalImg.src = imageSrc;
-        modal.style.display = "flex";
+    const lightboxModal = document.getElementById('lightbox-modal'); // or your lightbox ID
+    const lightboxImage = document.getElementById('lightbox-img');   // the <img> inside your lightbox
+
+    if (lightboxModal && lightboxImage) {
+        lightboxImage.src = imageSrc;
+        lightboxModal.style.display = 'flex';
     }
 }
 
