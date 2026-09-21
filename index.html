@@ -18,114 +18,118 @@
     </div>
 
     <header class="navbar">
-    <div class="nav-container">
-        <!-- Logo (Left on Mobile) -->
-        <a href="#" class="brand-logo">
-            <img src="Logo_white.png" alt="PRGRSSV Logo" class="brand-logo-img">
-        </a>
+        <div class="nav-container">
+            <!-- Logo (Left on Mobile) -->
+            <a href="#" class="brand-logo">
+                <img src="Logo_white.png" alt="PRGRSSV Logo" class="brand-logo-img">
+            </a>
 
-        <!-- Hamburger Icon (Right on Mobile) -->
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+            <!-- Hamburger Icon (Right on Mobile) -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
 
-        <!-- Menu Links -->
-        <nav class="nav-links" id="navLinks">
-            <a href="#catalog">CATALOG</a>
-            <a href="#gallery">GALLERY</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">CONTACT</a>
-        </nav>
-    </div>
-</header>
-    <!-- 2. HERO BANNER SECTION -->
-<section class="hero-section">
-    <div class="hero-bg-overlay"></div>
-    <img src="1.jpg" alt="PRGRSSV Hero Background" class="hero-bg-img">
-    
-    <div class="hero-content">
-        <h1 class="hero-title">BUILT FOR THE GRIND.<br>DESIGNED TO LAST.</h1>
-        <p class="hero-subtitle">Premium, high-performance athletic apparel engineered for sweat, movement, and maximum durability.</p>
-        <div class="hero-actions">
-            <a href="#catalog" class="btn btn-primary">EXPLORE CATALOG</a>
-            <a href="#gallery" class="btn btn-secondary">VIEW GALLERY</a>
+            <!-- Menu Links -->
+            <nav class="nav-links" id="navLinks">
+                <a href="#catalog">CATALOG</a>
+                <a href="#gallery">GALLERY</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
+
+    <!-- 2. HERO BANNER SECTION -->
+    <section class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <img src="1.jpg" alt="PRGRSSV Hero Background" class="hero-bg-img">
+        
+        <div class="hero-content">
+            <h1 class="hero-title">BUILT FOR THE GRIND.<br>DESIGNED TO LAST.</h1>
+            <p class="hero-subtitle">Premium, high-performance athletic apparel engineered for sweat, movement, and maximum durability.</p>
+            <div class="hero-actions">
+                <a href="#catalog" class="btn btn-primary">EXPLORE CATALOG</a>
+                <a href="#gallery" class="btn btn-secondary">VIEW GALLERY</a>
+            </div>
+        </div>
+    </section>
 
     <!-- 3. CATALOG SECTION -->
-<section id="catalog" class="catalog-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">THE PRODUCT LINEUP</h2>
-            <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
-        </div>
-
-        <!-- Filter Buttons -->
-        <div class="catalog-filters">
-            <button class="filter-btn active" data-category="all">ALL GEAR</button>
-            <button class="filter-btn" data-category="tops">CORE TOPS</button>
-            <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
-            <button class="filter-btn" data-category="baselayers">BASE LAYERS</button>
-        </div>
-
-        <!-- Catalog Grid -->
-        <div class="catalog-grid">
-            
-            <!-- Item 1 (Tops) -->
-            <div class="catalog-card" data-category="tops">
-                <div class="card-image-wrap">
-                    <img src="2.jpg" alt="Heavyweight Training Tee - Front" class="img-primary" onclick="openLightbox(this.src)">
-                    <img src="2-back.jpg" alt="Heavyweight Training Tee - Back" class="img-hover" onclick="openLightbox(this.src)">
-                </div>
-                <div class="card-info">
-                    <span class="category-tag">Core Tops</span>
-                    <h3>Baaaaanggg!!!</h3>
-                    <ul class="specs-list">
-                        <li>JAY</li>
-                    </ul>
-                </div>
+    <section id="catalog" class="catalog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">THE PRODUCT LINEUP</h2>
+                <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
             </div>
 
-            <!-- Item 2 (Bottoms) -->
-            <div class="catalog-card" data-category="bottoms">
-                <div class="card-image-wrap">
-                    <img src="3.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
-                    <img src="3-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
-                </div>
-                <div class="card-info">
-                    <span class="category-tag">Bottoms</span>
-                    <h3>3 Idiots</h3>
-                    <ul class="specs-list">
-                        <li>Jay</li>
-                        <li>OJ</li>
-                        <li>Steve</li>
-                    </ul>
-                </div>
+            <!-- Filter Buttons -->
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-category="all">ALL GEAR</button>
+                <button class="filter-btn" data-category="tops">CORE TOPS</button>
+                <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
+                <button class="filter-btn" data-category="baselayers">BASE LAYERS</button>
             </div>
 
-            <!-- Item 3 (Base Layers) -->
-            <div class="catalog-card" data-category="baselayers">
-                <div class="card-image-wrap">
-                    <img src="4.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
-                    <img src="4-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
+            <!-- Catalog Grid -->
+            <div class="catalog-grid">
+                
+                <!-- Item 1 (Tops) -->
+                <div class="catalog-card" data-category="tops">
+                    <div class="card-image-wrap">
+                        <img src="2.jpg" alt="Heavyweight Training Tee - Front" class="img-primary" onclick="openLightbox(this.src)">
+                        <img src="2-back.jpg" alt="Heavyweight Training Tee - Back" class="img-hover" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-tag">Core Tops</span>
+                        <h3>Baaaaanggg!!!</h3>
+                        <ul class="specs-list">
+                            <li>JAY</li>
+                        </ul>
+                        <button class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                    </div>
                 </div>
-                <div class="card-info">
-                    <span class="category-tag">Base Layers</span>
-                    <h3>Ang Talaaaap</h3>
-                    <ul class="specs-list">
-                        <li>Roldan</li>
-                        <li>OJ</li>
-                        <li>Steve</li>                       
-                    </ul>
-                </div>
-            </div>
 
+                <!-- Item 2 (Bottoms) -->
+                <div class="catalog-card" data-category="bottoms">
+                    <div class="card-image-wrap">
+                        <img src="3.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
+                        <img src="3-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-tag">Bottoms</span>
+                        <h3>3 Idiots</h3>
+                        <ul class="specs-list">
+                            <li>Jay</li>
+                            <li>OJ</li>
+                            <li>Steve</li>
+                        </ul>
+                        <button class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                    </div>
+                </div>
+
+                <!-- Item 3 (Base Layers) -->
+                <div class="catalog-card" data-category="baselayers">
+                    <div class="card-image-wrap">
+                        <img src="4.jpg" alt="Performance Utility Shorts - Front" class="img-primary" onclick="openLightbox(this.src)">
+                        <img src="4-back.jpg" alt="Performance Utility Shorts - Back" class="img-hover" onclick="openLightbox(this.src)">
+                    </div>
+                    <div class="card-info">
+                        <span class="category-tag">Base Layers</span>
+                        <h3>Ang Talaaaap</h3>
+                        <ul class="specs-list">
+                            <li>Roldan</li>
+                            <li>OJ</li>
+                            <li>Steve</li>                       
+                        </ul>
+                        <button class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 4. GALLERY SECTION -->
     <section id="gallery" class="gallery-section">
@@ -137,88 +141,88 @@
 
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Heavy lifting session focusing on shirt drape and chest taper">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Heavy lifting session focusing on shirt drape and chest taper" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Heavy lifting session — chest taper focus</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop" alt="Deep squat mobility shot in utility shorts">
+                    <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop" alt="Deep squat mobility shot in utility shorts" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Deep squat mobility in utility shorts</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="Outdoor conditioning session highlighting sweat-wicking breathability">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="Outdoor conditioning session highlighting sweat-wicking breathability" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Outdoor conditioning session</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=800&auto=format&fit=crop" alt="Macro close-up on fabric texture, weave, and high-density logo print">
+                    <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=800&auto=format&fit=crop" alt="Macro close-up on fabric texture, weave, and high-density logo print" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Fabric texture & high-density weave</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop" alt="Back-taper shot during pull-ups">
+                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop" alt="Back-taper shot during pull-ups" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Back-taper movement during pull-ups</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop" alt="Full gym kit styled for everyday training">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=800&auto=format&fit=crop" alt="Full gym kit styled for everyday training" onclick="openLightbox(this.src)">
                     <div class="gallery-caption">Full kit styled for everyday training</div>
                 </div>
             </div>
         </div>
     </section>
 
-   <!-- 5. FAQ SECTION -->
-<section id="faq" class="faq-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
-            <p class="section-subtitle">Everything you need to know about our athletic gear, sizing, and availability.</p>
+    <!-- 5. FAQ SECTION -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+                <p class="section-subtitle">Everything you need to know about our athletic gear, sizing, and availability.</p>
+            </div>
+
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Q: What does "PRGRSSV" stand for?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A: PRGRSSV represents "Progressive" symbolizing a commitment to continuous self-improvement, physical growth, and a relentless work ethic inside and outside the gym.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Q: Where are your products made?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A: As a starting brand, we source our blank apparel from trusted local suppliers, while all printing and customization are done in-house using heat press technology.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Q: How do I place an order?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A: This website functions as our official digital showcase and look book. For inquiries you can place an order directly by sending us a message on our official Facebook Page with your selected items, size, and shipping details.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Q: How should I care for and wash the activewear?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A: Machine wash cold inside-out with like colors. Tumble dry low or air dry. Avoid bleach and fabric softeners to maintain elasticity and moisture-wicking coatings.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="faq-accordion">
-            <!-- FAQ Item 1 -->
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Q: What does "PRGRSSV" stand for?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>A: PRGRSSV represents "Progressive" symbolizing a commitment to continuous self-improvement, physical growth, and a relentless work ethic inside and outside the gym.</p>
-                </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Q: Where are your products made?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>A: As a starting brand, we source our blank apparel from trusted local suppliers, while all printing and customization are done in-house using heat press technology.</p>
-                </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Q: How do I place an order?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>A: This website functions as our official digital showcase and look book. For inquiries you can place an order directly by sending us a message on our official Facebook Page with your selected items, size, and shipping details.</p>
-                </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Q: How should I care for and wash the activewear?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>A: Machine wash cold inside-out with like colors. Tumble dry low or air dry. Avoid bleach and fabric softeners to maintain elasticity and moisture-wicking coatings.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- 6. CONTACT & DROP ALERT (CTA) SECTION -->
     <section id="contact" class="contact-section">
@@ -266,156 +270,198 @@
             <p>&copy; 2026 PRGRSSV. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
-<!-- Lightbox Modal -->
-<div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="expandedImg" src="" alt="Expanded View">
-</div>
 
-<script>
-function openLightbox(imageSrc) {
-    const lightboxModal = document.getElementById('lightbox-modal'); // or your lightbox ID
-    const lightboxImage = document.getElementById('lightbox-img');   // the <img> inside your lightbox
+    <!-- LIGHTBOX MODAL -->
+    <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="expandedImg" src="" alt="Expanded View">
+    </div>
 
-    if (lightboxModal && lightboxImage) {
-        lightboxImage.src = imageSrc;
-        lightboxModal.style.display = 'flex';
-    }
-}
-
-function closeLightbox() {
-    var modal = document.getElementById("imageModal");
-    if (modal) {
-        modal.style.display = "none";
-    }
-}
-    document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const faqItem = button.parentElement;
-        const answer = button.nextElementSibling;
-
-        const isActive = faqItem.classList.contains('active');
-
-        // Close other open accordion items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
-            item.querySelector('.faq-answer').style.maxHeight = null;
-        });
-
-        // Open clicked item if closed
-        if (!isActive) {
-            faqItem.classList.add('active');
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        }
-    });
-});
-    // Mobile Hamburger Toggle
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const navLinks = document.getElementById('navLinks');
-
-if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu when a navigation link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburgerBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-}
-    // Catalog Filter Functionality
-document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons and add to clicked button
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const selectedCategory = button.getAttribute('data-category');
-        const cards = document.querySelectorAll('.catalog-card');
-
-        cards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-
-            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-                card.classList.remove('is-hidden');
-            } else {
-                card.classList.add('is-hidden');
-            }
-        });
-    });
-});
     <!-- SIZE CHART MODAL -->
-<div id="size-chart-modal" class="modal-overlay" onclick="closeSizeChartOnOverlay(event)">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeSizeChart()">&times;</button>
-        
-        <div class="modal-header">
-            <h3 class="modal-title">SIZE GUIDE & MEASUREMENTS</h3>
-            <p class="modal-subtitle">All measurements are in inches. Standard athletic fit.</p>
-        </div>
+    <div id="size-chart-modal" class="modal-overlay" onclick="closeSizeChartOnOverlay(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSizeChart()">&times;</button>
+            
+            <div class="modal-header">
+                <h3 class="modal-title">SIZE GUIDE & MEASUREMENTS</h3>
+                <p class="modal-subtitle">All measurements are standard athletic fit.</p>
+            </div>
 
-        <!-- Unit Switcher Tabs -->
-        <div class="unit-tabs">
-            <button class="unit-btn active" onclick="switchUnit('in')">INCHES</button>
-            <button class="unit-btn" onclick="switchUnit('cm')">CM</button>
-        </div>
+            <!-- Unit Switcher Tabs -->
+            <div class="unit-tabs">
+                <button class="unit-btn active" onclick="switchUnit(event, 'in')">INCHES</button>
+                <button class="unit-btn" onclick="switchUnit(event, 'cm')">CM</button>
+            </div>
 
-        <!-- Scrollable Table Wrapper -->
-        <div class="table-responsive">
-            <table class="size-table">
-                <thead>
-                    <tr>
-                        <th>SIZE</th>
-                        <th>CHEST</th>
-                        <th>WAIST</th>
-                        <th>LENGTH</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>S</strong></td>
-                        <td data-in="36 - 38" data-cm="91 - 96">36 - 38</td>
-                        <td data-in="28 - 30" data-cm="71 - 76">28 - 30</td>
-                        <td data-in="27" data-cm="68.5">27</td>
-                    </tr>
-                    <tr>
-                        <td><strong>M</strong></td>
-                        <td data-in="38 - 40" data-cm="96 - 101">38 - 40</td>
-                        <td data-in="30 - 32" data-cm="76 - 81">30 - 32</td>
-                        <td data-in="28" data-cm="71">28</td>
-                    </tr>
-                    <tr>
-                        <td><strong>L</strong></td>
-                        <td data-in="40 - 42" data-cm="101 - 106">40 - 42</td>
-                        <td data-in="32 - 34" data-cm="81 - 86">32 - 34</td>
-                        <td data-in="29" data-cm="73.5">29</td>
-                    </tr>
-                    <tr>
-                        <td><strong>XL</strong></td>
-                        <td data-in="42 - 44" data-cm="106 - 111">42 - 44</td>
-                        <td data-in="34 - 36" data-cm="86 - 91">34 - 36</td>
-                        <td data-in="30" data-cm="76">30</td>
-                    </tr>
-                    <tr>
-                        <td><strong>2XL</strong></td>
-                        <td data-in="44 - 46" data-cm="111 - 116">44 - 46</td>
-                        <td data-in="36 - 38" data-cm="91 - 96">36 - 38</td>
-                        <td data-in="31" data-cm="78.5">31</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <!-- Scrollable Table Wrapper -->
+            <div class="table-responsive">
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>SIZE</th>
+                            <th>CHEST</th>
+                            <th>WAIST</th>
+                            <th>LENGTH</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>S</strong></td>
+                            <td data-in="36 - 38" data-cm="91 - 96">36 - 38</td>
+                            <td data-in="28 - 30" data-cm="71 - 76">28 - 30</td>
+                            <td data-in="27" data-cm="68.5">27</td>
+                        </tr>
+                        <tr>
+                            <td><strong>M</strong></td>
+                            <td data-in="38 - 40" data-cm="96 - 101">38 - 40</td>
+                            <td data-in="30 - 32" data-cm="76 - 81">30 - 32</td>
+                            <td data-in="28" data-cm="71">28</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L</strong></td>
+                            <td data-in="40 - 42" data-cm="101 - 106">40 - 42</td>
+                            <td data-in="32 - 34" data-cm="81 - 86">32 - 34</td>
+                            <td data-in="29" data-cm="73.5">29</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XL</strong></td>
+                            <td data-in="42 - 44" data-cm="106 - 111">42 - 44</td>
+                            <td data-in="34 - 36" data-cm="86 - 91">34 - 36</td>
+                            <td data-in="30" data-cm="76">30</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2XL</strong></td>
+                            <td data-in="44 - 46" data-cm="111 - 116">44 - 46</td>
+                            <td data-in="36 - 38" data-cm="91 - 96">36 - 38</td>
+                            <td data-in="31" data-cm="78.5">31</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="modal-footer">
-            <p>💡 <em>Tip: If you're between sizes, order a size up for a relaxed fit or size down for an athletic fit.</em></p>
+            <div class="modal-footer">
+                <p>💡 <em>Tip: For a relaxed fit, choose one size up. For a slim athletic fit, stick to your standard size.</em></p>
+            </div>
         </div>
     </div>
-</div>
-</script>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- LIGHTBOX FUNCTIONS ---
+        function openLightbox(imageSrc) {
+            const lightboxModal = document.getElementById('imageModal');
+            const lightboxImage = document.getElementById('expandedImg');
+
+            if (lightboxModal && lightboxImage) {
+                lightboxImage.src = imageSrc;
+                lightboxModal.style.display = 'flex';
+            }
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById("imageModal");
+            if (modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // --- SIZE CHART MODAL FUNCTIONS ---
+        function openSizeChart() {
+            const modal = document.getElementById('size-chart-modal');
+            if (modal) {
+                modal.classList.add('is-active');
+                document.body.style.overflow = 'hidden'; // Prevents background scroll
+            }
+        }
+
+        function closeSizeChart() {
+            const modal = document.getElementById('size-chart-modal');
+            if (modal) {
+                modal.classList.remove('is-active');
+                document.body.style.overflow = ''; // Restores background scroll
+            }
+        }
+
+        function closeSizeChartOnOverlay(event) {
+            if (event.target.id === 'size-chart-modal') {
+                closeSizeChart();
+            }
+        }
+
+        function switchUnit(evt, unit) {
+            document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+            evt.target.classList.add('active');
+
+            const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
+            tableCells.forEach(cell => {
+                if (unit === 'cm') {
+                    cell.textContent = cell.getAttribute('data-cm');
+                } else {
+                    cell.textContent = cell.getAttribute('data-in');
+                }
+            });
+        }
+
+        // --- FAQ ACCORDION ---
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = button.nextElementSibling;
+                const isActive = faqItem.classList.contains('active');
+
+                // Close other open accordion items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Open clicked item if closed
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // --- MOBILE HAMBURGER MENU ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        if (hamburgerBtn && navLinks) {
+            hamburgerBtn.addEventListener('click', () => {
+                hamburgerBtn.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // --- CATALOG FILTER FUNCTIONALITY ---
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const selectedCategory = button.getAttribute('data-category');
+                const cards = document.querySelectorAll('.catalog-card');
+
+                cards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+
+                    if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                        card.classList.remove('is-hidden');
+                    } else {
+                        card.classList.add('is-hidden');
+                    }
+                });
+            });
+        });
+    </script>
     
 </body>
 </html>
