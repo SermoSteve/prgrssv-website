@@ -251,10 +251,22 @@
             <h2 class="section-title">DON’T MISS THE NEXT DROP</h2>
             <p class="contact-subtitle">Have questions about our gear, sizing, or upcoming releases? Drop your email to stay updated, or reach out to us directly.</p>
             
-            <form id="newsletter-form" class="subscribe-form" action="https://formspree.io/f/xnpnpzyv" method="POST">
-                <input type="email" name="email" placeholder="Enter your email address..." required class="form-input">
-                <button type="submit" class="btn btn-primary form-btn">JOIN INSIDER LIST</button>
-            </form>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <!-- Place hidden input here -->
+    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+
+    <!-- Your existing form fields -->
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <button type="submit">Send</button>
+</form>
 
             <!-- Custom confirmation status message -->
             <div id="form-status" class="form-status-msg"></div>
