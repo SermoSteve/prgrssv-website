@@ -1054,3 +1054,31 @@ a {
 #lightbox-img[src=""] {
     display: none;
 }
+/* --- RESPONSIVE FILTER BUTTONS FOR TABLET & MOBILE --- */
+@media (max-width: 768px) {
+    .catalog-filters {
+        display: flex !important;
+        flex-wrap: nowrap !important; /* Prevents buttons from wrapping into multiple rows */
+        justify-content: flex-start !important; /* Aligns buttons to start for smooth scrolling */
+        overflow-x: auto !important; /* Enables horizontal scrolling */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* Smooth inertia scrolling on iOS */
+        padding: 4px 16px 12px 16px; /* Touch target padding */
+        margin-bottom: 24px;
+        gap: 8px;
+        
+        /* Hide scrollbars for a clean, minimalist UI */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .catalog-filters::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .filter-btn {
+        flex: 0 0 auto !important; /* Keeps buttons at natural width without shrinking */
+        padding: 8px 16px;
+        font-size: 0.7rem;
+    }
+}
