@@ -71,7 +71,7 @@ a {
     z-index: 100;
     background-color: rgba(8, 8, 8, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: none !important;
+    border-bottom: none;
     padding: 14px 0;
 }
 
@@ -314,9 +314,9 @@ a {
 }
 
 .filter-btn.active {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    color: #ffffff !important;
-    border-color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: #ffffff;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
 }
 
@@ -341,7 +341,7 @@ a {
 }
 
 .catalog-card.is-hidden {
-    display: none !important;
+    display: none;
 }
 
 .card-image-wrap {
@@ -360,7 +360,6 @@ a {
     transition: var(--transition-fast);
 }
 
-/* Hover Swap Image Effect */
 .card-image-wrap .img-hover {
     position: absolute;
     top: 0;
@@ -762,7 +761,7 @@ a {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Size Chart Modal */
+/* Size Chart Modal Setup */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -777,12 +776,17 @@ a {
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
     padding: 20px;
 }
 
 .modal-overlay.is-active {
     opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.is-closing {
+    opacity: 0;
     visibility: visible;
 }
 
@@ -795,12 +799,6 @@ a {
     max-width: 580px;
     padding: 30px;
     position: relative;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.modal-overlay.is-active .modal-content {
-    transform: translateY(0);
 }
 
 .modal-close {
@@ -902,146 +900,7 @@ a {
     line-height: 1.4;
 }
 
-/* ==========================================================================
-   MEDIA QUERIES (TABLET & MOBILE)
-   ========================================================================== */
-
-/* --- TABLET VIEW (769px to 1024px) --- */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hamburger-btn {
-        display: flex !important;
-    }
-
-    .nav-links {
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        width: 100% !important;
-        background-color: #080808 !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 0 !important;
-        max-height: 0 !important;
-        overflow: hidden !important;
-        transition: max-height 0.35s ease !important;
-    }
-
-    .nav-links.active {
-        max-height: 250px !important;
-    }
-
-    .nav-links a {
-        display: block !important;
-        width: 100% !important;
-        padding: 16px 0 !important;
-        text-align: center !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-
-    .catalog-filters {
-        justify-content: center !important;
-        margin-bottom: 30px !important;
-    }
-
-    .filter-btn {
-        padding: 9px 20px !important;
-        font-size: 0.75rem !important;
-        white-space: nowrap !important;
-    }
-}
-
-/* --- MOBILE PHONE VIEW (768px and smaller) --- */
-@media (max-width: 768px) {
-    .nav-container {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 90% !important;
-        padding: 0 !important;
-    }
-
-    .hamburger-btn {
-        display: flex !important;
-    }
-
-    .nav-links {
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        width: 100% !important;
-        background-color: #080808 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 0 !important;
-        max-height: 0 !important;
-        overflow: hidden !important;
-        transition: max-height 0.35s ease !important;
-    }
-
-    .nav-links.active {
-        max-height: 250px !important;
-    }
-
-    .nav-links a {
-        display: block !important;
-        width: 100% !important;
-        padding: 16px 0 !important;
-        text-align: center !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-
-    .hero-actions, .subscribe-form {
-        flex-direction: column;
-    }
-
-    .catalog-filters {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        width: 100vw !important;
-        position: relative !important;
-        left: 50% !important;
-        right: 50% !important;
-        margin-left: -50vw !important;
-        margin-right: -50vw !important;
-        padding: 8px 5vw 16px 5vw !important;
-        margin-bottom: 20px !important;
-        gap: 8px !important;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .catalog-filters::-webkit-scrollbar {
-        display: none;
-    }
-
-    .filter-btn {
-        flex: 0 0 auto !important;
-        padding: 8px 16px !important;
-        font-size: 0.72rem !important;
-        white-space: nowrap !important;
-    }
-
-    .modal-content {
-        padding: 20px;
-    }
-
-    .size-table th, .size-table td {
-        padding: 10px;
-        font-size: 0.78rem;
-    }
-}
-/* ==========================================================================
-   MODAL ANIMATIONS
-   ========================================================================== */
-
-/* Keyframe for scale/fade entrance */
+/* Modal Animations */
 @keyframes modalPopIn {
     0% {
         opacity: 0;
@@ -1053,7 +912,6 @@ a {
     }
 }
 
-/* Keyframe for scale/fade exit */
 @keyframes modalPopOut {
     0% {
         opacity: 1;
@@ -1065,7 +923,6 @@ a {
     }
 }
 
-/* Classes triggered via JavaScript */
 .modal-overlay.is-active .modal-content {
     animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -1074,8 +931,113 @@ a {
     animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.modal-overlay.is-closing {
-    opacity: 0;
-    visibility: visible;
-    transition: opacity 0.22s ease;
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE VIEWS)
+   ========================================================================== */
+
+/* Shared Navigation Mobile/Tablet Drawer (1024px and below) */
+@media (max-width: 1024px) {
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #080808;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    .nav-links.active {
+        max-height: 250px;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 16px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Tablet Specific (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .catalog-filters {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .filter-btn {
+        padding: 9px 20px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+}
+
+/* Mobile Specific (768px and smaller) */
+@media (max-width: 768px) {
+    .nav-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        padding: 0;
+    }
+
+    .hero-actions, 
+    .subscribe-form {
+        flex-direction: column;
+    }
+
+    .catalog-filters {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 8px 5vw 16px 5vw;
+        margin-bottom: 20px;
+        gap: 8px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .catalog-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        padding: 8px 16px;
+        font-size: 0.72rem;
+        white-space: nowrap;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .size-table th, 
+    .size-table td {
+        padding: 10px;
+        font-size: 0.78rem;
+    }
 }
