@@ -131,6 +131,7 @@ function openLightbox(imageSrc) {
     if (lightboxModal && lightboxImage) {
         lightboxImage.src = imageSrc;
         lightboxModal.style.display = 'flex';
+        document.body.classList.add('modal-open');
     }
 }
 
@@ -138,32 +139,33 @@ function closeLightbox() {
     const modal = document.getElementById("imageModal");
     if (modal) {
         modal.style.display = "none";
+        document.body.classList.remove('modal-open');
     }
 }
 
 // ==========================================================================
-// 4. SIZE CHART MODAL FUNCTIONS
+// 4. SIZE CHART MODAL & UNIT FUNCTIONS
 // ==========================================================================
 
 function openSizeChart() {
-    const modal = document.getElementById('size-chart-modal');
+    const modal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
     if (modal) {
+        modal.classList.remove('is-closing');
         modal.classList.add('is-active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
     }
 }
 
 function closeSizeChart() {
-    const modal = document.getElementById('size-chart-modal');
+    const modal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
     if (modal) {
+        modal.classList.add('is-closing');
         modal.classList.remove('is-active');
-        document.body.style.overflow = '';
-    }
-}
+        document.body.classList.remove('modal-open');
 
-function closeSizeChartOnOverlay(event) {
-    if (event.target.id === 'size-chart-modal') {
-        closeSizeChart();
+        setTimeout(() => {
+            modal.classList.remove('is-closing');
+        }, 220);
     }
 }
 
@@ -190,7 +192,31 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCommunityShowcase();
     renderCatalog();
 
-    // 2. FAQ Accordion Listener
+    // 2. Size Chart Modal Close Triggers
+    const sizeModal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
+    const closeBtn = document.querySelector('.modal-close');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSizeChart);
+    }
+
+    if (sizeModal) {
+        sizeModal.addEventListener('click', (e) => {
+            if (e.target === sizeModal) {
+                closeSizeChart();
+            }
+        });
+    }
+
+    // 3. Global Escape Key Listener for Modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSizeChart();
+            closeLightbox();
+        }
+    });
+
+    // 4. FAQ Accordion Listener
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
@@ -210,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Mobile Hamburger Menu
+    // 5. Mobile Hamburger Menu
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navLinks = document.getElementById('navLinks');
 
@@ -228,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Catalog Filter Functionality
+    // 6. Catalog Filter Functionality
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
