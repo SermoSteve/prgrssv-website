@@ -1055,30 +1055,43 @@ a {
     display: none;
 }
 /* --- RESPONSIVE FILTER BUTTONS FOR TABLET & MOBILE --- */
-@media (max-width: 768px) {
+/* --- MOBILE & TABLET HORIZONTAL SCROLLING FILTERS --- */
+@media (max-width: 1024px) {
     .catalog-filters {
         display: flex !important;
-        flex-wrap: nowrap !important; /* Prevents buttons from wrapping into multiple rows */
-        justify-content: flex-start !important; /* Aligns buttons to start for smooth scrolling */
-        overflow-x: auto !important; /* Enables horizontal scrolling */
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
         scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch; /* Smooth inertia scrolling on iOS */
-        padding: 4px 16px 12px 16px; /* Touch target padding */
-        margin-bottom: 24px;
-        gap: 8px;
+        -webkit-overflow-scrolling: touch; /* Smooth iOS swipe */
         
-        /* Hide scrollbars for a clean, minimalist UI */
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
+        /* Full width break-out to allow full edge-to-edge swiping */
+        width: 100vw !important;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        
+        /* Padding ensures buttons don't cut off awkwardly at edges */
+        padding: 8px 5vw 16px 5vw !important;
+        margin-bottom: 20px !important;
+        gap: 10px !important;
+        
+        /* Hide scrollbars */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .catalog-filters::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        display: none;
     }
 
     .filter-btn {
-        flex: 0 0 auto !important; /* Keeps buttons at natural width without shrinking */
-        padding: 8px 16px;
-        font-size: 0.7rem;
+        flex: 0 0 auto !important; /* Prevents text squeezing */
+        padding: 10px 18px !important;
+        font-size: 0.72rem !important;
+        white-space: nowrap !important; /* Keeps 'BASE LAYERS' on one line */
     }
 }
