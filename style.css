@@ -194,22 +194,34 @@ a {
     background-color: var(--border-dark);
 }
 
-/* Section Titles */
+/* Section Titles (Centered & Responsive) */
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin: 0 auto 3rem auto;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .section-title {
-    font-size: 1.8rem;
-    position: relative;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-white);
 }
 
 .section-subtitle {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
     color: var(--text-gray);
-    margin-top: 0.6rem;
+    margin: 0.6rem auto 0 auto;
     font-weight: 300;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 600px;
 }
 
 /* ==========================================================================
@@ -548,7 +560,7 @@ a {
 }
 
 /* ==========================================================================
-   GALLERY SECTION
+   GALLERY SECTION & OVERLAYS
    ========================================================================== */
 
 .gallery-section {
@@ -585,14 +597,20 @@ a {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 12px;
-    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%);
-    font-size: 0.75rem;
-    color: var(--text-gray);
-    letter-spacing: 0.05em;
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(8, 8, 8, 0) 0%, rgba(8, 8, 8, 0.95) 100%);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     opacity: 0;
-    transition: var(--transition-fast);
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
 }
 
 .gallery-item:hover img {
@@ -602,6 +620,7 @@ a {
 
 .gallery-item:hover .gallery-caption {
     opacity: 1;
+    transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -709,18 +728,6 @@ a {
     text-align: center;
 }
 
-.community-showcase-section .section-header {
-    margin-bottom: 2.5rem;
-}
-
-.community-showcase-section .section-subtitle {
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    margin-top: 0.4rem;
-}
-
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -759,44 +766,40 @@ a {
     filter: brightness(1) contrast(1.05);
 }
 
+/* Community Showcase Badges / Labels */
 .spotlight-badge {
     position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
     width: 100%;
-    background-color: rgba(18, 18, 18, 0.98);
+    background-color: var(--bg-card);
     border-top: 1px solid var(--border-dark);
-    padding: 12px 14px;
-    border-radius: 0;
+    padding: 14px 16px;
     text-align: left;
-    z-index: 1;
     box-sizing: border-box;
 }
 
 .spotlight-badge-label {
     display: block;
-    font-size: 0.6rem;
+    font-size: 0.62rem;
     font-weight: 700;
     color: var(--text-gray);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    margin-bottom: 2px;
 }
 
 .spotlight-handle {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 800;
     color: var(--text-white);
     letter-spacing: 0.05em;
-    margin-top: 2px;
 }
 
 .spotlight-outfit {
     display: block;
-    font-size: 0.68rem;
-    color: #bcbcbc;
-    margin-top: 2px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 3px;
     font-weight: 400;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1085,7 +1088,6 @@ a {
    MODALS (LIGHTBOX & SIZE CHART)
    ========================================================================== */
 
-/* Disable page scrolling when modal is active */
 body.modal-open {
     overflow: hidden;
 }
@@ -1129,7 +1131,6 @@ body.modal-open {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Base modal overlay state */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1149,14 +1150,12 @@ body.modal-open {
     padding: 20px;
 }
 
-/* Active modal state */
 .modal-overlay.is-active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-/* Closing transition state */
 .modal-overlay.is-closing {
     opacity: 0;
     visibility: visible;
