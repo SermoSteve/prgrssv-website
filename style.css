@@ -1037,3 +1037,45 @@ a {
         font-size: 0.78rem;
     }
 }
+/* ==========================================================================
+   MODAL ANIMATIONS
+   ========================================================================== */
+
+/* Keyframe for scale/fade entrance */
+@keyframes modalPopIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Keyframe for scale/fade exit */
+@keyframes modalPopOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.92) translateY(15px);
+    }
+}
+
+/* Classes triggered via JavaScript */
+.modal-overlay.is-active .modal-content {
+    animation: modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-overlay.is-closing .modal-content {
+    animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-overlay.is-closing {
+    opacity: 0;
+    visibility: visible;
+    transition: opacity 0.22s ease;
+}
