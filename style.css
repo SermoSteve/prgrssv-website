@@ -718,7 +718,7 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE SECTION
+   COMMUNITY SHOWCASE SECTION (CENTERED, RESPONSIVE & MOBILE-FIXED)
    ========================================================================== */
 
 .community-showcase-section {
@@ -731,7 +731,7 @@ a {
 .showcase-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
+    gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -745,6 +745,7 @@ a {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     background-color: var(--bg-card);
     transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 100%; /* Allows flexible height on all screens */
 }
 
 .showcase-card:hover {
@@ -754,8 +755,7 @@ a {
 
 .showcase-card .showcase-img {
     width: 100%;
-    flex: 1;
-    min-height: 0;
+    aspect-ratio: 4 / 5; /* Maintains clean aspect ratio without hiding badges */
     object-fit: cover;
     display: block;
     filter: brightness(0.9) contrast(1.05);
@@ -766,42 +766,49 @@ a {
     filter: brightness(1) contrast(1.05);
 }
 
-/* Community Showcase Badges / Labels */
+/* Centered & Responsive Showcase Badges */
 .spotlight-badge {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     background-color: var(--bg-card);
     border-top: 1px solid var(--border-dark);
-    padding: 14px 16px;
-    text-align: left;
+    padding: 16px 12px;
+    text-align: center;
     box-sizing: border-box;
 }
 
 .spotlight-badge-label {
     display: block;
-    font-size: 0.62rem;
+    font-size: clamp(0.58rem, 1.2vw, 0.65rem);
     font-weight: 700;
     color: var(--text-gray);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .spotlight-handle {
     display: block;
-    font-size: 0.88rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.98rem);
     font-weight: 800;
     color: var(--text-white);
     letter-spacing: 0.05em;
 }
 
 .spotlight-outfit {
-    display: block;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 3px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    font-size: clamp(0.65rem, 1.4vw, 0.72rem);
+    color: #cccccc;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
@@ -816,6 +823,38 @@ a {
     color: var(--text-white);
 }
 
+/* ==========================================================================
+   SHOWCASE RESPONSIVE BREAKPOINTS (PREVENTS BADGE CLIPPING)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+
+    /* Reset old fixed height caps that cut off mobile labels */
+    .showcase-card.featured-main,
+    .showcase-card {
+        grid-column: span 1;
+        height: auto; 
+    }
+}
+
+@media (max-width: 580px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .showcase-card {
+        height: auto;
+    }
+
+    .spotlight-badge {
+        padding: 14px 10px;
+    }
+}
 /* ==========================================================================
    FAQ SECTION
    ========================================================================== */
