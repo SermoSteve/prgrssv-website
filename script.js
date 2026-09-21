@@ -1,55 +1,112 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const closeBtn = document.querySelector('.modal-close');
-    const sizeChartTriggers = document.querySelectorAll('.size-chart-trigger');
+// --- LIGHTBOX FUNCTIONS ---
+function openLightbox(imageSrc) {
+    const lightboxModal = document.getElementById('imageModal');
+    const lightboxImage = document.getElementById('expandedImg');
 
-    // Function to open modal
-    function openModal() {
-        modalOverlay.classList.remove('is-closing');
-        modalOverlay.classList.add('is-active');
-        document.body.style.overflow = 'hidden'; // Prevents background scrolling
+    if (lightboxModal && lightboxImage) {
+        lightboxImage.src = imageSrc;
+        lightboxModal.style.display = 'flex';
     }
+}
 
-    // Function to close modal with exit animation
-    function closeModal() {
-        if (!modalOverlay.classList.contains('is-active')) return;
-
-        modalOverlay.classList.add('is-closing');
-        
-        // Wait for the exit animation duration (220ms) before hiding
-        setTimeout(() => {
-            modalOverlay.classList.remove('is-active');
-            modalOverlay.classList.remove('is-closing');
-            document.body.style.overflow = ''; // Restores background scrolling
-        }, 220);
+function closeLightbox() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
     }
+}
 
-    // Event Listeners for trigger buttons
-    sizeChartTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
+// --- SIZE CHART MODAL FUNCTIONS ---
+function openSizeChart() {
+    const modal = document.getElementById('size-chart-modal');
+    if (modal) {
+        modal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeSizeChart() {
+    const modal = document.getElementById('size-chart-modal');
+    if (modal) {
+        modal.classList.remove('is-active');
+        document.body.style.overflow = '';
+    }
+}
+
+function closeSizeChartOnOverlay(event) {
+    if (event.target.id === 'size-chart-modal') {
+        closeSizeChart();
+    }
+}
+
+function switchUnit(evt, unit) {
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    evt.target.classList.add('active');
+
+    const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
+    tableCells.forEach(cell => {
+        if (unit === 'cm') {
+            cell.textContent = cell.getAttribute('data-cm');
+        } else {
+            cell.textContent = cell.getAttribute('data-in');
+        }
+    });
+}
+
+// --- FAQ ACCORDION ---
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        const answer = button.nextElementSibling;
+        const isActive = faqItem.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.faq-answer').style.maxHeight = null;
         });
+
+        if (!isActive) {
+            faqItem.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+    });
+});
+
+// --- MOBILE HAMBURGER MENU ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
     });
 
-    // Close button click
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-    }
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
 
-    // Close on overlay backdrop click
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
+// --- CATALOG FILTER FUNCTIONALITY ---
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const selectedCategory = button.getAttribute('data-category');
+        const cards = document.querySelectorAll('.catalog-card');
+
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+
+            if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                card.classList.remove('is-hidden');
+            } else {
+                card.classList.add('is-hidden');
             }
         });
-    }
-
-    // Close on Escape key press
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('is-active')) {
-            closeModal();
-        }
     });
 });
