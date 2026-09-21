@@ -718,7 +718,7 @@ a {
 }
 
 /* ==========================================================================
-   COMMUNITY SHOWCASE SECTION (CENTERED, RESPONSIVE & MOBILE-FIXED)
+   COMMUNITY SHOWCASE SECTION (5 CARDS & RESPONSIVE BREAKPOINTS)
    ========================================================================== */
 
 .community-showcase-section {
@@ -728,12 +728,14 @@ a {
     text-align: center;
 }
 
+/* Base Desktop Grid (Auto-fits 5 cards cleanly) */
 .showcase-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .showcase-card {
@@ -745,7 +747,7 @@ a {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     background-color: var(--bg-card);
     transition: transform 0.3s ease, border-color 0.3s ease;
-    height: 100%; /* Allows flexible height on all screens */
+    height: 100%;
 }
 
 .showcase-card:hover {
@@ -755,11 +757,11 @@ a {
 
 .showcase-card .showcase-img {
     width: 100%;
-    aspect-ratio: 4 / 5; /* Maintains clean aspect ratio without hiding badges */
+    aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
     filter: brightness(0.9) contrast(1.05);
-    transition: filter 0.3s ease, transform 0.3s ease;
+    transition: filter 0.3s ease;
 }
 
 .showcase-card:hover .showcase-img {
@@ -775,41 +777,43 @@ a {
     width: 100%;
     background-color: var(--bg-card);
     border-top: 1px solid var(--border-dark);
-    padding: 16px 12px;
+    padding: 14px 10px;
     text-align: center;
     box-sizing: border-box;
+    margin-top: auto; /* Ensures badges align horizontally across cards */
 }
 
 .spotlight-badge-label {
     display: block;
-    font-size: clamp(0.58rem, 1.2vw, 0.65rem);
+    font-size: clamp(0.55rem, 1.1vw, 0.65rem);
     font-weight: 700;
     color: var(--text-gray);
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .spotlight-handle {
     display: block;
-    font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+    font-size: clamp(0.82rem, 1.6vw, 0.95rem);
     font-weight: 800;
     color: var(--text-white);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
 }
 
 .spotlight-outfit {
     display: inline-block;
     margin-top: 6px;
-    padding: 4px 10px;
+    padding: 4px 8px;
     background-color: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 2px;
-    font-size: clamp(0.65rem, 1.4vw, 0.72rem);
+    font-size: clamp(0.62rem, 1.2vw, 0.7rem);
     color: #cccccc;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    word-break: break-word;
 }
 
 .showcase-callout {
@@ -823,6 +827,59 @@ a {
     color: var(--text-white);
 }
 
+/* ==========================================================================
+   TABLET & MOBILE BREAKPOINTS
+   ========================================================================== */
+
+/* Tablet View (1024px and below) */
+@media (max-width: 1024px) {
+    .showcase-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+
+    /* Centers the 4th and 5th cards neatly on the second row */
+    .showcase-card:nth-child(4) {
+        grid-column: 1 / span 1;
+    }
+}
+
+/* Small Tablet / Large Mobile (768px and below) */
+@media (max-width: 768px) {
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    /* Makes the 5th card span centered across both columns */
+    .showcase-card:nth-child(5) {
+        grid-column: span 2;
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .spotlight-badge {
+        padding: 12px 8px;
+    }
+}
+
+/* Small Mobile View (480px and below) */
+@media (max-width: 480px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .showcase-card:nth-child(5) {
+        grid-column: span 1;
+        max-width: 100%;
+    }
+
+    .spotlight-badge {
+        padding: 14px 10px;
+    }
+}
 /* ==========================================================================
    SHOWCASE RESPONSIVE BREAKPOINTS (PREVENTS BADGE CLIPPING)
    ========================================================================== */
