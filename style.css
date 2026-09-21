@@ -1067,9 +1067,6 @@ a {
    MODALS (LIGHTBOX & SIZE CHART) - FIXED SCROLLING
    ========================================================================== */
 
-body.modal-open {
-    overflow: hidden;
-}
 
 .lightbox-modal {
     display: none;
