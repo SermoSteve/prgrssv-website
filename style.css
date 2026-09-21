@@ -928,81 +928,63 @@ a {
 }
 
 /* Adjust font size slightly on mobile screens */
-@media (max-width: 768px) {
-    .announcement-bar p {
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
+/* --- TABLET VIEW (769px to 1024px) --- */
+/* Center the filter buttons since all of them fit on screen */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .catalog-filters {
+        display: flex !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin: 0 auto 30px auto !important;
+        padding: 0 !important;
+        position: static !important;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto !important;
+        padding: 10px 20px !important;
+        font-size: 0.75rem !important;
     }
 }
-/* Card Image Container */
-.card-image-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background-color: #121212;
-    border-radius: 6px;
-    cursor: pointer;
-}
 
-/* Base Image Styles */
-.card-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    display: block;
-}
+/* --- MOBILE VIEW ONLY (768px and smaller) --- */
+/* Enable horizontal swipe alignment for narrow screens */
+@media (max-width: 768px) {
+    .catalog-filters {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        
+        width: 100vw !important;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        padding: 8px 5vw 16px 5vw !important;
+        margin-bottom: 20px !important;
+        gap: 10px !important;
+        
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
 
-/* Default Front Image */
-.card-image-wrap .img-primary {
-    position: relative;
-    z-index: 1;
-    opacity: 1;
-}
+    .catalog-filters::-webkit-scrollbar {
+        display: none;
+    }
 
-/* Hover Back Image */
-.card-image-wrap .img-hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0;
-    transform: scale(1.03);
-}
-
-/* Hover States */
-.card-image-wrap:hover .img-primary {
-    opacity: 0;
-}
-
-.card-image-wrap:hover .img-hover {
-    opacity: 1;
-    transform: scale(1);
-}
-/* Catalog Filter Container */
-.catalog-filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 35px;
-    flex-wrap: wrap;
-}
-
-/* Base Filter Button - Dark Stealth Aesthetic */
-.filter-btn {
-    background-color: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #888888;
-    padding: 10px 22px;
-    border-radius: 4px; /* Matches your subtle card borders */
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s ease;
+    .filter-btn {
+        flex: 0 0 auto !important;
+        padding: 8px 16px !important;
+        font-size: 0.72rem !important;
+        white-space: nowrap !important;
+    }
 }
 
 /* Hover State */
