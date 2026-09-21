@@ -133,7 +133,6 @@ function openLightbox(imageSrc) {
     if (lightboxModal && lightboxImage) {
         lightboxImage.src = imageSrc;
         lightboxModal.style.display = 'flex';
-        document.body.classList.add('modal-open');
     }
 }
 
@@ -141,7 +140,6 @@ function closeLightbox() {
     const modal = document.getElementById("imageModal");
     if (modal) {
         modal.style.display = "none";
-        document.body.classList.remove('modal-open');
     }
 }
 
@@ -154,7 +152,6 @@ function openSizeChart() {
     if (modal) {
         modal.classList.remove('is-closing');
         modal.classList.add('is-active');
-        document.body.classList.add('modal-open');
     }
 }
 
@@ -163,7 +160,6 @@ function closeSizeChart() {
     if (modal) {
         modal.classList.add('is-closing');
         modal.classList.remove('is-active');
-        document.body.classList.remove('modal-open');
 
         setTimeout(() => {
             modal.classList.remove('is-closing');
