@@ -890,7 +890,7 @@ a {
 }
 
 /* ==========================================================================
-   CONTACT & FOOTER SECTION
+   CONTACT & DROP ALERT SECTION
    ========================================================================== */
 
 .contact-section {
@@ -901,6 +901,7 @@ a {
     overflow: hidden;
 }
 
+/* Background Watermark */
 .brand-watermark {
     position: absolute;
     top: 50%;
@@ -912,8 +913,10 @@ a {
     letter-spacing: 0.1em;
     pointer-events: none;
     white-space: nowrap;
+    user-select: none;
 }
 
+/* Section Layout & Text */
 .contact-container {
     position: relative;
     z-index: 2;
@@ -927,9 +930,10 @@ a {
     margin-top: 0.6rem;
     margin-bottom: 2.5rem;
     font-weight: 300;
+    line-height: 1.6;
 }
 
-/* Detailed Contact Form */
+/* Contact Form Structure */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -990,6 +994,7 @@ a {
     min-height: 120px;
 }
 
+/* Submit Button */
 .contact-form .submit-btn {
     display: block;
     width: 100%;
@@ -1016,30 +1021,7 @@ a {
     transform: scale(0.99);
 }
 
-/* Quick Newsletter Form */
-.subscribe-form {
-    display: flex;
-    gap: 0.8rem;
-    margin-bottom: 2.5rem;
-}
-
-.form-input {
-    flex: 1;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-dark);
-    padding: 14px 18px;
-    color: var(--text-white);
-    font-family: var(--font-main);
-    font-size: 0.85rem;
-    border-radius: 2px;
-    outline: none;
-    transition: var(--transition-fast);
-}
-
-.form-input:focus {
-    border-color: var(--text-white);
-}
-
+/* Direct Contact & Social Links */
 .contact-direct {
     border-top: 1px solid var(--border-dark);
     padding-top: 2rem;
@@ -1054,6 +1036,11 @@ a {
 .contact-link {
     color: var(--text-white);
     text-decoration: underline;
+    transition: var(--transition-fast);
+}
+
+.contact-link:hover {
+    color: #cccccc;
 }
 
 .socials-container {
@@ -1091,6 +1078,7 @@ a {
     font-weight: 600;
     letter-spacing: 0.05em;
     transition: var(--transition-fast);
+    text-decoration: none;
 }
 
 .social-icon svg {
@@ -1108,13 +1096,15 @@ a {
     fill: #000000;
 }
 
-.footer {
-    padding: 40px 0;
-    border-top: 1px solid var(--border-dark);
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--text-gray);
-    letter-spacing: 0.1em;
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-icons {
+        gap: 0.8rem;
+    }
 }
 
 /* ==========================================================================
