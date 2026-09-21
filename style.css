@@ -1191,42 +1191,43 @@ a {
         gap: 1rem;
     }
 }
+
 /* ==========================================================================
-   FEATURED LOOK (INTERACTIVE HOTSPOTS) SECTION
+   COMMUNITY SHOWCASE SECTION
    ========================================================================== */
 
-.featured-look-section {
+.community-showcase-section {
     padding: 90px 0;
     background-color: var(--bg-subtle);
     border-top: 1px solid var(--border-dark);
     text-align: center;
 }
 
-.featured-look-section .category-tag {
-    color: var(--text-gray);
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.featured-look-section .section-title {
+.community-showcase-section .section-header {
     margin-bottom: 2.5rem;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
 }
 
-/* Hotspot Container Setup */
-.interactive-look {
+.community-showcase-section .section-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-top: 0.4rem;
+}
+
+/* Interactive Image Frame */
+.community-showcase-section .interactive-look {
     position: relative;
     display: block;
-    max-width: 800px;
+    max-width: 750px;
     margin: 0 auto;
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid var(--border-dark);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
 }
 
-.featured-look-img {
+.showcase-img {
     width: 100%;
     height: auto;
     display: block;
@@ -1234,116 +1235,66 @@ a {
     filter: brightness(0.9) contrast(1.05);
 }
 
-/* Hotspot Marker Setup */
-.hotspot {
+/* Spotlight Handle Overlay Badge */
+.spotlight-badge {
     position: absolute;
-    z-index: 10;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-}
-
-.hotspot-dot {
-    width: 16px;
-    height: 16px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    display: block;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
-    animation: pulseGlow 2s infinite ease-in-out;
-    transition: transform 0.25s ease;
-}
-
-.hotspot:hover .hotspot-dot {
-    transform: scale(1.3);
-    background-color: #ffffff;
-}
-
-/* Tooltip Popup Card */
-.hotspot-card {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%) translateY(8px);
-    background-color: rgba(18, 18, 18, 0.95);
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(8px);
     border: 1px solid var(--border-dark);
-    padding: 12px 16px;
+    padding: 10px 16px;
     border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-    z-index: 20;
     text-align: left;
+    z-index: 15;
 }
 
-/* Triangle Pointer for Tooltip */
-.hotspot-card::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--border-dark) transparent transparent transparent;
-}
-
-.hotspot-card h4 {
-    font-size: 0.82rem;
+.spotlight-badge-label {
+    display: block;
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #ffffff;
-    margin-bottom: 2px;
+    color: var(--text-gray);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
-.hotspot-card p {
-    font-size: 0.72rem;
+.spotlight-handle {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: 0.05em;
+}
+
+/* Callout Text Under Image */
+.showcase-callout {
+    margin-top: 2rem;
+    font-size: 0.85rem;
     color: var(--text-gray);
-    margin: 0;
-    font-weight: 400;
     letter-spacing: 0.04em;
 }
 
-/* Hover State */
-.hotspot:hover .hotspot-card {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-}
-
-/* Pulsing Animation */
-@keyframes pulseGlow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
+.showcase-callout strong {
+    color: var(--text-white);
 }
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    .featured-look-section {
+    .community-showcase-section {
         padding: 60px 0;
     }
 
-    .hotspot-card {
+    .spotlight-badge {
+        bottom: 12px;
+        left: 12px;
         padding: 8px 12px;
     }
 
-    .hotspot-card h4 {
-        font-size: 0.75rem;
+    .spotlight-badge-label {
+        font-size: 0.6rem;
     }
 
-    .hotspot-card p {
-        font-size: 0.68rem;
+    .spotlight-handle {
+        font-size: 0.78rem;
     }
 }
