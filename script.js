@@ -192,7 +192,36 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCommunityShowcase();
     renderCatalog();
 
-    // 2. Size Chart Modal Close Triggers
+    // 2. Formspree AJAX Submission Handler (Prevents Redirect)
+    const contactForm = document.getElementById('contactForm'); // Make sure your HTML <form> has id="contactForm"
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Thanks! Your message has been sent successfully.');
+                    contactForm.reset();
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            } catch (error) {
+                alert('Oops! There was a network error sending your form.');
+            }
+        });
+    }
+
+    // 3. Size Chart Modal Close Triggers
     const sizeModal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
     const closeBtn = document.querySelector('.modal-close');
 
@@ -208,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Global Escape Key Listener for Modals
+    // 4. Global Escape Key Listener for Modals
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSizeChart();
@@ -216,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. FAQ Accordion Listener
+    // 5. FAQ Accordion Listener
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
@@ -236,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Mobile Hamburger Menu
+    // 6. Mobile Hamburger Menu
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navLinks = document.getElementById('navLinks');
 
@@ -254,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Catalog Filter Functionality
+    // 7. Catalog Filter Functionality
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
