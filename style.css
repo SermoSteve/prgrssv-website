@@ -1037,3 +1037,17 @@ a {
         transform: translateY(0);
     }
 }
+/* Lightbox Image Container Fixes */
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+/* Hide broken image icon/alt text when image fails to load */
+#lightbox-img:not([src]), 
+#lightbox-img[src=""] {
+    display: none;
+}
