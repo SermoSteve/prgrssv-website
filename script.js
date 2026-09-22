@@ -48,6 +48,7 @@ const communityData = [
 const productsData = [
     {
         id: 1,
+        title: "CORE HEAVYWEIGHT TEE",
         category: "tops",
         categoryLabel: "Core Tops",
         imgFront: "2.jpg",
@@ -56,6 +57,7 @@ const productsData = [
     },
     {
         id: 2,
+        title: "UTILITY ATHLETIC SHORTS",
         category: "bottoms",
         categoryLabel: "Bottoms",
         imgFront: "3.jpg",
@@ -64,6 +66,7 @@ const productsData = [
     },
     {
         id: 3,
+        title: "COMPRESSION BASELAYER",
         category: "baselayers",
         categoryLabel: "Base Layers",
         imgFront: "4.jpg",
