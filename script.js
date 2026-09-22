@@ -51,27 +51,30 @@ const productsData = [
         title: "CORE HEAVYWEIGHT TEE",
         category: "tops",
         categoryLabel: "Core Tops",
-        imgFront: "2.jpg",
-        imgBack: "b1.jpg",
-        specs: ["JAY"]
+        price: "₱1,200",
+        imgFront: "oversized-tee.jpg",
+        imgBack: "oversized-tee-back.jpg",
+        specs: ["280 GSM Heavyweight Cotton", "Drop Shoulder Oversized Fit", "Reinforced Collar Stitching"]
     },
     {
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
         category: "bottoms",
         categoryLabel: "Bottoms",
-        imgFront: "3.jpg",
-        imgBack: "b2.jpg",
-        specs: ["Jay", "OJ", "Steve"]
+        price: "₱950",
+        imgFront: "shorts.jpg",
+        imgBack: "shorts-back.jpg",
+        specs: ["4-Way Stretch Performance Fabric", "Zippered Side Pockets", "Built-in Towel Loop"]
     },
     {
         id: 3,
         title: "COMPRESSION BASELAYER",
         category: "baselayers",
         categoryLabel: "Base Layers",
-        imgFront: "4.jpg",
-        imgBack: "b3.jpg",
-        specs: ["Roldan", "OJ", "Steve"]
+        price: "₱1,100",
+        imgFront: "baselayer.jpg",
+        imgBack: "baselayer-back.jpg",
+        specs: ["Moisture-Wicking Polymer Blend", "Ergonomic Flatlock Seams", "Targeted Muscle Support"]
     }
 ];
 
@@ -110,7 +113,10 @@ function renderCatalog() {
                     <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" loading="lazy">
                 </div>
                 <div class="card-info">
-                    <span class="category-tag">${item.categoryLabel}</span>
+                    <div class="card-header-row">
+                        <span class="category-tag">${item.categoryLabel}</span>
+                        <span class="product-price">${item.price}</span>
+                    </div>
                     <h3>${item.title}</h3>
                     <ul class="specs-list">
                         ${specsHTML}
@@ -231,12 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. Size Chart & Lightbox Modal Close Triggers
-    const sizeModal = document.getElementById('size-chart-modal');
-    const imageModal = document.getElementById('imageModal');
-    
     document.querySelectorAll('.modal-close').forEach(closeBtn => {
         closeBtn.addEventListener('click', (e) => {
-            const targetModal = e.target.closest('.modal-overlay, .lightbox-modal');
+            const targetModal = e.target.closest('#size-chart-modal, #imageModal');
             if (targetModal && targetModal.id === 'size-chart-modal') {
                 closeSizeChart();
             } else {
@@ -244,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    const sizeModal = document.getElementById('size-chart-modal');
+    const imageModal = document.getElementById('imageModal');
 
     if (sizeModal) {
         sizeModal.addEventListener('click', (e) => {
@@ -289,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Mobile Hamburger Menu (Supports both ID and Class selectors)
+    // 6. Mobile Hamburger Menu
     const hamburgerBtn = document.getElementById('hamburgerBtn') || document.querySelector('.hamburger-btn');
     const navLinks = document.getElementById('navLinks') || document.querySelector('.nav-links');
 
