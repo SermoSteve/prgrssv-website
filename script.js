@@ -53,7 +53,7 @@ const productsData = [
         categoryLabel: "PUMP COVERS",
         imgFront: "2.jpg",
         imgBack: "b1.jpg",
-        specs: ["JAY"]
+        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
     },
     {
         id: 2,
@@ -62,7 +62,7 @@ const productsData = [
         categoryLabel: "TANK TOPS",
         imgFront: "3.jpg",
         imgBack: "b2.jpg",
-        specs: ["Jay", "OJ", "Steve"]
+        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
     },
     {
         id: 3,
@@ -71,7 +71,7 @@ const productsData = [
         categoryLabel: "BOTTOMS",
         imgFront: "4.jpg",
         imgBack: "b3.jpg",
-        specs: ["Roldan", "OJ", "Steve"]
+        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
     }
 ];
 
