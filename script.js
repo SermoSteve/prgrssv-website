@@ -106,8 +106,8 @@ function renderCatalog() {
         return `
             <div class="catalog-card" data-category="${item.category}">
                 <div class="card-image-wrap">
-                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox('${item.imgFront}')" loading="lazy">
-                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox('${item.imgBack}')" loading="lazy">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" loading="lazy">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" loading="lazy">
                 </div>
                 <div class="card-info">
                     <span class="category-tag">${item.categoryLabel}</span>
