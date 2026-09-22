@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src = localSrc;
         }
 
-        // Handle missing local images cleanly without falling back to Unsplash
         img.addEventListener("error", function () {
             this.alt = "Image unavailable";
-            this.style.backgroundColor = "#111"; // Matches dark background
+            this.style.backgroundColor = "#111";
         });
     });
 
@@ -62,17 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. Size Chart Modal Triggers
-    const sizeTriggers = document.querySelectorAll(".size-chart-trigger");
-    const sizeModal = document.getElementById("size-chart-modal");
-
-    sizeTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", () => {
+    // 5. FIXED: Size Chart Modal Trigger Event Delegation
+    document.body.addEventListener("click", (e) => {
+        if (e.target && e.target.classList.contains("size-chart-trigger")) {
+            e.preventDefault();
+            const sizeModal = document.getElementById("size-chart-modal");
             if (sizeModal) {
                 sizeModal.classList.add("active");
             }
-        });
+        }
     });
+
+    // Close modal on outside backdrop click
+    const sizeModal = document.getElementById("size-chart-modal");
+    if (sizeModal) {
+        sizeModal.addEventListener("click", (e) => {
+            if (e.target === sizeModal) {
+                closeSizeChart();
+            }
+        });
+    }
 });
 
 // 6. Global Utility Functions
