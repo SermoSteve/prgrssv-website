@@ -49,8 +49,8 @@ const productsData = [
     {
         id: 1,
         title: "PROGRESSIVE",
-        category: "pump-cover",
-        chartType: "pump-cover",
+        category: "pump-covers",
+        chartType: "pump-covers",
         categoryLabel: "PUMP COVERS",
         imgFront: "pc1.jpg",
         imgBack: "pcb1.jpg",
@@ -59,8 +59,8 @@ const productsData = [
     {
         id: 2,
         title: "COMING SOON",
-        category: "tank-top",
-        chartType: "tank-top",
+        category: "tank-tops",
+        chartType: "tank-tops",
         categoryLabel: "TANK TOPS",
         imgFront: "cs1.jpg",
         imgBack: "cs1.jpg",
