@@ -377,19 +377,21 @@
 
     <!-- DYNAMIC SIZE CHART MODAL -->
     <div id="size-chart-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button type="button" class="modal-close" onclick="closeSizeChart()">&times;</button>
-            <h2 id="modal-chart-title">SIZE CHART</h2>
-            
-            <div class="unit-toggle">
-                <button type="button" class="unit-btn active" id="unit-in" onclick="switchUnit(event, 'in')">INCHES</button>
-                <button type="button" class="unit-btn" id="unit-cm" onclick="switchUnit(event, 'cm')">CM</button>
-            </div>
-
-            <!-- JavaScript populates product-specific size tables here -->
-            <div id="size-table-container"></div>
+    <div class="modal-content">
+        <button type="button" class="modal-close" onclick="closeSizeChart()">&times;</button>
+        
+        <!-- 1. Dynamic Title Target -->
+        <h2 id="modal-chart-title">SIZE CHART</h2>
+        
+        <div class="unit-toggle">
+            <button type="button" class="unit-btn active" onclick="switchUnit(event, 'in')">INCHES</button>
+            <button type="button" class="unit-btn" onclick="switchUnit(event, 'cm')">CM</button>
         </div>
+
+        <!-- 2. Dynamic Table Target (JavaScript injects tables here) -->
+        <div id="size-table-container"></div>
     </div>
+</div>
 
     <!-- IMAGE LIGHTBOX MODAL -->
     <div id="imageModal" class="modal-overlay">
