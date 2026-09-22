@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Local Image Handling
+    // 1. Load Local Images directly from data-local-src
     const catalogImages = document.querySelectorAll(".card-image-wrap img");
 
     catalogImages.forEach((img) => {
         const localSrc = img.getAttribute("data-local-src");
-        
         if (localSrc) {
             img.src = localSrc;
         }
 
-        // Hide broken image icon cleanly if a local file fails to load
+        // Handle missing local images cleanly without falling back to Unsplash
         img.addEventListener("error", function () {
-            this.style.opacity = "0";
+            this.alt = "Image unavailable";
+            this.style.backgroundColor = "#111"; // Matches dark background
         });
     });
 
