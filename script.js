@@ -50,7 +50,7 @@ const productsData = [
         id: 1,
         title: "CORE HEAVYWEIGHT TEE",
         category: "tops",
-        categoryLabel: "Core Tops",
+        categoryLabel: "PUMP COVERS",
         imgFront: "2.jpg",
         imgBack: "b1.jpg",
         specs: ["JAY"]
@@ -59,7 +59,7 @@ const productsData = [
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
         category: "bottoms",
-        categoryLabel: "Bottoms",
+        categoryLabel: "TANK TOPS",
         imgFront: "3.jpg",
         imgBack: "b2.jpg",
         specs: ["Jay", "OJ", "Steve"]
@@ -68,7 +68,7 @@ const productsData = [
         id: 3,
         title: "COMPRESSION BASELAYER",
         category: "baselayers",
-        categoryLabel: "Base Layers",
+        categoryLabel: "BOTTOMS",
         imgFront: "4.jpg",
         imgBack: "b3.jpg",
         specs: ["Roldan", "OJ", "Steve"]
