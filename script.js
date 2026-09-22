@@ -1,4 +1,79 @@
+// ==========================================================================
+// 1. DATA ARRAYS
+// ==========================================================================
 
+const communityData = [
+    {
+        id: 1,
+        image: "1.jpg",
+        tag: "OUTFIT OF THE MONTH",
+        handle: "@MARCUS_FIT",
+        outfit: "CORE OVERSIZED TEE + UTILITY SHORTS",
+        isFeatured: true
+    },
+    {
+        id: 2,
+        image: "2.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@ALEX_TRAINS",
+        outfit: "PROGRESSION HOODIE",
+        isFeatured: false
+    },
+    {
+        id: 3,
+        image: "3.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@JORDAN_LIFTS",
+        outfit: "HYBRID ATHLETIC TANK",
+        isFeatured: false
+    },
+    {
+        id: 4,
+        image: "4.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@DEVON_RUNS",
+        outfit: "CORE HEAVYWEIGHT TEE",
+        isFeatured: false
+    },
+    {
+        id: 5,
+        image: "5.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@KAI_HYBRID",
+        outfit: "TRAINING UTILITY SHORTS",
+        isFeatured: false
+    }
+];
+
+const productsData = [
+    {
+        id: 1,
+        title: "CORE HEAVYWEIGHT TEE",
+        category: "tops",
+        categoryLabel: "Core Tops",
+        imgFront: "2.jpg",
+        imgBack: "b1.jpg",
+        specs: ["JAY"]
+    },
+    {
+        id: 2,
+        title: "UTILITY ATHLETIC SHORTS",
+        category: "bottoms",
+        categoryLabel: "Bottoms",
+        imgFront: "3.jpg",
+        imgBack: "b2.jpg",
+        specs: ["Jay", "OJ", "Steve"]
+    },
+    {
+        id: 3,
+        title: "COMPRESSION BASELAYER",
+        category: "baselayers",
+        categoryLabel: "Base Layers",
+        imgFront: "4.jpg",
+        imgBack: "b3.jpg",
+        specs: ["Roldan", "OJ", "Steve"]
+    }
+];
 
 // ==========================================================================
 // 2. DYNAMIC RENDER FUNCTIONS
