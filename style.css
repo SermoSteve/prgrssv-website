@@ -24,11 +24,17 @@ html {
     background-color: var(--bg-black);
     color: var(--text-white);
     font-family: var(--font-main);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     line-height: 1.5;
+    position: relative;
 }
 
 h1, h2, h3 {
@@ -174,12 +180,16 @@ a {
         flex-direction: column;
         justify-content: center;
         gap: 2rem;
-        transition: right 0.3s ease;
+        transition: right 0.3s ease, visibility 0.3s ease;
         z-index: 99;
+        
+        /* FIX: Hide element completely from touch scroll area when closed */
+        visibility: hidden;
     }
 
     .nav-links.active {
         right: 0;
+        visibility: visible;
     }
 }
 
