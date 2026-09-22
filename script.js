@@ -49,7 +49,7 @@ const productsData = [
     {
         id: 1,
         title: "CORE HEAVYWEIGHT TEE",
-        category: "tops",
+        category: "pump-cove",
         chartType: "pump-cover",
         categoryLabel: "PUMP COVERS",
         imgFront: "pc1.jpg",
@@ -59,7 +59,7 @@ const productsData = [
     {
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
-        category: "bottoms",
+        category: "tank-top",
         chartType: "tank-top",
         categoryLabel: "TANK TOPS",
         imgFront: "cs1.jpg",
