@@ -52,8 +52,8 @@ const productsData = [
         category: "tops",
         categoryLabel: "Core Tops",
         price: "₱1,200",
-        imgFront: "oversized-tee.jpg",
-        imgBack: "oversized-tee-back.jpg",
+        imgFront: "2.jpg",
+        imgBack: "b1.jpg",
         specs: ["280 GSM Heavyweight Cotton", "Drop Shoulder Oversized Fit", "Reinforced Collar Stitching"]
     },
     {
@@ -62,8 +62,8 @@ const productsData = [
         category: "bottoms",
         categoryLabel: "Bottoms",
         price: "₱950",
-        imgFront: "shorts.jpg",
-        imgBack: "shorts-back.jpg",
+        imgFront: "3.jpg",
+        imgBack: "b2.jpg",
         specs: ["4-Way Stretch Performance Fabric", "Zippered Side Pockets", "Built-in Towel Loop"]
     },
     {
@@ -72,8 +72,8 @@ const productsData = [
         category: "baselayers",
         categoryLabel: "Base Layers",
         price: "₱1,100",
-        imgFront: "baselayer.jpg",
-        imgBack: "baselayer-back.jpg",
+        imgFront: "4.jpg",
+        imgBack: "b3.jpg",
         specs: ["Moisture-Wicking Polymer Blend", "Ergonomic Flatlock Seams", "Targeted Muscle Support"]
     }
 ];
