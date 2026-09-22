@@ -48,8 +48,8 @@ const communityData = [
 const productsData = [
     {
         id: 1,
-        title: "CORE HEAVYWEIGHT TEE",
-        category: "pump-cove",
+        title: "PROGRESSIVE",
+        category: "pump-cover",
         chartType: "pump-cover",
         categoryLabel: "PUMP COVERS",
         imgFront: "pc1.jpg",
@@ -58,7 +58,7 @@ const productsData = [
     },
     {
         id: 2,
-        title: "UTILITY ATHLETIC SHORTS",
+        title: "COMING SOON",
         category: "tank-top",
         chartType: "tank-top",
         categoryLabel: "TANK TOPS",
@@ -68,7 +68,7 @@ const productsData = [
     },
     {
         id: 3,
-        title: "COMPRESSION BASELAYER",
+        title: "COMING SOON",
         category: "bottoms",
         chartType: "bottoms",
         categoryLabel: "BOTTOMS",
