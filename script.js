@@ -21,7 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hamburgerBtn && navLinks) {
         hamburgerBtn.addEventListener("click", () => {
             navLinks.classList.toggle("active");
-            hamburgerBtn.classList.toggle("open");
+            hamburgerBtn.classList.toggle("active"); // Aligned with CSS hamburger animation class
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                hamburgerBtn.classList.remove("active");
+            });
         });
     }
 
@@ -61,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. FIXED: Size Chart Modal Trigger Event Delegation
+    // 5. Size Chart Modal Trigger Event Delegation
     document.body.addEventListener("click", (e) => {
         if (e.target && e.target.classList.contains("size-chart-trigger")) {
             e.preventDefault();
@@ -72,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Close modal on outside backdrop click
+    // Close size chart modal on backdrop click
     const sizeModal = document.getElementById("size-chart-modal");
     if (sizeModal) {
         sizeModal.addEventListener("click", (e) => {
@@ -81,9 +89,31 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // 6. Lightbox Image Modal Logic
+    const imageModal = document.getElementById("imageModal");
+    const expandedImg = document.getElementById("expandedImg");
+
+    document.querySelectorAll(".card-image-wrap, .gallery-item").forEach((item) => {
+        item.addEventListener("click", (e) => {
+            const img = item.querySelector("img");
+            if (img && imageModal && expandedImg) {
+                expandedImg.src = img.src;
+                imageModal.classList.add("active");
+            }
+        });
+    });
+
+    if (imageModal) {
+        imageModal.addEventListener("click", (e) => {
+            if (e.target === imageModal) {
+                closeLightbox();
+            }
+        });
+    }
 });
 
-// 6. Global Utility Functions
+// 7. Global Utility Functions
 function switchUnit(event, unit) {
     const buttons = document.querySelectorAll(".unit-btn");
     buttons.forEach((btn) => btn.classList.remove("active"));
@@ -99,5 +129,12 @@ function closeSizeChart() {
     const modal = document.getElementById("size-chart-modal");
     if (modal) {
         modal.classList.remove("active");
+    }
+}
+
+function closeLightbox() {
+    const imageModal = document.getElementById("imageModal");
+    if (imageModal) {
+        imageModal.classList.remove("active");
     }
 }
