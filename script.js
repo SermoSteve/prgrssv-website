@@ -86,7 +86,7 @@ function renderCommunityShowcase() {
     grid.innerHTML = communityData.map(item => `
         <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
             <div class="showcase-img-wrap">
-                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img">
+                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" loading="lazy">
             </div>
             <div class="spotlight-badge">
                 <span class="spotlight-badge-label">${item.tag}</span>
@@ -106,8 +106,8 @@ function renderCatalog() {
         return `
             <div class="catalog-card" data-category="${item.category}">
                 <div class="card-image-wrap">
-                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox('${item.imgFront}')">
-                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox('${item.imgBack}')">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" onclick="openLightbox('${item.imgFront}')" loading="lazy">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" onclick="openLightbox('${item.imgBack}')" loading="lazy">
                 </div>
                 <div class="card-info">
                     <span class="category-tag">${item.categoryLabel}</span>
@@ -115,7 +115,7 @@ function renderCatalog() {
                     <ul class="specs-list">
                         ${specsHTML}
                     </ul>
-                    <button class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                    <button type="button" class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
                 </div>
             </div>
         `;
@@ -133,6 +133,7 @@ function openLightbox(imageSrc) {
     if (lightboxModal && lightboxImage) {
         lightboxImage.src = imageSrc;
         lightboxModal.style.display = 'flex';
+        lightboxModal.classList.add('is-active');
     }
 }
 
@@ -140,6 +141,7 @@ function closeLightbox() {
     const modal = document.getElementById("imageModal");
     if (modal) {
         modal.style.display = "none";
+        modal.classList.remove('is-active');
     }
 }
 
@@ -148,21 +150,23 @@ function closeLightbox() {
 // ==========================================================================
 
 function openSizeChart() {
-    const modal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
+    const modal = document.getElementById('size-chart-modal');
     if (modal) {
         modal.classList.remove('is-closing');
         modal.classList.add('is-active');
+        modal.style.display = 'flex';
     }
 }
 
 function closeSizeChart() {
-    const modal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
+    const modal = document.getElementById('size-chart-modal');
     if (modal) {
         modal.classList.add('is-closing');
         modal.classList.remove('is-active');
 
         setTimeout(() => {
             modal.classList.remove('is-closing');
+            modal.style.display = 'none';
         }, 220);
     }
 }
@@ -196,6 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = true;
+
             const formData = new FormData(contactForm);
             
             try {
@@ -215,18 +222,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (error) {
                 alert('Oops! There was a network error sending your form.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
             }
         });
     }
 
     // 3. Size Chart & Lightbox Modal Close Triggers
-    const sizeModal = document.getElementById('size-chart-modal') || document.querySelector('.modal-overlay');
+    const sizeModal = document.getElementById('size-chart-modal');
     const imageModal = document.getElementById('imageModal');
-    const closeBtn = document.querySelector('.modal-close');
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeSizeChart);
-    }
+    
+    // Attach close listener to all elements with class .modal-close
+    document.querySelectorAll('.modal-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', (e) => {
+            const targetModal = e.target.closest('.modal-overlay');
+            if (targetModal && targetModal.id === 'size-chart-modal') {
+                closeSizeChart();
+            } else {
+                closeLightbox();
+            }
+        });
+    });
 
     if (sizeModal) {
         sizeModal.addEventListener('click', (e) => {
@@ -304,8 +320,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (selectedCategory === 'all' || cardCategory === selectedCategory) {
                     card.classList.remove('is-hidden');
+                    card.style.display = 'block';
                 } else {
                     card.classList.add('is-hidden');
+                    card.style.display = 'none';
                 }
             });
         });
