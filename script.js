@@ -45,7 +45,7 @@ const communityData = [
     }
 ];
 
-// Fixed category and categoryLabel alignments to match the UI
+// Fixed category alignments to match product types properly
 const productsData = [
     {
         id: 1,
@@ -60,7 +60,7 @@ const productsData = [
     {
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
-        category: "tops",
+        category: "bottoms", // Corrected from "tops"
         chartType: "tank-top",
         categoryLabel: "TANK TOPS",
         imgFront: "3.jpg",
@@ -199,8 +199,28 @@ function closeLightbox() {
 }
 
 // ==========================================================================
-// 4. SIZE CHART MODAL & UNIT FUNCTIONS
+// 4. SIZE CHART & CUSTOM THEME MODAL FUNCTIONS
 // ==========================================================================
+
+function openCustomModal(title, message) {
+    const modal = document.getElementById('custom-modal');
+    if (!modal) return;
+    
+    const titleEl = modal.querySelector('.modal-title');
+    const messageEl = modal.querySelector('.modal-message');
+
+    if (titleEl) titleEl.innerText = title;
+    if (messageEl) messageEl.innerText = message;
+
+    modal.classList.add('active');
+}
+
+function closeCustomModal() {
+    const modal = document.getElementById('custom-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
 
 function openSizeChart(chartType) {
     const modal = document.getElementById('size-chart-modal');
@@ -260,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCommunityShowcase();
     renderCatalog();
 
-    // 2. Formspree AJAX Submission Handler
+    // 2. Formspree AJAX Submission Handler (Updated to use custom modal)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -281,16 +301,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Thanks! Your message has been sent successfully.');
+                    openCustomModal('SUCCESS', 'Thanks! Your message has been sent successfully.');
                     contactForm.reset();
                 } else {
-                    alert('Oops! There was a problem submitting your form.');
+                    openCustomModal('ERROR', 'Oops! There was a problem submitting your form.');
                 }
             } catch (error) {
-                alert('Oops! There was a network error sending your form.');
+                openCustomModal('ERROR', 'Oops! There was a network error sending your form.');
             } finally {
                 if (submitBtn) submitBtn.disabled = false;
             }
+        });
+    }
+
+    // Modal Close Button Listener for Custom Theme Modal
+    const customModalCloseBtn = document.getElementById('modal-close-btn');
+    if (customModalCloseBtn) {
+        customModalCloseBtn.addEventListener('click', closeCustomModal);
+    }
+
+    const customModal = document.getElementById('custom-modal');
+    if (customModal) {
+        customModal.addEventListener('click', (e) => {
+            if (e.target === customModal) closeCustomModal();
         });
     }
 
@@ -331,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             closeSizeChart();
             closeLightbox();
+            closeCustomModal();
         }
     });
 
