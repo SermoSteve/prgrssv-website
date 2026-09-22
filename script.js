@@ -53,7 +53,7 @@ const productsData = [
         chartType: "pump-cover",
         categoryLabel: "PUMP COVERS",
         imgFront: "pc1.jpg",
-        imgBack: "pcb2.jpg",
+        imgBack: "pcb1.jpg",
         specs: ["(CLOTH TYPE)", "(GMS)", "(Black | White)"]
     },
     {
