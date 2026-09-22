@@ -1,140 +1,331 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Load Local Images directly from data-local-src
-    const catalogImages = document.querySelectorAll(".card-image-wrap img");
+// ==========================================================================
+// 1. DATA ARRAYS
+// ==========================================================================
 
-    catalogImages.forEach((img) => {
-        const localSrc = img.getAttribute("data-local-src");
-        if (localSrc) {
-            img.src = localSrc;
+const communityData = [
+    {
+        id: 1,
+        image: "1.jpg",
+        tag: "OUTFIT OF THE MONTH",
+        handle: "@MARCUS_FIT",
+        outfit: "CORE OVERSIZED TEE + UTILITY SHORTS",
+        isFeatured: true
+    },
+    {
+        id: 2,
+        image: "2.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@ALEX_TRAINS",
+        outfit: "PROGRESSION HOODIE",
+        isFeatured: false
+    },
+    {
+        id: 3,
+        image: "3.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@JORDAN_LIFTS",
+        outfit: "HYBRID ATHLETIC TANK",
+        isFeatured: false
+    },
+    {
+        id: 4,
+        image: "4.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@DEVON_RUNS",
+        outfit: "CORE HEAVYWEIGHT TEE",
+        isFeatured: false
+    },
+    {
+        id: 5,
+        image: "5.jpg",
+        tag: "SPOTLIGHT",
+        handle: "@KAI_HYBRID",
+        outfit: "TRAINING UTILITY SHORTS",
+        isFeatured: false
+    }
+];
+
+const productsData = [
+    {
+        id: 1,
+        title: "CORE HEAVYWEIGHT TEE",
+        category: "tops",
+        categoryLabel: "Core Tops",
+        imgFront: "2.jpg",
+        imgBack: "b1.jpg",
+        specs: ["JAY"]
+    },
+    {
+        id: 2,
+        title: "UTILITY ATHLETIC SHORTS",
+        category: "bottoms",
+        categoryLabel: "Bottoms",
+        imgFront: "3.jpg",
+        imgBack: "b2.jpg",
+        specs: ["Jay", "OJ", "Steve"]
+    },
+    {
+        id: 3,
+        title: "COMPRESSION BASELAYER",
+        category: "baselayers",
+        categoryLabel: "Base Layers",
+        imgFront: "4.jpg",
+        imgBack: "b3.jpg",
+        specs: ["Roldan", "OJ", "Steve"]
+    }
+];
+
+// ==========================================================================
+// 2. DYNAMIC RENDER FUNCTIONS
+// ==========================================================================
+
+function renderCommunityShowcase() {
+    const grid = document.getElementById('communityGrid');
+    if (!grid) return;
+
+    grid.innerHTML = communityData.map(item => `
+        <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
+            <div class="showcase-img-wrap">
+                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" loading="lazy">
+            </div>
+            <div class="spotlight-badge">
+                <span class="spotlight-badge-label">${item.tag}</span>
+                <span class="spotlight-handle">${item.handle}</span>
+                <span class="spotlight-outfit">${item.outfit}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCatalog() {
+    const grid = document.getElementById('catalogGrid');
+    if (!grid) return;
+
+    grid.innerHTML = productsData.map(item => {
+        const specsHTML = item.specs.map(spec => `<li>${spec}</li>`).join('');
+        return `
+            <div class="catalog-card" data-category="${item.category}">
+                <div class="card-image-wrap">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" loading="lazy">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">${item.categoryLabel}</span>
+                    <h3>${item.title}</h3>
+                    <ul class="specs-list">
+                        ${specsHTML}
+                    </ul>
+                    <button type="button" class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ==========================================================================
+// 3. LIGHTBOX FUNCTIONS
+// ==========================================================================
+
+function openLightbox(imageSrc) {
+    const lightboxModal = document.getElementById('imageModal');
+    const lightboxImage = document.getElementById('expandedImg');
+
+    if (lightboxModal && lightboxImage) {
+        lightboxImage.src = imageSrc;
+        lightboxModal.style.display = 'flex';
+        lightboxModal.classList.add('is-active');
+    }
+}
+
+function closeLightbox() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+        modal.classList.remove('is-active');
+    }
+}
+
+// ==========================================================================
+// 4. SIZE CHART MODAL & UNIT FUNCTIONS
+// ==========================================================================
+
+function openSizeChart() {
+    const modal = document.getElementById('size-chart-modal');
+    if (modal) {
+        modal.classList.remove('is-closing');
+        modal.classList.add('is-active');
+        modal.style.display = 'flex';
+    }
+}
+
+function closeSizeChart() {
+    const modal = document.getElementById('size-chart-modal');
+    if (modal) {
+        modal.classList.add('is-closing');
+        modal.classList.remove('is-active');
+
+        setTimeout(() => {
+            modal.classList.remove('is-closing');
+            modal.style.display = 'none';
+        }, 220);
+    }
+}
+
+function switchUnit(evt, unit) {
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    evt.currentTarget.classList.add('active');
+
+    const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
+    tableCells.forEach(cell => {
+        if (unit === 'cm') {
+            cell.textContent = cell.getAttribute('data-cm');
+        } else {
+            cell.textContent = cell.getAttribute('data-in');
         }
-
-        img.addEventListener("error", function () {
-            this.alt = "Image unavailable";
-            this.style.backgroundColor = "#111";
-        });
     });
+}
 
-    // 2. Mobile Menu Toggle
-    const hamburgerBtn = document.getElementById("hamburgerBtn");
-    const navLinks = document.getElementById("navLinks");
+// ==========================================================================
+// 5. INITIALIZATION & EVENT LISTENERS
+// ==========================================================================
 
-    if (hamburgerBtn && navLinks) {
-        hamburgerBtn.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
-            hamburgerBtn.classList.toggle("active"); // Aligned with CSS hamburger animation class
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Render Dynamic Components
+    renderCommunityShowcase();
+    renderCatalog();
 
-        // Close mobile menu when clicking a link
-        navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                hamburgerBtn.classList.remove("active");
-            });
+    // 2. Formspree AJAX Submission Handler
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Thanks! Your message has been sent successfully.');
+                    contactForm.reset();
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            } catch (error) {
+                alert('Oops! There was a network error sending your form.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
         });
     }
 
-    // 3. Category Filter
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const catalogCards = document.querySelectorAll(".catalog-card");
-
-    filterButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-            filterButtons.forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            const category = btn.getAttribute("data-category");
-
-            catalogCards.forEach((card) => {
-                if (category === "all" || card.getAttribute("data-category") === category) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        });
-    });
-
-    // 4. FAQ Accordion Toggle
-    const faqQuestions = document.querySelectorAll(".faq-question");
-
-    faqQuestions.forEach((question) => {
-        question.addEventListener("click", () => {
-            const faqItem = question.parentElement;
-            faqItem.classList.toggle("open");
-
-            const icon = question.querySelector(".faq-icon");
-            if (icon) {
-                icon.textContent = faqItem.classList.contains("open") ? "-" : "+";
+    // 3. Size Chart & Lightbox Modal Close Triggers
+    const sizeModal = document.getElementById('size-chart-modal');
+    const imageModal = document.getElementById('imageModal');
+    
+    // Attach close listener to all elements with class .modal-close
+    document.querySelectorAll('.modal-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', (e) => {
+            const targetModal = e.target.closest('.modal-overlay');
+            if (targetModal && targetModal.id === 'size-chart-modal') {
+                closeSizeChart();
+            } else {
+                closeLightbox();
             }
         });
     });
 
-    // 5. Size Chart Modal Trigger Event Delegation
-    document.body.addEventListener("click", (e) => {
-        if (e.target && e.target.classList.contains("size-chart-trigger")) {
-            e.preventDefault();
-            const sizeModal = document.getElementById("size-chart-modal");
-            if (sizeModal) {
-                sizeModal.classList.add("active");
-            }
-        }
-    });
-
-    // Close size chart modal on backdrop click
-    const sizeModal = document.getElementById("size-chart-modal");
     if (sizeModal) {
-        sizeModal.addEventListener("click", (e) => {
+        sizeModal.addEventListener('click', (e) => {
             if (e.target === sizeModal) {
                 closeSizeChart();
             }
         });
     }
 
-    // 6. Lightbox Image Modal Logic
-    const imageModal = document.getElementById("imageModal");
-    const expandedImg = document.getElementById("expandedImg");
-
-    document.querySelectorAll(".card-image-wrap, .gallery-item").forEach((item) => {
-        item.addEventListener("click", (e) => {
-            const img = item.querySelector("img");
-            if (img && imageModal && expandedImg) {
-                expandedImg.src = img.src;
-                imageModal.classList.add("active");
-            }
-        });
-    });
-
     if (imageModal) {
-        imageModal.addEventListener("click", (e) => {
-            if (e.target === imageModal) {
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal || e.target.classList.contains('lightbox-close')) {
                 closeLightbox();
             }
         });
     }
-});
 
-// 7. Global Utility Functions
-function switchUnit(event, unit) {
-    const buttons = document.querySelectorAll(".unit-btn");
-    buttons.forEach((btn) => btn.classList.remove("active"));
-    event.currentTarget.classList.add("active");
-
-    const cells = document.querySelectorAll(".size-table [data-in]");
-    cells.forEach((cell) => {
-        cell.textContent = cell.getAttribute(`data-${unit}`);
+    // 4. Global Escape Key Listener for Modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSizeChart();
+            closeLightbox();
+        }
     });
-}
 
-function closeSizeChart() {
-    const modal = document.getElementById("size-chart-modal");
-    if (modal) {
-        modal.classList.remove("active");
-    }
-}
+    // 5. FAQ Accordion Listener
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = button.nextElementSibling;
+            const isActive = faqItem.classList.contains('active');
 
-function closeLightbox() {
-    const imageModal = document.getElementById("imageModal");
-    if (imageModal) {
-        imageModal.classList.remove("active");
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const itemAnswer = item.querySelector('.faq-answer');
+                if (itemAnswer) itemAnswer.style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                faqItem.classList.add('active');
+                if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
+    // 6. Mobile Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
     }
-}
+
+    // 7. Catalog Filter Functionality
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const selectedCategory = button.getAttribute('data-category');
+            const cards = document.querySelectorAll('.catalog-card');
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    card.classList.remove('is-hidden');
+                    card.style.display = 'block';
+                } else {
+                    card.classList.add('is-hidden');
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
