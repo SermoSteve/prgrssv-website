@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PRGRSSV ATHLETICS - Master Stylesheet (Mindset & Progression Focused)
+   PRGRSSV ATHLETICS - Master Stylesheet (Fixed & Refined)
    ========================================================================== */
 
 :root {
@@ -11,6 +11,7 @@
     --border-dark: #242424;
     --font-main: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
     --transition-fast: all 0.3s ease;
+    --header-height: 52px; /* Fixed height tracking for smooth body offset */
 }
 
 * {
@@ -35,8 +36,6 @@ body {
     overflow-x: hidden;
     line-height: 1.5;
     position: relative;
-    /* FIX: Prevents content from jumping under the fixed header */
-    padding-top: 86px; 
 }
 
 h1, h2, h3 {
@@ -57,17 +56,8 @@ a {
 }
 
 /* ==========================================================================
-   ANNOUNCEMENT BAR & NAVBAR (FIXED TOP NAVIGATION)
+   ANNOUNCEMENT BAR & NAVBAR
    ========================================================================== */
-
-/* Wrapper to pin both the announcement bar and navbar together at top */
-.header-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
 
 .announcement-bar {
     background-color: #121212;
@@ -83,8 +73,9 @@ a {
 }
 
 .navbar {
-    position: relative;
-    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: rgba(8, 8, 8, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-dark);
@@ -180,24 +171,36 @@ a {
 
     .nav-links {
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        max-width: 300px;
-        height: 100vh;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 100%);
         background-color: var(--bg-card);
-        border-left: 1px solid var(--border-dark);
+        border-top: 1px solid var(--border-dark);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 3rem 1.5rem;
         gap: 2rem;
-        transition: right 0.3s ease, visibility 0.3s ease;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
         z-index: 999;
         visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
     }
 
     .nav-links.active {
-        right: 0;
+        display: flex;
         visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -275,8 +278,8 @@ a {
 
 .hero-section {
     position: relative;
-    height: calc(90vh - 86px);
-    min-height: 520px;
+    height: 90vh;
+    min-height: 580px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1134,7 +1137,7 @@ a {
 .lightbox-modal {
     display: none;
     position: fixed;
-    z-index: 2000;
+    z-index: 1000;
     top: 0;
     left: 0;
     width: 100vw;
@@ -1166,7 +1169,7 @@ a {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 2001;
+    z-index: 1001;
 }
 
 @keyframes zoomIn {
