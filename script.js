@@ -1,50 +1,6 @@
 // ==========================================================================
 // 1. DATA ARRAYS
 // ==========================================================================
-
-const communityData = [
-    {
-        id: 1,
-        image: "1.jpg",
-        tag: "OUTFIT OF THE MONTH",
-        handle: "@MARCUS_FIT",
-        outfit: "CORE OVERSIZED TEE + UTILITY SHORTS",
-        isFeatured: true
-    },
-    {
-        id: 2,
-        image: "2.jpg",
-        tag: "SPOTLIGHT",
-        handle: "@ALEX_TRAINS",
-        outfit: "PROGRESSION HOODIE",
-        isFeatured: false
-    },
-    {
-        id: 3,
-        image: "3.jpg",
-        tag: "SPOTLIGHT",
-        handle: "@JORDAN_LIFTS",
-        outfit: "HYBRID ATHLETIC TANK",
-        isFeatured: false
-    },
-    {
-        id: 4,
-        image: "4.jpg",
-        tag: "SPOTLIGHT",
-        handle: "@DEVON_RUNS",
-        outfit: "CORE HEAVYWEIGHT TEE",
-        isFeatured: false
-    },
-    {
-        id: 5,
-        image: "5.jpg",
-        tag: "SPOTLIGHT",
-        handle: "@KAI_HYBRID",
-        outfit: "TRAINING UTILITY SHORTS",
-        isFeatured: false
-    }
-];
-
 const productsData = [
     {
         id: 1,
