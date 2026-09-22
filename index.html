@@ -165,29 +165,78 @@
         </section>
 
         <!-- ==========================================================================
-         4. CATALOG SECTION
-         ========================================================================== -->
-        <section id="catalog" class="catalog-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">THE PRODUCT LINEUP</h2>
-                    <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
-                </div>
+     4. CATALOG SECTION
+     ========================================================================== -->
+<section id="catalog" class="catalog-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">THE PRODUCT LINEUP</h2>
+            <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
+        </div>
 
-                <!-- Filter Buttons -->
-                <div class="catalog-filters">
-                    <button class="filter-btn active" data-category="all">ALL GEAR</button>
-                    <button class="filter-btn" data-category="tops">CORE TOPS</button>
-                    <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
-                    <button class="filter-btn" data-category="baselayers">BASE LAYERS</button>
-                </div>
+        <!-- Filter Buttons -->
+        <div class="catalog-filters">
+            <button class="filter-btn active" data-category="all">ALL GEAR</button>
+            <button class="filter-btn" data-category="tops">CORE TOPS</button>
+            <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
+            <button class="filter-btn" data-category="baselayers">BASE LAYERS</button>
+        </div>
 
-                <!-- DYNAMIC CONTAINER FOR CATALOG PRODUCTS -->
-                <div class="catalog-grid" id="catalogGrid">
-                    <!-- JavaScript renders catalog cards here -->
+        <!-- CATALOG PRODUCTS GRID -->
+        <div class="catalog-grid" id="catalogGrid">
+            
+            <!-- Card 1: Core Tops -->
+            <div class="catalog-card" data-category="tops">
+                <div class="card-image-wrap">
+                    <img src="images/core-top.jpg" alt="Core Heavyweight Tee" class="img-main">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">CORE TOPS</span>
+                    <h3>CORE HEAVYWEIGHT TEE</h3>
+                    <ul class="specs-list">
+                        <li>JAY</li>
+                    </ul>
+                    <button class="size-chart-trigger" data-modal-target="#size-chart-modal">VIEW SIZE CHART</button>
                 </div>
             </div>
-        </section>
+
+            <!-- Card 2: Bottoms -->
+            <div class="catalog-card" data-category="bottoms">
+                <div class="card-image-wrap">
+                    <img src="images/utility-shorts.jpg" alt="Utility Athletic Shorts" class="img-main">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">BOTTOMS</span>
+                    <h3>UTILITY ATHLETIC SHORTS</h3>
+                    <ul class="specs-list">
+                        <li>Jay</li>
+                        <li>OJ</li>
+                        <li>Steve</li>
+                    </ul>
+                    <button class="size-chart-trigger" data-modal-target="#size-chart-modal">VIEW SIZE CHART</button>
+                </div>
+            </div>
+
+            <!-- Card 3: Base Layers -->
+            <div class="catalog-card" data-category="baselayers">
+                <div class="card-image-wrap">
+                    <img src="images/compression-baselayer.jpg" alt="Compression Baselayer" class="img-main">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">BASE LAYERS</span>
+                    <h3>COMPRESSION BASELAYER</h3>
+                    <ul class="specs-list">
+                        <li>Roldan</li>
+                        <li>OJ</li>
+                        <li>Steve</li>
+                    </ul>
+                    <button class="size-chart-trigger" data-modal-target="#size-chart-modal">VIEW SIZE CHART</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
         <!-- ==========================================================================
          5. GALLERY SECTION
