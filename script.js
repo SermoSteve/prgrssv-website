@@ -52,9 +52,9 @@ const productsData = [
         category: "tops",
         chartType: "pump-cover",
         categoryLabel: "PUMP COVERS",
-        imgFront: "2.jpg",
-        imgBack: "b1.jpg",
-        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
+        imgFront: "pc1.jpg",
+        imgBack: "pc2.jpg",
+        specs: ["(CLOTH TYPE)", "(GMS)", "(Black | White)"]
     },
     {
         id: 2,
@@ -62,8 +62,8 @@ const productsData = [
         category: "bottoms",
         chartType: "tank-top",
         categoryLabel: "TANK TOPS",
-        imgFront: "3.jpg",
-        imgBack: "b2.jpg",
+        imgFront: "cs.jpg",
+        imgBack: "cs.jpg",
         specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     },
     {
@@ -72,8 +72,8 @@ const productsData = [
         category: "bottoms",
         chartType: "bottoms",
         categoryLabel: "BOTTOMS",
-        imgFront: "4.jpg",
-        imgBack: "b3.jpg",
+        imgFront: "cs.jpg",
+        imgBack: "cs.jpg",
         specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     }
 ];
