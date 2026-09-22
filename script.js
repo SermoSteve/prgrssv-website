@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Image Fallback Handling & Local File Checking
+    // 1. Local Image Handling
     const catalogImages = document.querySelectorAll(".card-image-wrap img");
 
     catalogImages.forEach((img) => {
         const localSrc = img.getAttribute("data-local-src");
         
         if (localSrc) {
-            const testImg = new Image();
-            testImg.onload = () => {
-                img.src = localSrc;
-            };
-            testImg.src = localSrc;
+            img.src = localSrc;
         }
 
+        // Hide broken image icon cleanly if a local file fails to load
         img.addEventListener("error", function () {
-            this.src = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop";
+            this.style.opacity = "0";
         });
     });
 
@@ -94,22 +91,5 @@ function closeSizeChart() {
     const modal = document.getElementById("size-chart-modal");
     if (modal) {
         modal.classList.remove("active");
-    }
-}
-
-function openLightbox(src) {
-    const lightbox = document.getElementById("imageModal");
-    const expandedImg = document.getElementById("expandedImg");
-
-    if (lightbox && expandedImg) {
-        expandedImg.src = src;
-        lightbox.classList.add("active");
-    }
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById("imageModal");
-    if (lightbox) {
-        lightbox.classList.remove("active");
     }
 }
