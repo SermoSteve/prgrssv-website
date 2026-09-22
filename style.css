@@ -1089,7 +1089,7 @@ a {
 }
 
 /* ==========================================================================
-   MODALS (LIGHTBOX & SIZE CHART) - FIXED SCROLLING
+   MODALS (LIGHTBOX & SIZE CHART) - FIXED SCROLLING & OVERFLOW
    ========================================================================== */
 
 .lightbox-modal {
@@ -1105,18 +1105,21 @@ a {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    overflow-y: auto;
-    padding: 40px 20px;
+    overflow: hidden;
+    padding: 20px;
 }
 
 .lightbox-content {
     max-width: 90vw;
     max-height: 85vh;
+    width: auto;
+    height: auto;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     object-fit: contain;
     animation: zoomIn 0.25s ease-out;
     margin: auto;
+    display: block;
 }
 
 .lightbox-close {
