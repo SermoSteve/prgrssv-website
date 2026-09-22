@@ -45,35 +45,88 @@ const communityData = [
     }
 ];
 
+// Fixed category and categoryLabel alignments to match the UI
 const productsData = [
     {
         id: 1,
         title: "CORE HEAVYWEIGHT TEE",
         category: "tops",
+        chartType: "pump-cover",
         categoryLabel: "PUMP COVERS",
         imgFront: "2.jpg",
         imgBack: "b1.jpg",
-        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
+        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     },
     {
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
-        category: "bottoms",
+        category: "tops",
+        chartType: "tank-top",
         categoryLabel: "TANK TOPS",
         imgFront: "3.jpg",
         imgBack: "b2.jpg",
-        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
+        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     },
     {
         id: 3,
         title: "COMPRESSION BASELAYER",
-        category: "baselayers",
+        category: "bottoms",
+        chartType: "bottoms",
         categoryLabel: "BOTTOMS",
         imgFront: "4.jpg",
         imgBack: "b3.jpg",
-        specs: ["(CLOTH TYPE)","(GMS)","(COLORS)"]
+        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     }
 ];
+
+// Map size chart tables dynamically for each product type
+const sizeCharts = {
+    'pump-cover': {
+        title: 'PUMP COVER SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th><th>SHOULDER</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td data-in="40-42" data-cm="101-106">40-42</td><td data-in="29" data-cm="73">29</td><td data-in="20" data-cm="51">20</td></tr>
+                    <tr><td>M</td><td data-in="42-44" data-cm="106-111">42-44</td><td data-in="30" data-cm="76">30</td><td data-in="21" data-cm="53">21</td></tr>
+                    <tr><td>L</td><td data-in="44-46" data-cm="111-116">44-46</td><td data-in="31" data-cm="78">31</td><td data-in="22" data-cm="56">22</td></tr>
+                    <tr><td>XL</td><td data-in="46-48" data-cm="116-121">46-48</td><td data-in="32" data-cm="81">32</td><td data-in="23" data-cm="58">23</td></tr>
+                </tbody>
+            </table>`
+    },
+    'tank-top': {
+        title: 'TANK TOP SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td data-in="36-38" data-cm="91-96">36-38</td><td data-in="28" data-cm="71">28</td></tr>
+                    <tr><td>M</td><td data-in="38-40" data-cm="96-101">38-40</td><td data-in="29" data-cm="74">29</td></tr>
+                    <tr><td>L</td><td data-in="40-42" data-cm="101-106">40-42</td><td data-in="30" data-cm="76">30</td></tr>
+                    <tr><td>XL</td><td data-in="42-44" data-cm="106-111">42-44</td><td data-in="31" data-cm="79">31</td></tr>
+                </tbody>
+            </table>`
+    },
+    'bottoms': {
+        title: 'BOTTOMS SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td data-in="28-30" data-cm="71-76">28-30</td><td data-in="35-37" data-cm="89-94">35-37</td><td data-in="15" data-cm="38">15</td></tr>
+                    <tr><td>M</td><td data-in="31-33" data-cm="79-84">31-33</td><td data-in="38-40" data-cm="97-102">38-40</td><td data-in="15.5" data-cm="39.5">15.5</td></tr>
+                    <tr><td>L</td><td data-in="34-36" data-cm="86-91">34-36</td><td data-in="41-43" data-cm="104-109">41-43</td><td data-in="16" data-cm="41">16</td></tr>
+                    <tr><td>XL</td><td data-in="37-39" data-cm="94-99">37-39</td><td data-in="44-46" data-cm="112-117">44-46</td><td data-in="16.5" data-cm="42">16.5</td></tr>
+                </tbody>
+            </table>`
+    }
+};
 
 // ==========================================================================
 // 2. DYNAMIC RENDER FUNCTIONS
@@ -115,7 +168,7 @@ function renderCatalog() {
                     <ul class="specs-list">
                         ${specsHTML}
                     </ul>
-                    <button type="button" class="size-chart-trigger" onclick="openSizeChart()">VIEW SIZE CHART</button>
+                    <button type="button" class="size-chart-trigger" onclick="openSizeChart('${item.chartType}')">VIEW SIZE CHART</button>
                 </div>
             </div>
         `;
@@ -149,8 +202,21 @@ function closeLightbox() {
 // 4. SIZE CHART MODAL & UNIT FUNCTIONS
 // ==========================================================================
 
-function openSizeChart() {
+function openSizeChart(chartType) {
     const modal = document.getElementById('size-chart-modal');
+    const titleEl = document.getElementById('modal-chart-title');
+    const containerEl = document.getElementById('size-table-container');
+
+    const data = sizeCharts[chartType] || sizeCharts['pump-cover'];
+
+    if (titleEl) titleEl.innerText = data.title;
+    if (containerEl) containerEl.innerHTML = data.table;
+
+    // Reset unit toggle buttons back to Inches by default when opening
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    const defaultInchesBtn = document.querySelector('.unit-btn[onclick*="in"]');
+    if (defaultInchesBtn) defaultInchesBtn.classList.add('active');
+
     if (modal) {
         modal.classList.remove('is-closing');
         modal.classList.add('is-active');
