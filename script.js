@@ -45,7 +45,6 @@ const communityData = [
     }
 ];
 
-// Fixed category alignments to match product types properly
 const productsData = [
     {
         id: 1,
@@ -60,7 +59,7 @@ const productsData = [
     {
         id: 2,
         title: "UTILITY ATHLETIC SHORTS",
-        category: "bottoms", // Corrected from "tops"
+        category: "bottoms",
         chartType: "tank-top",
         categoryLabel: "TANK TOPS",
         imgFront: "3.jpg",
@@ -79,7 +78,6 @@ const productsData = [
     }
 ];
 
-// Map size chart tables dynamically for each product type
 const sizeCharts = {
     'pump-cover': {
         title: 'PUMP COVER SIZE CHART',
@@ -91,7 +89,7 @@ const sizeCharts = {
                 <tbody>
                     <tr><td>S</td><td data-in="40-42" data-cm="101-106">40-42</td><td data-in="29" data-cm="73">29</td><td data-in="20" data-cm="51">20</td></tr>
                     <tr><td>M</td><td data-in="42-44" data-cm="106-111">42-44</td><td data-in="30" data-cm="76">30</td><td data-in="21" data-cm="53">21</td></tr>
-                    <tr><td>L</td><td data-in="44-46" data-cm="111-116">44-46</td><td data-in="31" data-cm="78">31</td><td data-in="22" data-cm="56">22</td></tr>
+                    <tr><td>L</td><td data-in="44-46" data-cm="111-116">44-46</td><td data-in="29" data-cm="78">31</td><td data-in="22" data-cm="56">22</td></tr>
                     <tr><td>XL</td><td data-in="46-48" data-cm="116-121">46-48</td><td data-in="32" data-cm="81">32</td><td data-in="23" data-cm="58">23</td></tr>
                 </tbody>
             </table>`
@@ -212,6 +210,7 @@ function openCustomModal(title, message) {
     if (titleEl) titleEl.innerText = title;
     if (messageEl) messageEl.innerText = message;
 
+    modal.style.display = 'flex';
     modal.classList.add('active');
 }
 
@@ -219,6 +218,7 @@ function closeCustomModal() {
     const modal = document.getElementById('custom-modal');
     if (modal) {
         modal.classList.remove('active');
+        modal.style.display = 'none';
     }
 }
 
@@ -232,7 +232,6 @@ function openSizeChart(chartType) {
     if (titleEl) titleEl.innerText = data.title;
     if (containerEl) containerEl.innerHTML = data.table;
 
-    // Reset unit toggle buttons back to Inches by default when opening
     document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
     const defaultInchesBtn = document.querySelector('.unit-btn[onclick*="in"]');
     if (defaultInchesBtn) defaultInchesBtn.classList.add('active');
@@ -259,7 +258,9 @@ function closeSizeChart() {
 
 function switchUnit(evt, unit) {
     document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
-    evt.currentTarget.classList.add('active');
+    if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+    }
 
     const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
     tableCells.forEach(cell => {
@@ -276,11 +277,11 @@ function switchUnit(evt, unit) {
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Render Dynamic Components
+    // Render Dynamic Components
     renderCommunityShowcase();
     renderCatalog();
 
-    // 2. Formspree AJAX Submission Handler (Updated to use custom modal)
+    // Formspree AJAX Submission Handler
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -314,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal Close Button Listener for Custom Theme Modal
+    // Modal Close Button Listener
     const customModalCloseBtn = document.getElementById('modal-close-btn');
     if (customModalCloseBtn) {
         customModalCloseBtn.addEventListener('click', closeCustomModal);
@@ -327,11 +328,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Size Chart & Lightbox Modal Close Triggers
+    // Size Chart & Lightbox Modal Close Triggers
     const sizeModal = document.getElementById('size-chart-modal');
     const imageModal = document.getElementById('imageModal');
     
-    // Attach close listener to all elements with class .modal-close
     document.querySelectorAll('.modal-close').forEach(closeBtn => {
         closeBtn.addEventListener('click', (e) => {
             const targetModal = e.target.closest('.modal-overlay');
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Global Escape Key Listener for Modals
+    // Global Escape Key Listener
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSizeChart();
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. FAQ Accordion Listener
+    // FAQ Accordion Listener
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. Mobile Hamburger Menu
+    // Mobile Hamburger Menu
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navLinks = document.getElementById('navLinks');
 
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Catalog Filter Functionality
+    // Catalog Filter
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
