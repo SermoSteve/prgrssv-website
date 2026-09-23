@@ -8,9 +8,9 @@ const productsData = [
         category: "pump-covers",
         chartType: "pump-covers",
         categoryLabel: "PUMP COVERS",
-        imgFront: "pc1.jpg",
-        imgBack: "pcb1.jpg",
-        specs: ["(CLOTH TYPE)", "(GMS)", "(Black | White)"]
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
+        specs: ["(CLOTH TYPE)", "(GMS)", "COLORS"]
     },
     {
         id: 2,
@@ -18,8 +18,8 @@ const productsData = [
         category: "tank-tops",
         chartType: "tank-tops",
         categoryLabel: "TANK TOPS",
-        imgFront: "cs1.jpg",
-        imgBack: "cs1.jpg",
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
         specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     },
     {
@@ -28,8 +28,8 @@ const productsData = [
         category: "bottoms",
         chartType: "bottoms",
         categoryLabel: "BOTTOMS",
-        imgFront: "cs1.jpg",
-        imgBack: "cs1.jpg",
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
         specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
     }
 ];
