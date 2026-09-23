@@ -25,15 +25,22 @@ html {
     color: var(--text-white);
     font-family: var(--font-main);
     width: 100%;
+    max-width: 100%;
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
     width: 100%;
+    max-width: 100%;
     line-height: 1.5;
     position: relative;
     overflow-x: hidden;
+    touch-action: manipulation;
 }
-
+img, video, canvas, svg {
+    touch-action: manipulation;
+}
 h1, h2, h3 {
     text-transform: uppercase;
     letter-spacing: 0.05em;
