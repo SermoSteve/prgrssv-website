@@ -234,8 +234,8 @@ function switchUnit(evt, unit) {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Render Dynamic Components
-    renderCommunityShowcase();
-    renderCatalog();
+    if (typeof renderCommunityShowcase === 'function') renderCommunityShowcase();
+    if (typeof renderCatalog === 'function') renderCatalog();
 
     // Formspree AJAX Submission Handler
     const contactForm = document.getElementById('contactForm');
@@ -268,19 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 if (submitBtn) submitBtn.disabled = false;
             }
-        });
-    }
-
-    // Modal Close Button Listener
-    const customModalCloseBtn = document.getElementById('modal-close-btn');
-    if (customModalCloseBtn) {
-        customModalCloseBtn.addEventListener('click', closeCustomModal);
-    }
-
-    const customModal = document.getElementById('custom-modal');
-    if (customModal) {
-        customModal.addEventListener('click', (e) => {
-            if (e.target === customModal) closeCustomModal();
         });
     }
 
