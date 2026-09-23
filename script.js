@@ -271,6 +271,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Function to handle closing
+function closeCustomModal() {
+    const customModal = document.getElementById('custom-modal');
+    if (customModal) {
+        customModal.classList.remove('active');
+    }
+}
+
+// Global click delegation (handles dynamic elements & click-outside backdrop)
+document.addEventListener('click', (e) => {
+    // Check if the click target is the button OR inside the button
+    if (e.target.closest('#modal-close-btn')) {
+        closeCustomModal();
+    }
+    
+    // Check if clicked on the overlay background directly
+    if (e.target.id === 'custom-modal') {
+        closeCustomModal();
+    }
+});
     // Size Chart & Lightbox Modal Close Triggers
     const sizeModal = document.getElementById('size-chart-modal');
     const imageModal = document.getElementById('imageModal');
