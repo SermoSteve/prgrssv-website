@@ -1124,7 +1124,7 @@ img, video {
 }
 
 /* ==========================================================================
-   MODALS (LIGHTBOX & SIZE CHART) - RESPONSIVE & CENTERING FIXED
+   MODALS (LIGHTBOX & SIZE CHART) - FULLY RESPONSIVE & NO SCROLL
    ========================================================================== */
 
 .lightbox-modal {
@@ -1173,17 +1173,17 @@ img, video {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Modal Overlay & Base Content Structure */
+/* Modal Overlay & Centering Container */
 .modal-overlay {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
-    height: 100dvh; /* Handles dynamic mobile browser bars */
+    height: 100dvh;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    display: flex; /* Flexbox provides reliable vertical & horizontal centering */
+    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 999999;
@@ -1191,9 +1191,8 @@ img, video {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.22s ease, visibility 0.22s ease;
-    padding: 20px 15px;
+    padding: 12px;
     box-sizing: border-box;
-    overflow-y: auto;
 }
 
 .modal-overlay.is-active,
@@ -1209,17 +1208,19 @@ img, video {
     pointer-events: none;
 }
 
+/* Modal Card Box */
 .modal-content {
     background-color: #0d0d0d;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     border-radius: 6px;
-    width: 90%;
-    max-width: 480px;
-    max-height: 85vh;
-    max-height: 85dvh; /* Prevents modal from overflowing screen on mobile displays */
-    overflow-y: auto;  /* Allows internal scrolling if content is taller than screen */
-    padding: 2rem 1.5rem;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    max-height: 90dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: clamp(1rem, 4vw, 2rem) clamp(0.8rem, 3.5vw, 1.5rem);
     position: relative;
     margin: auto;
     box-sizing: border-box;
@@ -1229,12 +1230,12 @@ img, video {
 
 .modal-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 12px;
+    right: 12px;
     background: transparent;
     border: none;
     color: #888;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
     line-height: 1;
     z-index: 100001;
@@ -1247,42 +1248,44 @@ img, video {
 }
 
 .modal-header {
-    margin-bottom: 20px;
-    padding-right: 30px;
+    margin-bottom: 16px;
+    padding-right: 25px;
 }
 
 .modal-title {
     color: #ffffff;
-    font-size: 1.2rem;
-    letter-spacing: 0.08em;
+    font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+    letter-spacing: 0.04em;
     font-weight: 800;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
     text-transform: uppercase;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .modal-subtitle {
     color: #888;
-    font-size: 0.8rem;
+    font-size: clamp(0.72rem, 3vw, 0.8rem);
 }
 
 .modal-message {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
     color: var(--text-gray);
-    line-height: 1.5;
-    margin-bottom: 1.75rem;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
 }
 
 .unit-tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .unit-btn {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #888;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 4px;
     font-size: 0.7rem;
     font-weight: 600;
@@ -1320,40 +1323,38 @@ img, video {
 }
 
 /* ==========================================================================
-   SIZE CHART TABLE 
+   SIZE CHART TABLE (FIT SCREEN & NO SCROLLBAR)
    ========================================================================== */
 
 .table-responsive {
     width: 100%;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    overflow-x: hidden !important;
     margin-bottom: 10px;
     display: block;
 }
 
 .size-table {
     width: 100%;
-    min-width: 320px;
+    min-width: 0;
     border-collapse: collapse;
-    font-size: 0.75rem;
-    table-layout: auto;
+    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+    table-layout: fixed;
 }
 
 .size-table th,
 .size-table td {
-    padding: 10px 4px;
+    padding: 8px 2px;
     color: #ddd;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     text-align: center;
+    word-break: break-word;
 }
 
 .size-table th {
     background: rgba(255, 255, 255, 0.04);
     color: #aaa;
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -1362,10 +1363,10 @@ img, video {
 }
 
 .modal-footer {
-    margin-top: 15px;
-    font-size: 0.75rem;
+    margin-top: 12px;
+    font-size: 0.7rem;
     color: #777;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 /* ==========================================================================
@@ -1401,28 +1402,6 @@ img, video {
 
 .modal-overlay.is-closing .modal-content {
     animation: modalPopOut 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@media (max-width: 600px) {
-    .modal-overlay {
-        padding: 12px;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 1.5rem 1.1rem;
-        max-height: 88dvh;
-    }
-
-    .modal-title {
-        font-size: 1.05rem;
-    }
-
-    .size-table th,
-    .size-table td {
-        padding: 8px 3px;
-        font-size: 0.7rem;
-    }
 }
 
 @media (max-width: 480px) {
