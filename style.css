@@ -35,8 +35,14 @@ body {
     max-width: 100%;
     line-height: 1.5;
     position: relative;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     touch-action: manipulation;
+}
+
+/* Prevent body horizontal page scroll & collapse on mobile modal open */
+body.modal-open {
+    overflow: hidden !important;
+    touch-action: none;
 }
 
 img, video, canvas, svg {
@@ -91,6 +97,7 @@ img, video {
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-dark);
     padding: 14px 0;
+    width: 100%;
 }
 
 .nav-container {
@@ -364,6 +371,7 @@ img, video {
 
 .catalog-section {
     padding: clamp(50px, 8vw, 90px) 0;
+    width: 100%;
 }
 
 .catalog-filters {
@@ -410,6 +418,7 @@ img, video {
     gap: 2rem;
     padding: 0;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .catalog-card {
@@ -419,6 +428,7 @@ img, video {
     overflow: hidden;
     transition: var(--transition-fast);
     animation: fadeIn 0.4s ease forwards;
+    width: 100%;
 }
 
 .catalog-card:hover {
@@ -430,7 +440,7 @@ img, video {
     display: none;
 }
 
-/* Card Image Container - Natural Aspect Ratio */
+/* Card Image Container */
 .card-image-wrap {
     width: 100%;
     height: auto;
@@ -1177,7 +1187,7 @@ img, video {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Outer Overlay - Pin to Screen Viewport */
+/* Outer Overlay - Fixed Viewport Bounds */
 .modal-overlay {
     position: fixed !important;
     top: 0 !important;
@@ -1215,19 +1225,21 @@ img, video {
     pointer-events: none !important;
 }
 
-/* Modal Card Box - Fixed Width & High Screen Boundaries */
-.modal-content {
-    background-color: #0d0d0d;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+/* Modal Content Card Box */
+.modal-content,
+#size-chart-modal .modal-container,
+.size-chart-content {
+    background-color: #0d0d0d !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     border-radius: 6px;
-    width: 100% !important;
-    max-width: 450px !important;
+    width: 90% !important;
+    max-width: 420px !important;
     max-height: 85vh !important;
     max-height: 85dvh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    padding: clamp(1rem, 4vw, 1.5rem) clamp(0.8rem, 3.5vw, 1.25rem);
+    padding: clamp(1.2rem, 4vw, 1.5rem) clamp(0.9rem, 3.5vw, 1.25rem) !important;
     position: relative !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
@@ -1333,6 +1345,7 @@ img, video {
    SIZE CHART TABLE (HORIZONTAL SCROLL SUPPORT ON SMALL SCREENS)
    ========================================================================== */
 
+#size-table-container,
 .table-responsive {
     width: 100% !important;
     overflow-x: auto !important;
@@ -1443,6 +1456,6 @@ img, video {
 
     .modal-content {
         padding: 16px 12px !important;
-        width: 95% !important;
+        width: 92% !important;
     }
 }
