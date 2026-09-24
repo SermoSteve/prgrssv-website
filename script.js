@@ -57,13 +57,13 @@ const sizeCharts = {
                 <thead>
                     <tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th></tr>
                 </thead>
-                    <tbody>
-                    <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
-                    <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
-                    <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
-                    <tr><td>XL</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
+                <tbody>
+                    <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>XL</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
                 </tbody>
-               </table>`
+            </table>`
     },
     'bottoms': {
         title: 'BOTTOMS SIZE CHART',
@@ -76,7 +76,7 @@ const sizeCharts = {
                     <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
                     <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
                     <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
-                    <tr><td>XL</td><td data-in="N/A" data-cm=N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>XL</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
                 </tbody>
             </table>`
     }
@@ -88,7 +88,7 @@ const sizeCharts = {
 
 function renderCommunityShowcase() {
     const grid = document.getElementById('communityGrid');
-    if (!grid) return;
+    if (!grid || typeof communityData === 'undefined') return;
 
     grid.innerHTML = communityData.map(item => `
         <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
@@ -139,8 +139,12 @@ function openLightbox(imageSrc) {
 
     if (lightboxModal && lightboxImage) {
         lightboxImage.src = imageSrc;
+        lightboxModal.style.position = 'fixed';
+        lightboxModal.style.top = '0';
+        lightboxModal.style.left = '0';
         lightboxModal.style.display = 'flex';
         lightboxModal.classList.add('is-active');
+        document.body.classList.add('modal-open');
     }
 }
 
@@ -149,6 +153,7 @@ function closeLightbox() {
     if (modal) {
         modal.style.display = "none";
         modal.classList.remove('is-active');
+        document.body.classList.remove('modal-open');
     }
 }
 
@@ -166,8 +171,17 @@ function openCustomModal(title, message) {
     if (titleEl) titleEl.innerText = title;
     if (messageEl) messageEl.innerText = message;
 
+    // Force viewport locking via inline styles
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
     modal.style.display = 'flex';
+    modal.style.zIndex = '999999';
+
     modal.classList.add('active');
+    document.body.classList.add('modal-open');
 }
 
 function closeCustomModal() {
@@ -175,6 +189,7 @@ function closeCustomModal() {
     if (modal) {
         modal.classList.remove('active');
         modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
     }
 }
 
@@ -183,7 +198,7 @@ function openSizeChart(chartType) {
     const titleEl = document.getElementById('modal-chart-title');
     const containerEl = document.getElementById('size-table-container');
 
-    const data = sizeCharts[chartType] || sizeCharts['pump-cover'];
+    const data = sizeCharts[chartType] || sizeCharts['pump-covers'];
 
     if (titleEl) titleEl.innerText = data.title;
     if (containerEl) containerEl.innerHTML = data.table;
@@ -194,8 +209,18 @@ function openSizeChart(chartType) {
 
     if (modal) {
         modal.classList.remove('is-closing');
-        modal.classList.add('is-active');
+        
+        // Force absolute viewport locking to current screen position
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
         modal.style.display = 'flex';
+        modal.style.zIndex = '999999';
+
+        modal.classList.add('is-active');
+        document.body.classList.add('modal-open');
     }
 }
 
@@ -208,6 +233,7 @@ function closeSizeChart() {
         setTimeout(() => {
             modal.classList.remove('is-closing');
             modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
         }, 220);
     }
 }
@@ -258,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    openCustomModal('SUCCESS', 'Thanks! Your message has been sent successfully.');
+                    openCustomModal('THANK YOU!', 'We’ll keep you posted on our next release.');
                     contactForm.reset();
                 } else {
                     openCustomModal('ERROR', 'Oops! There was a problem submitting your form.');
@@ -271,26 +297,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to handle closing
-function closeCustomModal() {
-    const customModal = document.getElementById('custom-modal');
-    if (customModal) {
-        customModal.classList.remove('active');
-    }
-}
+    // Global click delegation
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#modal-close-btn')) {
+            closeCustomModal();
+        }
+        
+        if (e.target.id === 'custom-modal') {
+            closeCustomModal();
+        }
+    });
 
-// Global click delegation (handles dynamic elements & click-outside backdrop)
-document.addEventListener('click', (e) => {
-    // Check if the click target is the button OR inside the button
-    if (e.target.closest('#modal-close-btn')) {
-        closeCustomModal();
-    }
-    
-    // Check if clicked on the overlay background directly
-    if (e.target.id === 'custom-modal') {
-        closeCustomModal();
-    }
-});
     // Size Chart & Lightbox Modal Close Triggers
     const sizeModal = document.getElementById('size-chart-modal');
     const imageModal = document.getElementById('imageModal');
