@@ -1,6 +1,4 @@
-// ==========================================================================
-// 1. DATA ARRAYS
-// ==========================================================================
+// DATA ARRAYS
 const productsData = [
     {
         id: 1,
@@ -82,28 +80,7 @@ const sizeCharts = {
     }
 };
 
-// ==========================================================================
-// 2. DYNAMIC RENDER FUNCTIONS
-// ==========================================================================
-
-function renderCommunityShowcase() {
-    const grid = document.getElementById('communityGrid');
-    if (!grid || typeof communityData === 'undefined') return;
-
-    grid.innerHTML = communityData.map(item => `
-        <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
-            <div class="showcase-img-wrap">
-                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" loading="lazy">
-            </div>
-            <div class="spotlight-badge">
-                <span class="spotlight-badge-label">${item.tag}</span>
-                <span class="spotlight-handle">${item.handle}</span>
-                <span class="spotlight-outfit">${item.outfit}</span>
-            </div>
-        </div>
-    `).join('');
-}
-
+// DYNAMIC RENDER
 function renderCatalog() {
     const grid = document.getElementById('catalogGrid');
     if (!grid) return;
@@ -129,10 +106,7 @@ function renderCatalog() {
     }).join('');
 }
 
-// ==========================================================================
-// 3. LIGHTBOX FUNCTIONS
-// ==========================================================================
-
+// LIGHTBOX FUNCTIONS
 function openLightbox(imageSrc) {
     const lightboxModal = document.getElementById('imageModal');
     const lightboxImage = document.getElementById('expandedImg');
@@ -152,10 +126,7 @@ function closeLightbox() {
     }
 }
 
-// ==========================================================================
-// 4. SIZE CHART & CUSTOM THEME MODAL FUNCTIONS
-// ==========================================================================
-
+// MODAL FUNCTIONS
 function openCustomModal(title, message) {
     const modal = document.getElementById('custom-modal');
     if (!modal) return;
@@ -204,10 +175,10 @@ function closeSizeChart() {
     if (modal) {
         modal.classList.add('is-closing');
         modal.classList.remove('is-active');
-        document.body.classList.remove('modal-open');
 
         setTimeout(() => {
             modal.classList.remove('is-closing');
+            document.body.classList.remove('modal-open');
         }, 220);
     }
 }
@@ -228,16 +199,11 @@ function switchUnit(evt, unit) {
     });
 }
 
-// ==========================================================================
-// 5. INITIALIZATION & EVENT LISTENERS
-// ==========================================================================
-
+// INITIALIZATION & EVENT LISTENERS
 document.addEventListener('DOMContentLoaded', () => {
-    // Render Dynamic Components
-    if (typeof renderCommunityShowcase === 'function') renderCommunityShowcase();
-    if (typeof renderCatalog === 'function') renderCatalog();
+    renderCatalog();
 
-    // Formspree AJAX Submission Handler
+    // Formspree Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -271,49 +237,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Global click delegation
+    // Global Click Delegation for Modals
     document.addEventListener('click', (e) => {
-        if (e.target.closest('#modal-close-btn')) {
+        if (e.target.closest('#modal-close-btn') || e.target.id === 'custom-modal') {
             closeCustomModal();
         }
-        
-        if (e.target.id === 'custom-modal') {
-            closeCustomModal();
+        if (e.target.id === 'size-chart-modal') {
+            closeSizeChart();
+        }
+        if (e.target.id === 'imageModal') {
+            closeLightbox();
         }
     });
 
-    // Size Chart & Lightbox Modal Close Triggers
-    const sizeModal = document.getElementById('size-chart-modal');
-    const imageModal = document.getElementById('imageModal');
-    
-    document.querySelectorAll('.modal-close').forEach(closeBtn => {
-        closeBtn.addEventListener('click', (e) => {
-            const targetModal = e.target.closest('.modal-overlay');
-            if (targetModal && targetModal.id === 'size-chart-modal') {
-                closeSizeChart();
-            } else {
-                closeLightbox();
-            }
-        });
-    });
-
-    if (sizeModal) {
-        sizeModal.addEventListener('click', (e) => {
-            if (e.target === sizeModal) {
-                closeSizeChart();
-            }
-        });
-    }
-
-    if (imageModal) {
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === imageModal || e.target.classList.contains('lightbox-close')) {
-                closeLightbox();
-            }
-        });
-    }
-
-    // Global Escape Key Listener
+    // Escape Key Listener
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSizeChart();
@@ -322,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // FAQ Accordion Listener
+    // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const faqItem = button.parentElement;
@@ -342,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Hamburger Menu
+    // Mobile Navigation Toggle
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navLinks = document.getElementById('navLinks');
 
@@ -360,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Catalog Filter
+    // Catalog Filtering
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -371,13 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
-
                 if (selectedCategory === 'all' || cardCategory === selectedCategory) {
                     card.classList.remove('is-hidden');
-                    card.style.display = 'flex';
                 } else {
                     card.classList.add('is-hidden');
-                    card.style.display = 'none';
                 }
             });
         });
