@@ -139,10 +139,6 @@ function openLightbox(imageSrc) {
 
     if (lightboxModal && lightboxImage) {
         lightboxImage.src = imageSrc;
-        lightboxModal.style.position = 'fixed';
-        lightboxModal.style.top = '0';
-        lightboxModal.style.left = '0';
-        lightboxModal.style.display = 'flex';
         lightboxModal.classList.add('is-active');
         document.body.classList.add('modal-open');
     }
@@ -151,7 +147,6 @@ function openLightbox(imageSrc) {
 function closeLightbox() {
     const modal = document.getElementById("imageModal");
     if (modal) {
-        modal.style.display = "none";
         modal.classList.remove('is-active');
         document.body.classList.remove('modal-open');
     }
@@ -171,15 +166,6 @@ function openCustomModal(title, message) {
     if (titleEl) titleEl.innerText = title;
     if (messageEl) messageEl.innerText = message;
 
-    // Force viewport locking via inline styles
-    modal.style.position = 'fixed';
-    modal.style.top = '0';
-    modal.style.left = '0';
-    modal.style.width = '100%';
-    modal.style.height = '100%';
-    modal.style.display = 'flex';
-    modal.style.zIndex = '999999';
-
     modal.classList.add('active');
     document.body.classList.add('modal-open');
 }
@@ -188,7 +174,6 @@ function closeCustomModal() {
     const modal = document.getElementById('custom-modal');
     if (modal) {
         modal.classList.remove('active');
-        modal.style.display = 'none';
         document.body.classList.remove('modal-open');
     }
 }
@@ -209,16 +194,6 @@ function openSizeChart(chartType) {
 
     if (modal) {
         modal.classList.remove('is-closing');
-        
-        // Force absolute viewport locking to current screen position
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.display = 'flex';
-        modal.style.zIndex = '999999';
-
         modal.classList.add('is-active');
         document.body.classList.add('modal-open');
     }
@@ -229,11 +204,10 @@ function closeSizeChart() {
     if (modal) {
         modal.classList.add('is-closing');
         modal.classList.remove('is-active');
+        document.body.classList.remove('modal-open');
 
         setTimeout(() => {
             modal.classList.remove('is-closing');
-            modal.style.display = 'none';
-            document.body.classList.remove('modal-open');
         }, 220);
     }
 }
@@ -400,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (selectedCategory === 'all' || cardCategory === selectedCategory) {
                     card.classList.remove('is-hidden');
-                    card.style.display = 'block';
+                    card.style.display = 'flex';
                 } else {
                     card.classList.add('is-hidden');
                     card.style.display = 'none';
