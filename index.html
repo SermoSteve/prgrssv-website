@@ -1,428 +1,394 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRGRSSV-activewear</title>
-    <link rel="icon" type="image/png" href="Logo_white.png">
+// ==========================================================================
+// 1. DATA ARRAYS
+// ==========================================================================
+const productsData = [
+    {
+        id: 1,
+        title: "PROGRESSIVE",
+        category: "pump-covers",
+        chartType: "pump-covers",
+        categoryLabel: "PUMP COVERS",
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
+        specs: ["(CLOTH TYPE)", "(GMS)", "COLORS"]
+    },
+    {
+        id: 2,
+        title: "COMING SOON",
+        category: "tank-tops",
+        chartType: "tank-tops",
+        categoryLabel: "TANK TOPS",
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
+        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
+    },
+    {
+        id: 3,
+        title: "COMING SOON",
+        category: "bottoms",
+        chartType: "bottoms",
+        categoryLabel: "BOTTOMS",
+        imgFront: "soon.jpg",
+        imgBack: "soon.jpg",
+        specs: ["(CLOTH TYPE)", "(GMS)", "(COLORS)"]
+    }
+];
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+const sizeCharts = {
+    'pump-covers': {
+        title: 'PUMP COVER SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th><th>SHOULDER</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>XL</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                </tbody>
+            </table>`
+    },
+    'tank-tops': {
+        title: 'TANK TOP SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>CHEST</th><th>LENGTH</th></tr>
+                </thead>
+                    <tbody>
+                    <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
+                    <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
+                    <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
+                    <tr><td>XL</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td </td></tr>
+                </tbody>
+               </table>`
+    },
+    'bottoms': {
+        title: 'BOTTOMS SIZE CHART',
+        table: `
+            <table class="size-table">
+                <thead>
+                    <tr><th>SIZE</th><th>WAIST</th><th>HIP</th><th>LENGTH</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>M</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>L</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                    <tr><td>XL</td><td data-in="N/A" data-cm=N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td><td data-in="N/A" data-cm="N/A">N/A</td></tr>
+                </tbody>
+            </table>`
+    }
+};
+
+// ==========================================================================
+// 2. DYNAMIC RENDER FUNCTIONS
+// ==========================================================================
+
+function renderCommunityShowcase() {
+    const grid = document.getElementById('communityGrid');
+    if (!grid) return;
+
+    grid.innerHTML = communityData.map(item => `
+        <div class="showcase-card ${item.isFeatured ? 'featured-main' : ''}">
+            <div class="showcase-img-wrap">
+                <img src="${item.image}" alt="PRGRSSV Community Feature ${item.id}" class="showcase-img" loading="lazy">
+            </div>
+            <div class="spotlight-badge">
+                <span class="spotlight-badge-label">${item.tag}</span>
+                <span class="spotlight-handle">${item.handle}</span>
+                <span class="spotlight-outfit">${item.outfit}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderCatalog() {
+    const grid = document.getElementById('catalogGrid');
+    if (!grid) return;
+
+    grid.innerHTML = productsData.map(item => {
+        const specsHTML = item.specs.map(spec => `<li>${spec}</li>`).join('');
+        return `
+            <div class="catalog-card" data-category="${item.category}">
+                <div class="card-image-wrap">
+                    <img src="${item.imgFront}" alt="${item.title} - Front" class="img-primary" loading="lazy">
+                    <img src="${item.imgBack}" alt="${item.title} - Back" class="img-hover" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <span class="category-tag">${item.categoryLabel}</span>
+                    <h3>${item.title}</h3>
+                    <ul class="specs-list">
+                        ${specsHTML}
+                    </ul>
+                    <button type="button" class="size-chart-trigger" onclick="openSizeChart('${item.chartType}')">VIEW SIZE CHART</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ==========================================================================
+// 3. LIGHTBOX FUNCTIONS
+// ==========================================================================
+
+function openLightbox(imageSrc) {
+    const lightboxModal = document.getElementById('imageModal');
+    const lightboxImage = document.getElementById('expandedImg');
+
+    if (lightboxModal && lightboxImage) {
+        lightboxImage.src = imageSrc;
+        lightboxModal.style.display = 'flex';
+        lightboxModal.classList.add('is-active');
+    }
+}
+
+function closeLightbox() {
+    const modal = document.getElementById("imageModal");
+    if (modal) {
+        modal.style.display = "none";
+        modal.classList.remove('is-active');
+    }
+}
+
+// ==========================================================================
+// 4. SIZE CHART & CUSTOM THEME MODAL FUNCTIONS
+// ==========================================================================
+
+function openCustomModal(title, message) {
+    const modal = document.getElementById('custom-modal');
+    if (!modal) return;
     
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    const titleEl = modal.querySelector('.modal-title');
+    const messageEl = modal.querySelector('.modal-message');
 
-    <!-- ==========================================================================
-     1. NAVIGATION BAR
-     ========================================================================== -->
-    <div class="announcement-bar">
-        ⚡ HIGH-PERFORMANCE ATHLETIC WEAR | PRODUCT SHOWCASE &amp; LOOKBOOK
-    </div>
+    if (titleEl) titleEl.innerText = title;
+    if (messageEl) messageEl.innerText = message;
 
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <img src="Logo_white.png" alt="PRGRSSV Logo" class="brand-logo-img">
-            </a>
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+}
 
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+function closeCustomModal() {
+    const modal = document.getElementById('custom-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+    }
+}
 
-            <nav class="nav-links" id="navLinks">
-                <a href="#catalog">CATALOG</a>
-                <a href="#gallery">GALLERY</a>
-                <a href="#faq">FAQ</a>
-                <a href="#about">ABOUT</a>
-                <a href="#contact">CONTACT</a>
-            </nav>
-        </div>
-    </header>
+function openSizeChart(chartType) {
+    const modal = document.getElementById('size-chart-modal');
+    const titleEl = document.getElementById('modal-chart-title');
+    const containerEl = document.getElementById('size-table-container');
 
-    <main>
-        <!-- ==========================================================================
-         2. VIDEO HERO SECTION
-         ========================================================================== -->
-        <section class="hero-section">
-            <!-- Video Background -->
-            <video class="hero-video" autoplay loop muted playsinline poster="vid.jpg">
-                <source src="vid.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+    const data = sizeCharts[chartType] || sizeCharts['pump-cover'];
 
-            <!-- Dark Gradient Overlay -->
-            <div class="hero-bg-overlay"></div>
+    if (titleEl) titleEl.innerText = data.title;
+    if (containerEl) containerEl.innerHTML = data.table;
 
-            <!-- Hero Content -->
-            <div class="hero-content">
-                <span class="category-tag">KEEP PROGRESSING</span>
-                <h1 class="hero-title">PRGRSSV IS A MINDSET</h1>
-                <p class="hero-subtitle">
-                    Built for raw athletic discipline, designed for wherever the day takes you. Step into the latest collection.  </p>
-                <div class="hero-actions">
-                    <a href="#catalog" class="btn btn-primary">VIEW LOOKBOOK</a>
-                    <a href="#about" class="btn btn-secondary">OUR STORY</a>
-                </div>
-            </div>
-        </section>
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    const defaultInchesBtn = document.querySelector('.unit-btn[onclick*="in"]');
+    if (defaultInchesBtn) defaultInchesBtn.classList.add('active');
 
-        <!-- ==========================================================================
-         3. COMMUNITY SHOWCASE SECTION
-         ========================================================================== -->
-        <section class="community-showcase-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="category-tag">COMMUNITY SPOTLIGHT</span>
-                    <h2 class="section-title">FEATURED FITS</h2>
-                    <p class="section-subtitle">Real performance under real pressure.</p>
-                </div>
+    if (modal) {
+        modal.classList.remove('is-closing');
+        modal.classList.add('is-active');
+        modal.style.display = 'flex';
+    }
+}
 
-                <div class="showcase-grid">
-                    <!-- Card 1 -->
-                    <div class="showcase-card">
-                        <div class="showcase-img-wrap">
-                            <img src="wm.png" alt="@username in PRGRSSV gear" loading="lazy">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig-badge" aria-label="Instagram Profile">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                        <div class="spotlight-badge">
-                            <span class="spotlight-handle">@username</span>
-                            <span class="spotlight-outfit">OUTFIT</span>
-                        </div>
-                    </div>
+function closeSizeChart() {
+    const modal = document.getElementById('size-chart-modal');
+    if (modal) {
+        modal.classList.add('is-closing');
+        modal.classList.remove('is-active');
 
-                    <!-- Card 2 -->
-                    <div class="showcase-card">
-                        <div class="showcase-img-wrap">
-                            <img src="wm.png" alt="@username" loading="lazy">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig-badge" aria-label="Instagram Profile">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                        <div class="spotlight-badge">
-                            <span class="spotlight-handle">@username</span>
-                            <span class="spotlight-outfit">OUTFIT</span>
-                        </div>
-                    </div>
+        setTimeout(() => {
+            modal.classList.remove('is-closing');
+            modal.style.display = 'none';
+        }, 220);
+    }
+}
 
-                    <!-- Card 3 -->
-                    <div class="showcase-card">
-                        <div class="showcase-img-wrap">
-                            <img src="wm.png" alt="@username in PRGRSSV gear" loading="lazy">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig-badge" aria-label="Instagram Profile">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                        <div class="spotlight-badge">
-                            <span class="spotlight-handle">@username</span>
-                            <span class="spotlight-outfit">OUTFIT</span>
-                        </div>
-                    </div>
+function switchUnit(evt, unit) {
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+    }
 
-                    <!-- Card 4 -->
-                    <div class="showcase-card">
-                        <div class="showcase-img-wrap">
-                            <img src="wm.png" alt="@username in PRGRSSV gear" loading="lazy">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig-badge" aria-label="Instagram Profile">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                        <div class="spotlight-badge">
-                            <span class="spotlight-handle">@username</span>
-                            <span class="spotlight-outfit">OUTFIT</span>
-                        </div>
-                    </div>
+    const tableCells = document.querySelectorAll('.size-table tbody td[data-in]');
+    tableCells.forEach(cell => {
+        if (unit === 'cm') {
+            cell.textContent = cell.getAttribute('data-cm');
+        } else {
+            cell.textContent = cell.getAttribute('data-in');
+        }
+    });
+}
 
-                    <!-- Card 5 -->
-                    <div class="showcase-card">
-                        <div class="showcase-img-wrap">
-                            <img src="wm.png" alt="@username in PRGRSSV gear" loading="lazy">
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="ig-badge" aria-label="Instagram Profile">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                        <div class="spotlight-badge">
-                            <span class="spotlight-handle">@username</span>
-                            <span class="spotlight-outfit">OUTFIT</span>
-                        </div>
-                    </div>
-                </div>
+// ==========================================================================
+// 5. INITIALIZATION & EVENT LISTENERS
+// ==========================================================================
 
-                <!-- Tag Callout Banner -->
-                <div class="showcase-callout-box">
-                    <p class="showcase-callout">
-                        Tag <strong>#PRGRSSVACTIVEWEAR</strong> on Instagram for a chance to be featured in next month's spotlights.
-                    </p>
-                </div>
-            </div>
-        </section>
+document.addEventListener('DOMContentLoaded', () => {
+    // Render Dynamic Components
+    if (typeof renderCommunityShowcase === 'function') renderCommunityShowcase();
+    if (typeof renderCatalog === 'function') renderCatalog();
 
-        <!-- ==========================================================================
-         4. CATALOG SECTION
-         ========================================================================== -->
-        <section id="catalog" class="catalog-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">THE PRODUCT LINEUP</h2>
-                    <p class="section-subtitle">Essential athletic apparel crafted for heavy lifting, high-intensity training, and daily wear.</p>
-                </div>
+    // Formspree AJAX Submission Handler
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.disabled = true;
 
-                <!-- Filter Buttons -->
-                <div class="catalog-filters">
-                    <button class="filter-btn active" data-category="all">ALL GEAR</button>
-                    <button class="filter-btn" data-category="pump-covers">PUMP COVERS</button>
-                    <button class="filter-btn" data-category="tank-tops">TANK TOPS</button>
-                    <button class="filter-btn" data-category="bottoms">BOTTOMS</button>
-                </div>
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-                <!-- DYNAMIC CONTAINER FOR CATALOG PRODUCTS -->
-                <div class="catalog-grid" id="catalogGrid">
-                    <!-- JavaScript renders catalog cards here -->
-                </div>
-            </div>
-        </section>
+                if (response.ok) {
+                    openCustomModal('THANK YOU!', 'We’ll keep you posted on our next release.');
+                    contactForm.reset();
+                } else {
+                    openCustomModal('ERROR', 'Oops! There was a problem submitting your form.');
+                }
+            } catch (error) {
+                openCustomModal('ERROR', 'Oops! There was a network error sending your form.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        });
+    }
 
-        <!-- ==========================================================================
-         5. GALLERY SECTION
-         ========================================================================== -->
-        <section id="gallery" class="gallery-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">IN MOTION</h2>
-                    <p class="section-subtitle">High-performance fit and movement captured in action under pressure.</p>
-                </div>
+    // Function to handle closing
+function closeCustomModal() {
+    const customModal = document.getElementById('custom-modal');
+    if (customModal) {
+        customModal.classList.remove('active');
+    }
+}
 
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Heavy lifting session focusing on shirt drape and chest taper">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Deep squat mobility shot in utility shorts">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Outdoor conditioning session highlighting sweat-wicking breathability">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Macro close-up on fabric texture, weave, and high-density logo print">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Back-taper shot during pull-ups">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="wm.png" alt="Full gym kit styled for everyday training">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                     <div class="gallery-item">
-                        <img src="wm.png" alt="Full gym kit styled for everyday training">
-                        <div class="gallery-caption">CAPTIO</div>
-                    </div>
-                     <div class="gallery-item">
-                        <img src="wm.png" alt="Full gym kit styled for everyday training">
-                        <div class="gallery-caption">CAPTION</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+// Global click delegation (handles dynamic elements & click-outside backdrop)
+document.addEventListener('click', (e) => {
+    // Check if the click target is the button OR inside the button
+    if (e.target.closest('#modal-close-btn')) {
+        closeCustomModal();
+    }
+    
+    // Check if clicked on the overlay background directly
+    if (e.target.id === 'custom-modal') {
+        closeCustomModal();
+    }
+});
+    // Size Chart & Lightbox Modal Close Triggers
+    const sizeModal = document.getElementById('size-chart-modal');
+    const imageModal = document.getElementById('imageModal');
+    
+    document.querySelectorAll('.modal-close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', (e) => {
+            const targetModal = e.target.closest('.modal-overlay');
+            if (targetModal && targetModal.id === 'size-chart-modal') {
+                closeSizeChart();
+            } else {
+                closeLightbox();
+            }
+        });
+    });
 
-        <!-- ==========================================================================
-         6. FAQ SECTION
-         ========================================================================== -->
-        <section id="faq" class="faq-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
-                    <p class="section-subtitle">Everything you need to know about our athletic gear, sizing, and availability.</p>
-                </div>
+    if (sizeModal) {
+        sizeModal.addEventListener('click', (e) => {
+            if (e.target === sizeModal) {
+                closeSizeChart();
+            }
+        });
+    }
 
-                <div class="faq-accordion">
-                    <div class="faq-item">
-                        <button type="button" class="faq-question">
-                            <span>Q: What does "PRGRSSV" stand for?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A: PRGRSSV represents "Progressive" symbolizing a commitment to continuous self-improvement, physical growth, and a relentless work ethic inside and outside the gym.</p>
-                        </div>
-                    </div>
+    if (imageModal) {
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal || e.target.classList.contains('lightbox-close')) {
+                closeLightbox();
+            }
+        });
+    }
 
-                    <div class="faq-item">
-                        <button type="button" class="faq-question">
-                            <span>Q: Where are your products made?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A: As a starting brand, we source our blank apparel from trusted local suppliers, while all printing and customization are done in-house using heat press technology.</p>
-                        </div>
-                    </div>
+    // Global Escape Key Listener
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSizeChart();
+            closeLightbox();
+            closeCustomModal();
+        }
+    });
 
-                    <div class="faq-item">
-                        <button type="button" class="faq-question">
-                            <span>Q: How do I place an order?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A: This website functions as our official digital showcase and look book. For inquiries you can place an order directly by sending us a message on our official Facebook Page with your selected items, size, and shipping details.</p>
-                        </div>
-                    </div>
+    // FAQ Accordion Listener
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = button.nextElementSibling;
+            const isActive = faqItem.classList.contains('active');
 
-                    <div class="faq-item">
-                        <button type="button" class="faq-question">
-                            <span>Q: How should I care for and wash the activewear?</span>
-                            <span class="faq-icon">+</span>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A: Machine wash cold inside-out with like colors. Tumble dry low or air dry. Avoid bleach and fabric softeners to maintain elasticity and moisture-wicking coatings.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const itemAnswer = item.querySelector('.faq-answer');
+                if (itemAnswer) itemAnswer.style.maxHeight = null;
+            });
 
-        <!-- ==========================================================================
-         7. ABOUT / BRAND STORY SECTION
-         ========================================================================== -->
-        <section class="about-section" id="about">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-content">
-                        <span class="category-tag">ABOUT US</span>
-                        <h2 class="about-title">PRGRSSV IS A MINDSET</h2>
-                        <p class="about-lead">
-                            PRGRSSV began with two friends and a shared vision: create an extra source of income while building something meaningful.</p>
-                        <div class="about-body">
-                            <p>
-                               We needed gear that could keep up with our daily grind and reflect our drive to push forward.
-                            </p>
-                            <p>
-                                What started as a hustle to progress our own lives turned into a brand built for anyone who refuses to stay stagnant.
-                            </p>
-                        </div>
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">01</span>
-                                <span class="stat-label">BUILT FROM HUSTLE</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">02</span>
-                                <span class="stat-label">ALWAYS PROGRESSING</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">03</span>
-                                <span class="stat-label">NEVER STAGNANT</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-image-wrap">
-                        <img class="about-img" src="wm.png" alt="Behind the brand">
-                        <div class="about-image-overlay"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            if (!isActive) {
+                faqItem.classList.add('active');
+                if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
 
-        <!-- ==========================================================================
-         8. CONTACT & DROP ALERT SECTION
-         ========================================================================== -->
-        <!-- Your existing contact section -->
-        <section class="contact-section" id="contact">
-            <div class="brand-watermark">PRGRSSV</div>
-            <div class="container contact-container">
-                <h2 class="section-title">DON’T MISS THE NEXT DROP</h2>
-                <p class="contact-subtitle">
-                    Have questions about our gear, sizing, or upcoming releases? Drop your email to stay updated, or reach out to us directly.
-                </p>
+    // Mobile Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
 
-                <form action="https://formspree.io/f/xnpnpzyv" method="POST" class="contact-form" id="contactForm">
-                    <div class="input-group">
-                        <label for="email">EMAIL</label>
-                        <input type="email" id="email" name="email" placeholder="prgssv@example.com" required>
-                    </div>
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
 
-                    <button type="submit" class="submit-btn">GET DROP ALERTS</button>
-                </form>
-            </div>
-        </section>
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 
-    </main>
+    // Catalog Filter
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-    <div id="custom-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title" class="modal-title"></h3>
-            <p id="modal-message" class="modal-message"></p>
-            <button type="button" id="modal-close-btn" class="modal-close-btn">CLOSE</button>
-        </div>
-    </div>
+            const selectedCategory = button.getAttribute('data-category');
+            const cards = document.querySelectorAll('.catalog-card');
 
-    <script src="script.js"></script>
-</body>
-</html>
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
 
-                <div class="contact-direct">
-                    <p>Direct Inquiries: <a href="mailto:support@prgrssv.com" class="contact-link">support@prgrssv.com</a></p>
-                    <div class="socials-container">
-                        <span class="socials-label">Follow Us:</span>
-                        <div class="social-icons">
-                            <a href="https://instagram.com/prgrssv_activewear" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                <span>Instagram</span>
-                            </a>
-                            <a href="https://facebook.com/prgrssv" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="https://www.tiktok.com/@mister_s_ph?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.98-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.56-1.28 2.55.02.93.52 1.81 1.3 2.33.82.56 1.89.65 2.79.28.94-.37 1.62-1.22 1.81-2.21.11-.63.09-1.28.09-1.92.01-4.97.01-9.94.01-14.91z"/></svg>
-                                <span>TikTok</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- ==========================================================================
-     9. MODALS (DYNAMIC SIZE CHART & LIGHTBOX)
-     ========================================================================== -->
-
-    <!-- DYNAMIC SIZE CHART MODAL -->
-    <div id="size-chart-modal" class="modal-overlay">
-    <div class="modal-content">
-        <button type="button" class="modal-close" onclick="closeSizeChart()">&times;</button>
-        
-        <!-- 1. Dynamic Title Target -->
-        <h2 id="modal-chart-title">SIZE CHART</h2>
-        
-        <div class="unit-toggle">
-            <button type="button" class="unit-btn active" onclick="switchUnit(event, 'in')">INCHES</button>
-            <button type="button" class="unit-btn" onclick="switchUnit(event, 'cm')">CM</button>
-        </div>
-
-        <!-- 2. Dynamic Table Target (JavaScript injects tables here) -->
-        <div id="size-table-container"></div>
-    </div>
-</div>
-
-    <!-- IMAGE LIGHTBOX MODAL -->
-    <div id="imageModal" class="modal-overlay">
-        <div class="modal-content lightbox-content">
-            <button type="button" class="modal-close" onclick="closeLightbox()">&times;</button>
-            <img id="expandedImg" src="" alt="Expanded View">
-        </div>
-    </div>
-
-    <!-- EXTERNAL JAVASCRIPT FILE -->
-    <script src="script.js"></script>
-</body>
-</html>
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    card.classList.remove('is-hidden');
+                    card.style.display = 'block';
+                } else {
+                    card.classList.add('is-hidden');
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
