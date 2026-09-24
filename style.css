@@ -38,9 +38,11 @@ body {
     overflow-x: hidden;
     touch-action: manipulation;
 }
+
 img, video, canvas, svg {
     touch-action: manipulation;
 }
+
 h1, h2, h3 {
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -142,9 +144,11 @@ img, video {
 .hamburger-btn.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger-btn.active .bar:nth-child(2) {
     opacity: 0;
 }
+
 .hamburger-btn.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
@@ -426,7 +430,7 @@ img, video {
     display: none;
 }
 
-/* Card Image Container - Natural Aspect Ratio (No Crop, No Black Bars) */
+/* Card Image Container - Natural Aspect Ratio */
 .card-image-wrap {
     width: 100%;
     height: auto;
@@ -1124,7 +1128,7 @@ img, video {
 }
 
 /* ==========================================================================
-   MODALS (LIGHTBOX & SIZE CHART) - FULLY RESPONSIVE & NO SCROLL
+   MODALS (LIGHTBOX & SIZE CHART) - FULLY RESPONSIVE & MOBILE-FIXED
    ========================================================================== */
 
 .lightbox-modal {
@@ -1173,57 +1177,60 @@ img, video {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* Modal Overlay & Centering Container */
+/* Outer Overlay - Pin to Screen Viewport */
 .modal-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: 100dvh !important;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999999;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 999999 !important;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.22s ease, visibility 0.22s ease;
-    padding: 12px;
-    box-sizing: border-box;
+    padding: 16px !important;
+    box-sizing: border-box !important;
 }
 
 .modal-overlay.is-active,
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .modal-overlay.is-closing {
-    opacity: 0;
-    visibility: visible;
-    pointer-events: none;
+    opacity: 0 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
 }
 
-/* Modal Card Box */
+/* Modal Card Box - Fixed Width & High Screen Boundaries */
 .modal-content {
     background-color: #0d0d0d;
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     border-radius: 6px;
-    width: 100%;
-    max-width: 450px;
-    max-height: 90vh;
-    max-height: 90dvh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: clamp(1rem, 4vw, 2rem) clamp(0.8rem, 3.5vw, 1.5rem);
-    position: relative;
-    margin: auto;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 450px !important;
+    max-height: 85vh !important;
+    max-height: 85dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: clamp(1rem, 4vw, 1.5rem) clamp(0.8rem, 3.5vw, 1.25rem);
+    position: relative !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
     pointer-events: auto;
     z-index: 100000;
 }
@@ -1323,38 +1330,39 @@ img, video {
 }
 
 /* ==========================================================================
-   SIZE CHART TABLE (FIT SCREEN & NO SCROLLBAR)
+   SIZE CHART TABLE (HORIZONTAL SCROLL SUPPORT ON SMALL SCREENS)
    ========================================================================== */
 
 .table-responsive {
-    width: 100%;
-    overflow-x: hidden !important;
-    margin-bottom: 10px;
+    width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
     display: block;
 }
 
 .size-table {
-    width: 100%;
-    min-width: 0;
+    width: 100% !important;
+    min-width: 280px;
     border-collapse: collapse;
-    font-size: clamp(0.65rem, 2.5vw, 0.75rem);
-    table-layout: fixed;
+    font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+    table-layout: auto;
 }
 
 .size-table th,
 .size-table td {
-    padding: 8px 2px;
+    padding: 10px 8px;
     color: #ddd;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     text-align: center;
-    word-break: break-word;
+    white-space: nowrap;
 }
 
 .size-table th {
     background: rgba(255, 255, 255, 0.04);
     color: #aaa;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -1431,5 +1439,10 @@ img, video {
     .filter-btn {
         padding: 8px 14px;
         font-size: 0.7rem;
+    }
+
+    .modal-content {
+        padding: 16px 12px !important;
+        width: 95% !important;
     }
 }
