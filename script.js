@@ -222,26 +222,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Accept': 'application/json'
                     }
                 });
-                const data = await response.json();
-                
-                if (response.ok) {
-        openCustomModal('THANK YOU!', 'We’ll keep you posted on our next release.');
-        contactForm.reset();
-    } else {
-        // Check if the server explicitly tells you the email is already subscribed
-        // (Adjust 'data.error' or the message depending on what your backend sends)
-        if (response.status === 409 || (data && data.message && data.message.includes('already'))) {
-            openCustomModal('ALREADY SUBSCRIBED', 'This email is already on our subscriber list!');
-        } else {
-            // General error for other issues
-            openCustomModal('ERROR', data.message || 'Oops! There was a problem submitting your form.');
-        }
-    }
-} catch (error) {
-    openCustomModal('ERROR', 'Oops! There was a network error sending your form.');
-} finally {
-    if (submitBtn) submitBtn.disabled = false;
-}
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.removeItem('prgrssv_user_email');
+
+                    openCustomModal('THANK YOU!', result.message || 'We’ll keep you posted on our next release.');
+                    contactForm.reset();
+                } else {
+                    openCustomModal('ERROR', result.message || 'Oops! There was a problem saving your email.');
+                }
+            } catch (error) {
+                openCustomModal('ERROR', 'Oops! Could not connect to the database server.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
         });
     }
 
