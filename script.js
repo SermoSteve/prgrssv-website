@@ -222,7 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Accept': 'application/json'
                     }
                 });
-
+                const data = await response.json();
+                
                 if (response.ok) {
         openCustomModal('THANK YOU!', 'We’ll keep you posted on our next release.');
         contactForm.reset();
