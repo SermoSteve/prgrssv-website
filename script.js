@@ -203,7 +203,7 @@ function switchUnit(evt, unit) {
 document.addEventListener('DOMContentLoaded', () => {
     renderCatalog();
 
-    // Formspree Submission
+   // Formspree Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
@@ -222,18 +222,30 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Accept': 'application/json'
                     }
                 });
-                const result = await response.json();
 
-                if (result.success) {
-                    localStorage.removeItem('prgrssv_user_email');
+                // Parse the JSON response from the server
+                const data = await response.json().catch(() => ({}));
 
-                    openCustomModal('THANK YOU!', result.message || 'We’ll keep you posted on our next release.');
+                if (response.ok) {
+                    openCustomModal('THANK YOU!', 'We’ll keep you posted on our next release.');
                     contactForm.reset();
                 } else {
-                    openCustomModal('ERROR', result.message || 'Oops! There was a problem saving your email.');
+                    // Check if the response indicates the email is already used/exists
+                    const errorString = JSON.stringify(data).toLowerCase();
+                    
+                    if (
+                        errorString.includes('already') || 
+                        errorString.includes('duplicate') || 
+                        errorString.includes('exist')
+                    ) {
+                        openCustomModal('ERROR', 'You are already on the list! We will notify you when the next drop goes live.');
+                    } else {
+                        const errorMessage = data.error || (data.errors ? data.errors.map(err => err.message).join(', ') : null);
+                        openCustomModal('ERROR', errorMessage || 'Oops! There was a problem submitting your form.');
+                    }
                 }
             } catch (error) {
-                openCustomModal('ERROR', 'Oops! Could not connect to the database server.');
+                openCustomModal('ERROR', 'Oops! There was a network error sending your form.');
             } finally {
                 if (submitBtn) submitBtn.disabled = false;
             }
